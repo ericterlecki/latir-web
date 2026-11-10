@@ -543,6 +543,96 @@ footer .wrap{padding-bottom:calc(22px + 64px)}
 @media (prefers-reduced-motion: reduce){.hero-mark .heads{animation:none}}
 .brand-sister{font-size:.85rem;color:rgba(242,235,219,.75)}
 .brand-sister a{color:#F2EBDB}
+
+/* ===== Recursos, libre uso, música y buscador (adaptado de Sígueme) ===== */
+.scene{position:relative;background:var(--petrol);color:var(--cream);border-radius:22px;overflow:hidden}
+.scene-txt{position:relative;z-index:1;max-width:760px}
+.scene .eyebrow{color:var(--terra)}
+.scene h2{color:var(--cream)}
+.scene .po-lead{color:rgba(242,235,219,.88)}
+.scene.photo{padding:44px 34px 150px;background:linear-gradient(100deg,rgba(22,56,66,.93) 0%,rgba(22,56,66,.80) 48%,rgba(22,56,66,.30) 100%),var(--bg) center/cover no-repeat}
+.res-tabs,.book-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.res-tabs button,.book-filters button{font:inherit;font-size:.9rem;min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.res-tabs button[aria-pressed="true"],.book-filters button[aria-pressed="true"]{background:var(--petrol);border-color:var(--petrol);color:var(--cream)}
+.pe-grid{display:grid;grid-template-columns:1fr minmax(0,420px);gap:48px;align-items:center;margin-top:28px}
+.pe-grid > *{min-width:0}
+.pe-piece h3{font-size:1.7rem;margin-top:6px}
+.pe-piece p{margin-top:8px;color:var(--muted);max-width:46ch}
+.car-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:16px;scrollbar-width:none;background:var(--surface);box-shadow:0 18px 40px -24px rgba(22,56,66,.55)}
+.car-track::-webkit-scrollbar{display:none}
+.car-track figure{margin:0;flex:0 0 100%;scroll-snap-align:start;aspect-ratio:4/5}
+.car-track img{display:block;width:100%;height:100%;object-fit:cover}
+.car-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.car-dots{display:flex;gap:6px;flex-wrap:wrap}
+.car-dots button{width:8px;height:8px;padding:0;border-radius:4px;border:0;background:var(--line);cursor:pointer;transition:width .2s,background .2s}
+.car-dots button[aria-current="true"]{width:22px;background:var(--accent)}
+.car-nav{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted)}
+.car-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:1.1rem;cursor:pointer;display:grid;place-items:center}
+.car-nav button:disabled{opacity:.35;cursor:default}
+.sub-h{margin-top:72px;padding-top:48px;border-top:1px solid var(--line)}
+.sub-h h3{font-size:clamp(1.5rem,3vw,1.9rem);margin-top:6px}
+.sub-h p{margin-top:8px;color:var(--muted);max-width:62ch}
+.guides{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.guide{background:var(--surface);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.guide img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 12px 24px -18px rgba(22,56,66,.8);aspect-ratio:595/842;object-fit:cover;object-position:top}
+.guide h4{font-family:var(--font-display);font-weight:400;font-size:1.3rem;margin:4px 0 0}
+.guide p{color:var(--muted);font-size:.93rem}
+.guide .btn{align-self:flex-start;padding:10px 16px;font-size:.9rem;margin-top:auto}
+.guide details{font-size:.88rem;color:var(--muted)}
+.guide summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.free{border-radius:18px;padding:clamp(22px,3.5vw,34px);color:var(--cream);background:linear-gradient(rgba(22,56,66,.84),rgba(22,56,66,.9)),url("fondos/valles-niebla.webp") center 40%/cover no-repeat,var(--petrol)}
+.free .eyebrow{color:var(--terra)}
+.free h2{color:var(--cream);font-size:clamp(1.5rem,3vw,1.9rem);margin-top:6px}
+.free p{margin-top:10px;color:rgba(242,235,219,.86);max-width:70ch}
+.free ul{margin:12px 0 0;padding-left:1.1em;display:grid;gap:4px}
+.free a{color:#E3B866;font-weight:600}
+.hero-music{margin-top:22px;background:rgba(242,235,219,.08);border:1px solid rgba(242,235,219,.2);border-radius:18px;padding:14px 14px 8px;max-width:520px;color:var(--cream)}
+.mus-head{display:flex;align-items:center;gap:10px;margin:0 4px 10px}
+.mus-head svg{width:22px;height:22px;color:#E3B866;flex:none}
+.mus-head p{margin:0;font-size:.95rem}
+.mus-head a{color:#E3B866}
+.hero-music iframe{border-radius:12px;display:block}
+.search-btn{background:none;border:1px solid rgba(242,235,219,.35);color:var(--cream);border-radius:10px;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+.search-btn svg{width:19px;height:19px}
+.search-btn:hover{border-color:var(--cream)}
+.search-box{border:0;padding:0;border-radius:18px;width:min(94vw,640px);max-height:84vh;margin:8vh auto auto;background:var(--bg);color:var(--fg);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.search-box::backdrop{background:rgba(15,38,43,.8)}
+.sb-in{padding:16px}
+.sb-field{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--surface)}
+.sb-field svg{width:20px;height:20px;color:var(--muted);flex:none}
+.sb-field input::-webkit-search-cancel-button{display:none}
+.sb-field input{flex:1;border:0;background:transparent;font:inherit;font-size:1.05rem;color:var(--fg);outline:none;min-width:0}
+.sb-field button{border:0;background:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:4px 6px}
+.sb-hint{margin:12px 4px 4px;font-size:.88rem;color:var(--muted)}
+.sb-res{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px;max-height:62vh;overflow:auto}
+.sb-res button{width:100%;text-align:left;border:0;background:var(--surface);border-radius:12px;padding:12px 14px;cursor:pointer;color:var(--fg);font:inherit}
+.sb-res button:hover,.sb-res button:focus-visible{outline:2px solid var(--terra)}
+.sb-res .sec{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.sb-res .t{display:block;font-weight:600;margin-top:2px}
+.sb-res .sn{display:block;font-size:.85rem;color:var(--muted);margin-top:3px}
+.sb-res mark{background:rgba(227,184,102,.45);color:inherit;border-radius:3px}
+.hl-flash{animation:hlf 1.6s ease}
+@keyframes hlf{0%,40%{box-shadow:0 0 0 4px rgba(217,144,111,.55)}100%{box-shadow:0 0 0 0 rgba(217,144,111,0)}}
+.book[hidden]{display:none}
+#biblioteca .scene.photo{--bg:url(fondos/amanecer-nubes.webp)}
+#lecturas .scene.photo{--bg:url(fondos/lago-turquesa.webp)}
+@media (max-width:1100px){.guides{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.pe-grid{grid-template-columns:1fr;gap:28px}}
+@media (max-width:620px){
+  .guides{grid-template-columns:1fr}
+  .scene.photo{padding:28px 20px 130px;background:linear-gradient(180deg,rgba(22,56,66,.92) 0%,rgba(22,56,66,.78) 62%,rgba(22,56,66,.25) 100%),var(--bg) center/cover no-repeat}
+  #biblioteca .scene.photo{--bg:url(fondos/amanecer-nubes-movil.webp)}
+  #lecturas .scene.photo{--bg:url(fondos/lago-turquesa-movil.webp)}
+  .free{background-image:linear-gradient(rgba(22,56,66,.86),rgba(22,56,66,.92)),url("fondos/valles-niebla-movil.webp")}
+}
+
+.qf-grid{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
+.qf{background:var(--surface);border-radius:18px;padding:22px 22px 16px;display:flex;flex-direction:column;gap:10px;position:relative}
+.qf-k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+.qf blockquote{margin:0;font-family:var(--font-display);font-size:1.3rem;line-height:1.3;color:var(--fg)}
+.qf-a{margin:0;color:var(--muted);font-size:.92rem;flex:1}
+.qf-copy{align-self:flex-start;font:inherit;font-size:.85rem;font-weight:600;color:var(--accent);background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.qf[hidden],.din[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -563,11 +653,13 @@ footer .wrap{padding-bottom:calc(22px + 64px)}
       <li><a href="#psicooncologia">Psicooncología</a></li>
       <li><a href="#quien-soy">Quién soy</a></li>
       <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#biblioteca">Biblioteca</a></li>
       <li><a href="#app">App de registro</a></li>
       <li><a href="#preguntas">Preguntas</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <a class="cta-mini" href="https://wa.me/5493416601847?text=Hola%20Eric%2C%20quisiera%20consultar%20por%20acompa%C3%B1amiento%20en%20psicooncolog%C3%ADa." target="_blank" rel="noopener">Consultar</a>
+    <button class="search-btn" id="search-btn" type="button" aria-label="Buscar en el sitio" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
     </button>
@@ -578,6 +670,10 @@ footer .wrap{padding-bottom:calc(22px + 64px)}
         <li><a href="#psicooncologia">Psicooncología</a></li>
         <li><a href="#quien-soy">Quién soy</a></li>
         <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#biblioteca">Carruseles y guías</a></li>
+        <li><a href="#dinamicas">Dinámicas</a></li>
+        <li><a href="#frases">Frases</a></li>
+        <li><a href="#lecturas">Lecturas</a></li>
         <li><a href="#app">App de registro</a></li>
         <li><a href="#preguntas">Preguntas</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -598,6 +694,11 @@ footer .wrap{padding-bottom:calc(22px + 64px)}
         <a class="btn btn-ghost" href="#psicooncologia">Conocer el espacio</a>
       </div>
       <p class="meta">Eric Terlecki · Lic. en Psicología · Esp. en Psicoterapia Clínica · Mg. en Psicooncología · Mat. Nro. 4331</p>
+      <div class="hero-music">
+        <div class="mus-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><p>Si querés, recorré el sitio con <b>piano tranquilo</b> de fondo.</p></div>
+        <iframe title="Piano tranquilo en Spotify" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4sWSpwq3LiO?utm_source=generator&amp;theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+
     </div>
     <div class="hero-mark" aria-hidden="true">
       <svg viewBox="-150 -150 300 300">
@@ -607,6 +708,22 @@ footer .wrap{padding-bottom:calc(22px + 64px)}
     </div>
   </div>
 </header>
+
+  <section class="block" id="libre-uso">
+    <div class="wrap">
+      <div class="free">
+        <p class="eyebrow">De libre uso</p>
+        <h2>Recursos gratuitos para pacientes y familias</h2>
+        <p>Además del acompañamiento en consultorio, en este sitio hay materiales para usar cuando los necesites: en la sala de espera, en casa, en un día de tratamiento. Son gratuitos y no hace falta registrarse.</p>
+        <ul>
+          <li><a href="#app">La app de registro</a> diario y semanal, pensada para el tratamiento, con un cuaderno personal.</li>
+          <li><a href="#recursos">Primeros recursos</a> para cuando llega el diagnóstico y <a href="#biblioteca">una biblioteca de carruseles y guías para completar</a>.</li>
+          <li><a href="#dinamicas">Dinámicas para hacer en casa</a>, <a href="#frases">frases que acompañan</a> y <a href="#lecturas">lecturas</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 
 <main>
   <section class="block" id="psicooncologia">
@@ -748,6 +865,253 @@ Estoy acá. Sigo adelante.</p></details>
       </div>
     </div>
   </section>
+  <section class="block" id="biblioteca">
+    <div class="wrap">
+      <div class="scene photo"><div class="scene-txt"><p class="eyebrow">Biblioteca</p>
+      <h2>Para leer, completar y guardar</h2>
+      <p class="po-lead">Carruseles breves para leer en el celular y guías para completar a tu ritmo: la ansiedad, la espera, el cuerpo, el cansancio, los cuidadores, las pérdidas y el sentido. Adaptados de los recursos de Sígueme y Entre Nosotros.</p></div></div>
+
+      <div class="res-tabs" role="group" aria-label="Elegir carrusel"><button type="button" data-car="0" aria-pressed="true">Ansiedad y cuerpo</button><button type="button" data-car="1" aria-pressed="false">La espera de resultados</button><button type="button" data-car="2" aria-pressed="false">Cuidar a quien cuida</button><button type="button" data-car="3" aria-pressed="false">En paz con tu cuerpo</button><button type="button" data-car="4" aria-pressed="false">Tratarte con la misma calidez</button><button type="button" data-car="5" aria-pressed="false">Vivir con sentido</button></div>
+      <div class="pe-grid">
+        <div class="pe-piece">
+          <span class="pe-tag">Carrusel · <span id="car-n"></span> placas</span>
+          <h3 id="car-t"></h3>
+          <p id="car-d"></p>
+          <ol class="pe-steps" id="car-steps"></ol>
+          <div class="pe-actions">
+            <a class="btn btn-line" id="car-pdf" href="#" download>Descargar PDF</a>
+            <button class="btn btn-line" type="button" id="car-share">Compartir</button>
+          </div>
+        </div>
+        <div class="car" aria-roledescription="carrusel" aria-label="Carrusel">
+          <div class="car-track" tabindex="0" id="car-track"></div>
+          <div class="car-bar">
+            <div class="car-dots" id="car-dots"></div>
+            <div class="car-nav"><span id="car-count" aria-live="polite"></span><button type="button" id="car-prev" aria-label="Anterior">←</button><button type="button" id="car-next" aria-label="Siguiente">→</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-h" id="guias">
+        <span class="pe-tag">Guías para completar</span>
+        <h3>Guías para el camino</h3>
+        <p>PDF para leer con calma y completar en el celular o la compu. Cada una tiene una parte para comprender y hojas de registro. No reemplazan la consulta con tu equipo de salud.</p>
+      </div>
+      <ul class="guides">
+        <li class="guide" id="guia-incertidumbre-y-espera">
+          <img src="guias/incertidumbre-y-espera.jpg" width="827" height="1170" loading="lazy" alt="Portada de la guía Incertidumbre y espera">
+          <span class="pe-tag">Guía para completar · 5 páginas</span>
+          <h4>Incertidumbre y espera</h4>
+          <p>Cuando lo más difícil es no saber: qué hace la mente con la espera, recursos para esos días y un plan para el día del resultado.</p>
+          <details><summary>¿Cómo se completa?</summary><p style="margin-top:6px">Abrila en el celular o la compu con una app que permita completar formularios PDF, por ejemplo Adobe Acrobat Reader. Tocá las opciones o escribí en los recuadros, guardá los cambios y, si querés, llevala a la próxima sesión.</p></details>
+          <a class="btn btn-terra" href="guias/incertidumbre-y-espera.pdf" download="incertidumbre-y-espera.pdf">Descargar PDF</a>
+        </li>
+        <li class="guide" id="guia-fatiga-y-descanso">
+          <img src="guias/fatiga-y-descanso.jpg" width="827" height="1170" loading="lazy" alt="Portada de la guía Fatiga y descanso">
+          <span class="pe-tag">Guía para completar · 5 páginas</span>
+          <h4>Fatiga y descanso</h4>
+          <p>La fatiga del tratamiento no es pereza: cómo administrar la energía, moverse un poco y dormir mejor, con un registro semanal.</p>
+          <details><summary>¿Cómo se completa?</summary><p style="margin-top:6px">Abrila en el celular o la compu con una app que permita completar formularios PDF, por ejemplo Adobe Acrobat Reader. Tocá las opciones o escribí en los recuadros, guardá los cambios y, si querés, llevala a la próxima sesión.</p></details>
+          <a class="btn btn-terra" href="guias/fatiga-y-descanso.pdf" download="fatiga-y-descanso.pdf">Descargar PDF</a>
+        </li>
+        <li class="guide" id="guia-cuidar-a-quien-cuida">
+          <img src="guias/cuidar-a-quien-cuida.jpg" width="827" height="1170" loading="lazy" alt="Portada de la guía Cuidar a quien cuida">
+          <span class="pe-tag">Guía para completar · 5 páginas</span>
+          <h4>Cuidar a quien cuida</h4>
+          <p>Para familiares y cuidadores: señales de desgaste, cómo pedir ayuda, hablar con la persona enferma y con los chicos.</p>
+          <details><summary>¿Cómo se completa?</summary><p style="margin-top:6px">Abrila en el celular o la compu con una app que permita completar formularios PDF, por ejemplo Adobe Acrobat Reader. Tocá las opciones o escribí en los recuadros, guardá los cambios y, si querés, llevala a la próxima sesión.</p></details>
+          <a class="btn btn-terra" href="guias/cuidar-a-quien-cuida.pdf" download="cuidar-a-quien-cuida.pdf">Descargar PDF</a>
+        </li>
+        <li class="guide" id="guia-perdidas-y-cambios">
+          <img src="guias/perdidas-y-cambios.jpg" width="827" height="1170" loading="lazy" alt="Portada de la guía Pérdidas y cambios">
+          <span class="pe-tag">Guía para completar · 5 páginas</span>
+          <h4>Pérdidas y cambios</h4>
+          <p>Los duelos que trae la enfermedad (el cuerpo, los roles, los planes) y lo que permanece, con una carta para escribir.</p>
+          <details><summary>¿Cómo se completa?</summary><p style="margin-top:6px">Abrila en el celular o la compu con una app que permita completar formularios PDF, por ejemplo Adobe Acrobat Reader. Tocá las opciones o escribí en los recuadros, guardá los cambios y, si querés, llevala a la próxima sesión.</p></details>
+          <a class="btn btn-terra" href="guias/perdidas-y-cambios.pdf" download="perdidas-y-cambios.pdf">Descargar PDF</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="dinamicas">
+    <div class="wrap">
+      <p class="eyebrow">Dinámicas</p>
+      <h2>Dinámicas para hacer en casa</h2>
+      <p style="margin-top:12px;color:var(--muted);max-width:62ch">Propuestas para frenar un rato y darle forma, con las manos, a lo que a veces cuesta poner en palabras. Se pueden hacer a solas, con alguien de la familia o en un día de tratamiento, a tu ritmo.</p>
+      <ol class="pl-how">
+        <li><b>Elegí un momento tranquilo</b>Imprimí la lámina y buscá un rato sin apuro, con lo que necesites a mano.</li>
+        <li><b>No hay respuestas correctas</b>Escribí o dibujá lo que aparezca. Si un día no tenés energía, podés dejarla para otro momento.</li>
+        <li><b>Llevala al acompañamiento</b>Si estás en un espacio de psicoterapia, traé la lámina a la sesión y lo seguimos pensando juntos.</li>
+      </ol>
+      <div class="topics din-filters" role="group" aria-label="Filtrar dinámicas" id="din-filters">
+        <button type="button" class="topic" data-f="todas" aria-pressed="true">Todas</button>
+        <button type="button" class="topic" data-f="vinculos" aria-pressed="false">Red y vínculos</button>
+        <button type="button" class="topic" data-f="tiempo" aria-pressed="false">Tiempo y energía</button>
+        <button type="button" class="topic" data-f="camino" aria-pressed="false">Mi camino</button>
+      </div>
+      <ul class="din-grid">
+        <li class="din" id="mi-red-de-apoyo" data-cat="vinculos">
+          <figure><img src="dinamicas/mi-red-de-apoyo.jpg" width="827" height="1170" loading="lazy" alt="Lámina Mi red de apoyo"></figure>
+          <div class="din-body">
+            <p class="pe-tag">Red y vínculos</p>
+            <h3>Mi red de apoyo</h3>
+            <p>Un mapa de órbitas para ubicar a las personas que te sostienen y pensar qué puede ofrecer cada una.</p>
+            <p class="pl-meta">Para imprimir · A4 · Lápices de colores</p>
+            <details><summary>Ver la consigna</summary><ol class="pe-steps"><li><span>1</span>En el centro estás vos.</li><li><span>2</span>Dibujá un planeta por cada persona importante, más cerca o más lejos según cómo la sentís.</li><li><span>3</span>Junto a cada planeta, anotá qué puede ofrecerte.</li><li><span>4</span>Elegí a quién le vas a pedir algo esta semana.</li></ol><p class="din-note" style="margin-top:12px">Pedir ayuda no es ser una carga: es dejar que otros te quieran.</p></details>
+            <div class="pe-actions">
+              <a class="btn btn-terra" href="dinamicas/mi-red-de-apoyo.pdf" download="mi-red-de-apoyo.pdf">Descargar PDF</a>
+              <button class="btn btn-line" type="button" data-share="mi-red-de-apoyo" data-title="Mi red de apoyo" data-text="Las personas que me sostienen y qué puedo pedirle a cada una.">Compartir</button>
+            </div>
+          </div>
+        </li>
+        <li class="din" id="mensajes-que-me-hacen-bien" data-cat="vinculos">
+          <figure><img src="dinamicas/mensajes-que-me-hacen-bien.jpg" width="827" height="1170" loading="lazy" alt="Lámina Mensajes que me hacen bien"></figure>
+          <div class="din-body">
+            <p class="pe-tag">Red y vínculos</p>
+            <h3>Mensajes que me hacen bien</h3>
+            <p>Un celular para colorear con las palabras que necesitás escuchar en los días difíciles: las tuyas y las de otros.</p>
+            <p class="pl-meta">Para imprimir · A4 · Lápices de colores</p>
+            <details><summary>Ver la consigna</summary><ol class="pe-steps"><li><span>1</span>Coloreá el celular, los corazones y las estrellas.</li><li><span>2</span>En cada burbuja, escribí un mensaje que te haga bien.</li><li><span>3</span>Pueden ser palabras de otros o tuyas.</li><li><span>4</span>Sacale una foto y tenela a mano para los días difíciles.</li></ol><p class="din-note" style="margin-top:12px">¿Cómo te hablaría alguien que te quiere?</p></details>
+            <div class="pe-actions">
+              <a class="btn btn-terra" href="dinamicas/mensajes-que-me-hacen-bien.pdf" download="mensajes-que-me-hacen-bien.pdf">Descargar PDF</a>
+              <button class="btn btn-line" type="button" data-share="mensajes-que-me-hacen-bien" data-title="Mensajes que me hacen bien" data-text="Las palabras que necesito escuchar en los días difíciles.">Compartir</button>
+            </div>
+          </div>
+        </li>
+        <li class="din" id="reloj-de-la-paciencia" data-cat="tiempo">
+          <figure><img src="dinamicas/reloj-de-la-paciencia.jpg" width="827" height="1170" loading="lazy" alt="Lámina Reloj de la paciencia"></figure>
+          <div class="din-body">
+            <p class="pe-tag">Tiempo y energía</p>
+            <h3>Reloj de la paciencia</h3>
+            <p>Un reloj de arena para los tiempos de espera: lo que estoy esperando arriba, lo que ya atravesé abajo.</p>
+            <p class="pl-meta">Para imprimir · A4 · Lápices de colores</p>
+            <details><summary>Ver la consigna</summary><ol class="pe-steps"><li><span>1</span>Coloreá el reloj de arena.</li><li><span>2</span>Arriba: lo que estás esperando.</li><li><span>3</span>Abajo: lo que ya atravesaste, aunque parezca pequeño.</li><li><span>4</span>Anotá lo que te ayuda a esperar.</li></ol><p class="din-note" style="margin-top:12px">Lo que ya atravesaste también es parte del camino.</p></details>
+            <div class="pe-actions">
+              <a class="btn btn-terra" href="dinamicas/reloj-de-la-paciencia.pdf" download="reloj-de-la-paciencia.pdf">Descargar PDF</a>
+              <button class="btn btn-line" type="button" data-share="reloj-de-la-paciencia" data-title="Reloj de la paciencia" data-text="Lo que estoy esperando y lo que ya atravesé.">Compartir</button>
+            </div>
+          </div>
+        </li>
+        <li class="din" id="mi-energia-en-el-dia" data-cat="tiempo">
+          <figure><img src="dinamicas/mi-energia-en-el-dia.jpg" width="827" height="1170" loading="lazy" alt="Lámina Mi energía en el día"></figure>
+          <div class="din-body">
+            <p class="pe-tag">Tiempo y energía</p>
+            <h3>Mi energía en el día</h3>
+            <p>Un reloj para pintar y mirar cómo se reparte tu energía: lo que te cansa, lo que te recarga y lo que querés que tenga lugar.</p>
+            <p class="pl-meta">Para imprimir · A4 · Lápices de colores</p>
+            <details><summary>Ver la consigna</summary><ol class="pe-steps"><li><span>1</span>Pintá el reloj con tonos suaves.</li><li><span>2</span>Del 1 al 6: en qué se va hoy tu energía.</li><li><span>3</span>Del 7 al 12: lo que querés que tenga más lugar.</li><li><span>4</span>Elegí qué soltar y qué te recarga.</li></ol><p class="din-note" style="margin-top:12px">Descansar no es rendirse: es cuidarte para poder seguir.</p></details>
+            <div class="pe-actions">
+              <a class="btn btn-terra" href="dinamicas/mi-energia-en-el-dia.pdf" download="mi-energia-en-el-dia.pdf">Descargar PDF</a>
+              <button class="btn btn-line" type="button" data-share="mi-energia-en-el-dia" data-title="Mi energía en el día" data-text="Cómo reparto mi energía y qué quiero que tenga lugar.">Compartir</button>
+            </div>
+          </div>
+        </li>
+        <li class="din" id="puente-hacia-lo-que-quiero" data-cat="camino">
+          <figure><img src="dinamicas/puente-hacia-lo-que-quiero.jpg" width="827" height="1170" loading="lazy" alt="Lámina Puente hacia lo que quiero"></figure>
+          <div class="din-body">
+            <p class="pe-tag">Mi camino</p>
+            <h3>Puente hacia lo que quiero</h3>
+            <p>Un puente para colorear: de cómo estoy hoy a lo que quiero recuperar o construir, con pasos pequeños y posibles.</p>
+            <p class="pl-meta">Para imprimir · A4 · Lápices de colores</p>
+            <details><summary>Ver la consigna</summary><ol class="pe-steps"><li><span>1</span>Coloreá el puente y el arcoíris.</li><li><span>2</span>En la orilla izquierda, escribí cómo estás hoy.</li><li><span>3</span>En la orilla derecha, lo que querés recuperar o construir.</li><li><span>4</span>En las piedras, pasos pequeños y posibles, del más fácil al más difícil.</li></ol><p class="din-note" style="margin-top:12px">No hace falta cruzar de un salto: cada piedra cuenta.</p></details>
+            <div class="pe-actions">
+              <a class="btn btn-terra" href="dinamicas/puente-hacia-lo-que-quiero.pdf" download="puente-hacia-lo-que-quiero.pdf">Descargar PDF</a>
+              <button class="btn btn-line" type="button" data-share="puente-hacia-lo-que-quiero" data-title="Puente hacia lo que quiero" data-text="De cómo estoy hoy a lo que quiero recuperar o construir, paso a paso.">Compartir</button>
+            </div>
+          </div>
+        </li>
+        <li class="din" id="vasija-de-mis-cicatrices" data-cat="camino">
+          <figure><img src="dinamicas/vasija-de-mis-cicatrices.jpg" width="827" height="1170" loading="lazy" alt="Lámina Vasija de mis cicatrices"></figure>
+          <div class="din-body">
+            <p class="pe-tag">Mi camino</p>
+            <h3>Vasija de mis cicatrices</h3>
+            <p>Inspirada en el kintsugi: las grietas reparadas con oro. Las marcas que dejó la enfermedad y lo que descubrí de mí al atravesarlas.</p>
+            <p class="pl-meta">Para imprimir · A4 · Papelitos de colores, pintura dorada, plasticola</p>
+            <details><summary>Ver la consigna</summary><ol class="pe-steps"><li><span>1</span>Rellená la vasija pegando papelitos de colores rasgados.</li><li><span>2</span>Pintá de dorado las grietas o pegá papel dorado.</li><li><span>3</span>Junto a cada grieta, escribí algo que dolió en este camino.</li><li><span>4</span>En el oro, lo que descubriste de vos o lo que te sostuvo.</li></ol><p class="din-note" style="margin-top:12px">Las cicatrices también cuentan que algo sanó.</p></details>
+            <div class="pe-actions">
+              <a class="btn btn-terra" href="dinamicas/vasija-de-mis-cicatrices.pdf" download="vasija-de-mis-cicatrices.pdf">Descargar PDF</a>
+              <button class="btn btn-line" type="button" data-share="vasija-de-mis-cicatrices" data-title="Vasija de mis cicatrices" data-text="Las marcas que dejó la enfermedad y la fuerza que encontré.">Compartir</button>
+            </div>
+          </div>
+        </li>
+        <li class="din" id="mi-historia-en-tres-tiempos" data-cat="camino">
+          <figure><img src="dinamicas/mi-historia-en-tres-tiempos.jpg" width="827" height="1170" loading="lazy" alt="Lámina Mi historia en tres tiempos"></figure>
+          <div class="din-body">
+            <p class="pe-tag">Mi camino</p>
+            <h3>Mi historia en tres tiempos</h3>
+            <p>Tres vasos para mirar tu historia: antes del diagnóstico, hoy y lo que viene. Lo que te llenó, lo que faltó y lo que deseás.</p>
+            <p class="pl-meta">Para imprimir · A4 · Lapicera</p>
+            <details><summary>Ver la consigna</summary><ol class="pe-steps"><li><span>1</span>Cada vaso es un tiempo: antes, hoy y lo que viene.</li><li><span>2</span>Trazá una línea como si fuera un líquido.</li><li><span>3</span>Abajo, lo lleno; arriba, lo vacío. Una o dos palabras en cada recuadro.</li><li><span>4</span>En lo que viene, sólo lo lleno: deseos y proyectos.</li></ol><p class="din-note" style="margin-top:12px">La enfermedad es parte de tu historia, no toda tu historia.</p></details>
+            <div class="pe-actions">
+              <a class="btn btn-terra" href="dinamicas/mi-historia-en-tres-tiempos.pdf" download="mi-historia-en-tres-tiempos.pdf">Descargar PDF</a>
+              <button class="btn btn-line" type="button" data-share="mi-historia-en-tres-tiempos" data-title="Mi historia en tres tiempos" data-text="Antes del diagnóstico, hoy y lo que viene.">Compartir</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="pl-more"><button class="btn btn-line" type="button" id="din-more" aria-expanded="false">Ver las 7 dinámicas</button></div>
+      <p class="din-note">Las dinámicas son recursos complementarios y no reemplazan la consulta con tu equipo de salud ni la psicoterapia. Si alguna te moviliza más de lo esperado, frená y hablalo con alguien de confianza o en sesión.</p>
+    </div>
+  </section>
+
+  <section class="block" id="frases">
+    <div class="wrap">
+      <p class="eyebrow">Para pensar</p>
+      <h2>Frases que acompañan</h2>
+      <p style="margin-top:12px;color:var(--muted);max-width:60ch">Ideas breves para leer en la sala de espera, guardar en el celular o mandarle a alguien. Elegí una y preguntate: ¿qué me dice a mí, hoy?</p>
+      <div class="topics" role="group" aria-label="Filtrar frases" id="qf-filters">
+        <button type="button" class="topic" data-k="Todas" aria-pressed="true">Todas</button><button type="button" class="topic" data-k="Fortaleza" aria-pressed="false">Fortaleza</button><button type="button" class="topic" data-k="Presente" aria-pressed="false">Presente</button><button type="button" class="topic" data-k="Cuidado" aria-pressed="false">Cuidado</button><button type="button" class="topic" data-k="Sentido" aria-pressed="false">Sentido</button><button type="button" class="topic" data-k="Esperanza" aria-pressed="false">Esperanza</button>
+      </div>
+      <ul class="qf-grid" id="qf-grid">
+        <li class="qf" data-k="Fortaleza"><span class="qf-k">Fortaleza</span><blockquote>«Cuando ya no podemos cambiar una situación, tenemos el desafío de cambiarnos a nosotros mismos.»</blockquote><p class="qf-a">— Viktor Frankl</p><button class="qf-copy" type="button" data-q="Cuando ya no podemos cambiar una situación, tenemos el desafío de cambiarnos a nosotros mismos. — Viktor Frankl">Compartir</button></li>
+        <li class="qf" data-k="Fortaleza"><span class="qf-k">Fortaleza</span><blockquote>«En medio del invierno descubrí que había en mí un verano invencible.»</blockquote><p class="qf-a">— Albert Camus</p><button class="qf-copy" type="button" data-q="En medio del invierno descubrí que había en mí un verano invencible. — Albert Camus">Compartir</button></li>
+        <li class="qf" data-k="Fortaleza"><span class="qf-k">Fortaleza</span><blockquote>«Un viaje de mil millas comienza con un solo paso.»</blockquote><p class="qf-a">— Lao Tsé</p><button class="qf-copy" type="button" data-q="Un viaje de mil millas comienza con un solo paso. — Lao Tsé">Compartir</button></li>
+        <li class="qf" data-k="Fortaleza"><span class="qf-k">Fortaleza</span><blockquote>«Caminante, no hay camino, se hace camino al andar.»</blockquote><p class="qf-a">— Antonio Machado</p><button class="qf-copy" type="button" data-q="Caminante, no hay camino, se hace camino al andar. — Antonio Machado">Compartir</button></li>
+        <li class="qf" data-k="Presente"><span class="qf-k">Presente</span><blockquote>«La vida solo está disponible en el momento presente.»</blockquote><p class="qf-a">— Thich Nhat Hanh</p><button class="qf-copy" type="button" data-q="La vida solo está disponible en el momento presente. — Thich Nhat Hanh">Compartir</button></li>
+        <li class="qf" data-k="Presente"><span class="qf-k">Presente</span><blockquote>«Ten paciencia con todo lo que aún no está resuelto en tu corazón.»</blockquote><p class="qf-a">— Rainer Maria Rilke</p><button class="qf-copy" type="button" data-q="Ten paciencia con todo lo que aún no está resuelto en tu corazón. — Rainer Maria Rilke">Compartir</button></li>
+        <li class="qf" data-k="Presente"><span class="qf-k">Presente</span><blockquote>«Tú eres el cielo. Todo lo demás es solo el clima.»</blockquote><p class="qf-a">— Pema Chödrön</p><button class="qf-copy" type="button" data-q="Tú eres el cielo. Todo lo demás es solo el clima. — Pema Chödrön">Compartir</button></li>
+        <li class="qf" data-k="Presente"><span class="qf-k">Presente</span><blockquote>«Las emociones son datos, no órdenes.»</blockquote><p class="qf-a">— Susan David</p><button class="qf-copy" type="button" data-q="Las emociones son datos, no órdenes. — Susan David">Compartir</button></li>
+        <li class="qf" data-k="Cuidado"><span class="qf-k">Cuidado</span><blockquote>«Usted importa porque es usted, y usted importa hasta el último momento de su vida.»</blockquote><p class="qf-a">— Cicely Saunders</p><button class="qf-copy" type="button" data-q="Usted importa porque es usted, y usted importa hasta el último momento de su vida. — Cicely Saunders">Compartir</button></li>
+        <li class="qf" data-k="Cuidado"><span class="qf-k">Cuidado</span><blockquote>«Si tu compasión no te incluye a ti, está incompleta.»</blockquote><p class="qf-a">— Jack Kornfield</p><button class="qf-copy" type="button" data-q="Si tu compasión no te incluye a ti, está incompleta. — Jack Kornfield">Compartir</button></li>
+        <li class="qf" data-k="Cuidado"><span class="qf-k">Cuidado</span><blockquote>«Cuando me acepto tal como soy, entonces puedo cambiar.»</blockquote><p class="qf-a">— Carl Rogers</p><button class="qf-copy" type="button" data-q="Cuando me acepto tal como soy, entonces puedo cambiar. — Carl Rogers">Compartir</button></li>
+        <li class="qf" data-k="Cuidado"><span class="qf-k">Cuidado</span><blockquote>«Ver con los ojos de otro, escuchar con los oídos de otro, sentir con el corazón de otro.»</blockquote><p class="qf-a">— Alfred Adler</p><button class="qf-copy" type="button" data-q="Ver con los ojos de otro, escuchar con los oídos de otro, sentir con el corazón de otro. — Alfred Adler">Compartir</button></li>
+        <li class="qf" data-k="Sentido"><span class="qf-k">Sentido</span><blockquote>«Quien tiene un porqué para vivir puede soportar casi cualquier cómo.»</blockquote><p class="qf-a">— Friedrich Nietzsche</p><button class="qf-copy" type="button" data-q="Quien tiene un porqué para vivir puede soportar casi cualquier cómo. — Friedrich Nietzsche">Compartir</button></li>
+        <li class="qf" data-k="Sentido"><span class="qf-k">Sentido</span><blockquote>«Lo esencial es invisible a los ojos.»</blockquote><p class="qf-a">— Antoine de Saint-Exupéry</p><button class="qf-copy" type="button" data-q="Lo esencial es invisible a los ojos. — Antoine de Saint-Exupéry">Compartir</button></li>
+        <li class="qf" data-k="Sentido"><span class="qf-k">Sentido</span><blockquote>«Toda vida verdadera es encuentro.»</blockquote><p class="qf-a">— Martin Buber</p><button class="qf-copy" type="button" data-q="Toda vida verdadera es encuentro. — Martin Buber">Compartir</button></li>
+        <li class="qf" data-k="Sentido"><span class="qf-k">Sentido</span><blockquote>«El amor es la única manera de captar a otro ser humano en lo más profundo de su personalidad.»</blockquote><p class="qf-a">— Viktor Frankl</p><button class="qf-copy" type="button" data-q="El amor es la única manera de captar a otro ser humano en lo más profundo de su personalidad. — Viktor Frankl">Compartir</button></li>
+        <li class="qf" data-k="Esperanza"><span class="qf-k">Esperanza</span><blockquote>«Debemos aceptar la decepción finita, pero nunca perder la esperanza infinita.»</blockquote><p class="qf-a">— Martin Luther King Jr.</p><button class="qf-copy" type="button" data-q="Debemos aceptar la decepción finita, pero nunca perder la esperanza infinita. — Martin Luther King Jr.">Compartir</button></li>
+        <li class="qf" data-k="Esperanza"><span class="qf-k">Esperanza</span><blockquote>«Fue el tiempo que pasaste con tu rosa lo que la hizo tan importante.»</blockquote><p class="qf-a">— Antoine de Saint-Exupéry</p><button class="qf-copy" type="button" data-q="Fue el tiempo que pasaste con tu rosa lo que la hizo tan importante. — Antoine de Saint-Exupéry">Compartir</button></li>
+      </ul>
+      <div class="pl-more"><button class="btn btn-line" type="button" id="qf-more" aria-expanded="false">Ver más frases</button></div>
+    </div>
+  </section>
+
+  <section class="block" id="lecturas">
+    <div class="wrap">
+      <div class="scene photo"><div class="scene-txt"><p class="eyebrow">Lecturas</p>
+      <h2>Libros que acompañan</h2>
+      <p class="po-lead">Una selección personal para el camino: para entender, para atravesar el proceso y para la pregunta por el sentido. Las lecturas acompañan, pero no reemplazan, la consulta con tu equipo de salud ni la psicoterapia.</p></div></div>
+      <div class="book-filters" role="group" aria-label="Filtrar lecturas">
+        <button type="button" aria-pressed="true" data-bf="">Todas</button>
+        <button type="button" aria-pressed="false" data-bf="Vivir el proceso">Vivir el proceso</button>
+        <button type="button" aria-pressed="false" data-bf="Sentido">Sentido</button>
+        <button type="button" aria-pressed="false" data-bf="Entender la enfermedad">Entender la enfermedad</button>
+        <button type="button" aria-pressed="false" data-bf="Familias y duelo">Familias y duelo</button>
+      </div>
+      <ul class="books">
+        <li data-cat="Sentido" class="book b-hum"><span class="book-tag">Humanista</span><h3>El hombre en busca de sentido</h3><p class="book-au">Viktor Frankl</p><p>Un clásico sobre la libertad de elegir la propia actitud ante el sufrimiento y la búsqueda de sentido aun en las circunstancias más duras.</p></li>
+        <li data-cat="Vivir el proceso" class="book b-int"><span class="book-tag">Integrativo</span><h3>Vivir con plenitud las crisis</h3><p class="book-au">Jon Kabat-Zinn</p><p>El programa de reducción del estrés basado en mindfulness, pensado originalmente para personas con enfermedades y dolor crónico.</p></li>
+        <li data-cat="Vivir el proceso" class="book b-int"><span class="book-tag">Integrativo</span><h3>Sé amable contigo mismo</h3><p class="book-au">Kristin Neff</p><p>La autocompasión explicada con claridad y con ejercicios prácticos para los días difíciles.</p></li>
+        <li data-cat="Vivir el proceso" class="book b-hum"><span class="book-tag">Humanista</span><h3>Cuando todo se derrumba</h3><p class="book-au">Pema Chödrön</p><p>Breves capítulos sobre cómo atravesar el miedo y la incertidumbre sin huir de ellos.</p></li>
+        <li data-cat="Sentido" class="book b-tra"><span class="book-tag">Sentido</span><h3>Recuerda que vas a morir. Vive</h3><p class="book-au">Paul Kalanithi</p><p>El testimonio de un neurocirujano que recibe un diagnóstico de cáncer de pulmón: una reflexión sobre lo que hace valiosa una vida.</p></li>
+        <li data-cat="Sentido" class="book b-tra"><span class="book-tag">Sentido</span><h3>Ser mortal</h3><p class="book-au">Atul Gawande</p><p>Un cirujano reflexiona sobre la medicina, los límites, los cuidados y lo que más importa al final de la vida.</p></li>
+        <li data-cat="Entender la enfermedad" class="book b-int"><span class="book-tag">Integrativo</span><h3>El emperador de todos los males</h3><p class="book-au">Siddhartha Mukherjee</p><p>Una «biografía» del cáncer: su historia, la de sus tratamientos y la de las personas que lo enfrentaron. Para quien quiere entender.</p></li>
+        <li data-cat="Familias y duelo" class="book b-hum"><span class="book-tag">Humanista</span><h3>Sobre el duelo y el dolor</h3><p class="book-au">Elisabeth Kübler-Ross y David Kessler</p><p>Sobre las pérdidas y el duelo, escrito por dos referentes del acompañamiento al final de la vida.</p></li>
+      </ul>
+    </div>
+  </section>
+
 
   <section class="block" id="app">
     <div class="wrap">
@@ -782,6 +1146,8 @@ Estoy acá. Sigo adelante.</p></details>
           <p style="margin-top:12px;color:var(--muted);max-width:40ch">Si tenés otra duda, escribime.</p>
         </div>
         <div class="faq">
+        <details class="faq-q"><summary>¿Los recursos tienen algún costo?</summary><p>No. La app, los carruseles, las guías, las dinámicas y las demás descargas son gratuitos. No hay que pagar ni registrarse.</p></details>
+        <details class="faq-q"><summary>¿Los recursos reemplazan la consulta médica o la psicoterapia?</summary><p>No. Son materiales complementarios. Ante síntomas nuevos o que te preocupan, consultá siempre a tu equipo de salud.</p></details>
         <details class="faq-q"><summary>¿En qué momento conviene consultar?</summary><p>En cualquiera: al recibir el diagnóstico, durante el tratamiento, al terminarlo o en los controles. No hace falta esperar a «estar mal» para tener un espacio propio.</p></details>
         <details class="faq-q"><summary>¿Pueden consultar los familiares?</summary><p>Sí. La familia también atraviesa la enfermedad. Pueden consultar la pareja, los hijos o hijas, quien cuida. A veces en encuentros propios, otras veces junto con la persona.</p></details>
         <details class="faq-q"><summary>¿Reemplaza a mi equipo médico?</summary><p>No. El acompañamiento psicológico complementa la atención médica. Cuando hace falta, y con tu acuerdo, puede haber diálogo con tu equipo de salud.</p></details>
@@ -825,6 +1191,13 @@ Estoy acá. Sigo adelante.</p></details>
 
 <a class="wa-float" href="https://wa.me/5493416601847?text=Hola%20Eric%2C%20quisiera%20consultar%20por%20acompa%C3%B1amiento%20en%20psicooncolog%C3%ADa." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp para pedir una primera entrevista"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg><span>Pedir primera entrevista</span></a>
 <div class="toast" id="toast" hidden>Copiado</div>
+<dialog class="search-box" id="search-box" aria-label="Buscar en el sitio">
+  <div class="sb-in">
+    <div class="sb-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="sb-q" type="search" placeholder="Buscar: espera, fatiga, familia, cuerpo…" autocomplete="off" aria-label="Qué querés buscar"><button type="button" id="sb-x" aria-label="Cerrar">✕</button></div>
+    <p class="sb-hint" id="sb-hint">Escribí una palabra para buscar en todas las secciones, los recursos y las preguntas.</p>
+    <ul class="sb-res" id="sb-res"></ul>
+  </div>
+</dialog>
 <script>
 (function(){
   const b=document.getElementById("menu-btn"), m=document.getElementById("mobile-menu");
@@ -834,7 +1207,7 @@ Estoy acá. Sigo adelante.</p></details>
 })();
 function flash(t){const el=document.getElementById("toast");el.textContent=t;el.hidden=false;clearTimeout(flash.t);flash.t=setTimeout(()=>el.hidden=true,1800);}
 /* Carrusel de psicoeducación */
-document.querySelectorAll(".car").forEach(car=>{
+document.querySelectorAll(".car:has(.car-prev)").forEach(car=>{
   const track=car.querySelector(".car-track");
   const slides=[...track.children], n=slides.length;
   const dots=car.querySelector(".car-dots"), count=car.querySelector(".car-count");
@@ -879,6 +1252,78 @@ document.querySelectorAll("[data-copy]").forEach(btn=>{
 (()=>{const f=document.querySelector(".wa-float"),c=document.getElementById("contacto");if(!f||!c||!("IntersectionObserver" in window))return;
 new IntersectionObserver(e=>f.classList.toggle("is-hidden",e[0].isIntersecting),{threshold:.15}).observe(c);})();
 (()=>{const mm=document.getElementById("mobile-menu"),wf=document.querySelector(".wa-float");if(mm&&wf)new MutationObserver(()=>wf.style.display=mm.hidden?"":"none").observe(mm,{attributes:true,attributeFilter:["hidden"]});})();
+
+(()=>{const CAR=[{"slug": "ansiedad-y-cuerpo", "desc": "Qué le pasa al cuerpo cuando se enciende la alarma, cómo distinguirlo de un síntoma del tratamiento y cómo bajarla con la respiración.", "pasos": ["La ansiedad no es solo mental", "Lo que sentís y para qué sirve", "¿Ansiedad o síntoma?", "Bajar la alarma"], "titulo": "Ansiedad y cuerpo", "n": 6}, {"slug": "la-espera-de-resultados", "desc": "Por qué la espera es tan difícil, qué hace la mente con lo que no sabe y algunas formas de atravesar esos días.", "pasos": ["Por qué cuesta tanto esperar", "La mente llena los huecos", "Lo que depende de mí", "Volver al hoy"], "titulo": "La espera de resultados", "n": 6}, {"slug": "cuidar-a-quien-cuida", "desc": "Para familiares y cuidadores: el desgaste de cuidar, las señales de alerta y cómo cuidarse para poder seguir acompañando.", "pasos": ["La familia también atraviesa la enfermedad", "Señales de desgaste", "Pedir y aceptar ayuda", "Pequeños cuidados"], "titulo": "Cuidar a quien cuida", "n": 6}, {"slug": "en-paz-con-tu-cuerpo", "desc": "La caída del pelo, las cicatrices, los cambios de peso o de energía: cómo atravesar los cambios en la imagen corporal durante el tratamiento.", "pasos": ["Un cuerpo que cambia", "Lo que se mueve", "Lo que puede ayudar", "Más que una imagen"], "titulo": "En paz con tu cuerpo", "n": 6}, {"slug": "tratarte-con-calidez", "desc": "La autocompasión según Kristin Neff, aplicada a los días difíciles del tratamiento: amabilidad, humanidad compartida y atención plena.", "pasos": ["La voz que te habla", "Tres componentes", "No es autocomplacencia", "Una práctica breve"], "titulo": "Tratarte con la misma calidez", "n": 6}, {"slug": "vivir-con-sentido", "desc": "Viktor Frankl y la pregunta por el sentido: los valores, los vínculos y lo que cada uno elige hacer con lo que le toca vivir.", "pasos": ["Una pregunta que aparece", "Tres caminos según Frankl", "Lo que importa de verdad", "Pequeños gestos con sentido"], "titulo": "Vivir con sentido", "n": 6}];;
+const $=x=>document.querySelector(x);const track=$("#car-track"),dots=$("#car-dots"),count=$("#car-count"),prev=$("#car-prev"),next=$("#car-next");
+let cur=0,n=0,sel=0;const rm=()=>matchMedia("(prefers-reduced-motion: reduce)").matches;
+function load(i){sel=i;const c=CAR[i];n=c.n;$("#car-t").textContent=c.titulo;$("#car-d").textContent=c.desc;$("#car-n").textContent=n;
+  $("#car-steps").innerHTML=c.pasos.map((p,j)=>`<li><span>${j+1}</span>${p}</li>`).join("");
+  $("#car-pdf").href=`carruseles/${c.slug}/${c.slug}.pdf`;$("#car-pdf").setAttribute("download",c.slug+".pdf");
+  track.innerHTML="";dots.innerHTML="";
+  for(let j=1;j<=n;j++){const f=document.createElement("figure");f.innerHTML=`<img src="carruseles/${c.slug}/${String(j).padStart(2,"0")}.jpg" width="1080" height="1350" loading="${j<3?"eager":"lazy"}" alt="${c.titulo}, placa ${j} de ${n}">`;track.appendChild(f);
+    const d=document.createElement("button");d.type="button";d.setAttribute("aria-label","Ir a la placa "+j);d.addEventListener("click",()=>go(j-1));dots.appendChild(d)}
+  track.scrollLeft=0;sync();document.querySelectorAll("[data-car]").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.car===i?"true":"false"))}
+function go(i){i=Math.max(0,Math.min(n-1,i));track.scrollTo({left:i*track.clientWidth,behavior:rm()?"auto":"smooth"})}
+function sync(){cur=Math.round(track.scrollLeft/Math.max(1,track.clientWidth));count.textContent=(cur+1)+" / "+n;
+  [...dots.children].forEach((d,j)=>d.setAttribute("aria-current",j===cur?"true":"false"));prev.disabled=cur===0;next.disabled=cur===n-1}
+let raf;track.addEventListener("scroll",()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(sync)});
+prev.addEventListener("click",()=>go(cur-1));next.addEventListener("click",()=>go(cur+1));
+track.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();go(cur+1)}if(e.key==="ArrowLeft"){e.preventDefault();go(cur-1)}});
+document.querySelectorAll("[data-car]").forEach(b=>b.addEventListener("click",()=>load(+b.dataset.car)));
+$("#car-share").addEventListener("click",()=>{const c=CAR[sel],url=location.origin+location.pathname+"#biblioteca";const data={title:c.titulo+" · Latir",text:c.desc,url};
+  if(navigator.share){navigator.share(data).catch(()=>{});return}try{navigator.clipboard.writeText(url).then(()=>flash("Enlace copiado"),()=>flash(url))}catch(e){flash(url)}});
+load(0);})();
+document.querySelectorAll("[data-bf]").forEach(b=>b.addEventListener("click",()=>{const f=b.dataset.bf;document.querySelectorAll("[data-bf]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));document.querySelectorAll(".books > li").forEach(li=>li.hidden=!!f&&li.dataset.cat!==f)}));
+(function(){
+const d=document.getElementById("search-box"),q=document.getElementById("sb-q"),res=document.getElementById("sb-res"),hint=document.getElementById("sb-hint");
+const norm=t=>(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+let idx=null;
+function txt(el){if(!el)return"";if(typeof el==="string")return el;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const a=[];let n;while(n=w.nextNode()){if(n.parentElement.closest("svg,script,style"))continue;a.push(n.nodeValue)}return a.join(" ")}
+function secName(el){const s=el.closest("section,header");if(!s)return"";const e=s.querySelector(".eyebrow");return e?e.textContent.trim():(s.querySelector("h2")||{}).textContent||""}
+function reveal(el){if(el.hidden){const f=document.querySelector('#qf-filters [data-k="Todas"],#din-filters [data-f="todas"]');}
+  if(el.classList.contains("qf")&&el.hidden){document.querySelector('#qf-filters [data-k="Todas"]').click();if(el.hidden)document.getElementById("qf-more").click()}
+  if(el.classList.contains("din")&&el.hidden){document.querySelector('#din-filters [data-f="todas"]').click();if(el.hidden)document.getElementById("din-more").click()}
+  if(el.matches(".books > li")&&el.hidden){document.querySelector('[data-bf=""]').click()}}
+function build(){idx=[];
+ const add=(el,t,body,sec,act)=>{if(!t)return;idx.push({el,t:t.trim(),body:txt(body).replace(/\s+/g," ").trim(),sec:sec||secName(el),act})};
+ document.querySelectorAll("main section[id], section.block, section.contact").forEach(sc=>{const h=sc.querySelector("h2");if(h)add(sc,h.textContent,sc.querySelector(".po-lead,.intro,p"),(sc.querySelector(".eyebrow")||{}).textContent)});
+ document.querySelectorAll("article.service,.guide,.din,.po-box,.po-cols h4").forEach(el=>{const h=el.matches("h4")?el:el.querySelector("h3,h4");add(el,h?h.textContent:"",el.matches("h4")?el.nextElementSibling:el)});
+ document.querySelectorAll("details.faq-q").forEach(el=>add(el,el.querySelector("summary").textContent,el.querySelector("p")||el,"Preguntas frecuentes",()=>{el.open=true}));
+ document.querySelectorAll(".books > li").forEach(el=>{const h=el.querySelector("h3");if(h)add(el,h.textContent,el,"Lecturas")});
+ document.querySelectorAll(".qf").forEach(el=>add(el,el.querySelector("blockquote").textContent,el,"Frases para pensar"));
+ document.querySelectorAll(".res-tabs [data-car]").forEach(b=>add(document.querySelector(".res-tabs"),"Carrusel: "+b.textContent,b.textContent+" "+(document.querySelector("#car-d")||{}).textContent,"Recursos",()=>b.click()));
+}
+function esc(t){return t.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function snip(body,nq){const nb=norm(body);const i=nb.indexOf(nq);if(i<0)return esc(body.slice(0,110))+(body.length>110?"…":"");const a=Math.max(0,i-45),b=Math.min(body.length,i+nq.length+70);return(a?"…":"")+esc(body.slice(a,i))+"<mark>"+esc(body.slice(i,i+nq.length))+"</mark>"+esc(body.slice(i+nq.length,b))+(b<body.length?"…":"")}
+function run(){if(!idx)build();const v=q.value.trim();res.innerHTML="";if(v.length<2){hint.hidden=false;hint.textContent="Escribí una palabra para buscar en todas las secciones, los recursos y las preguntas.";return}
+ const terms=norm(v).split(/\s+/).filter(Boolean);const seen=new Set();const out=[];
+ for(const it of idx){const nt=norm(it.t),nb=norm(it.body);if(!terms.every(t=>nt.includes(t)||nb.includes(t)))continue;const key=it.t+"|"+it.sec;if(seen.has(key))continue;seen.add(key);out.push({it,score:terms.reduce((s,t)=>s+(nt.includes(t)?3:0)+(nb.includes(t)?1:0),0)})}
+ out.sort((a,b)=>b.score-a.score);hint.hidden=out.length>0;if(!out.length){hint.textContent="No encontré resultados para «"+v+"». Probá con otra palabra.";return}
+ out.slice(0,30).forEach(({it})=>{const li=document.createElement("li");const b=document.createElement("button");b.type="button";
+  b.innerHTML='<span class="sec">'+esc((it.sec||"").trim())+'</span><span class="t">'+esc(it.t)+'</span><span class="sn">'+snip(it.body,terms[0])+'</span>';
+  b.addEventListener("click",()=>{d.close();reveal(it.el);it.el.scrollIntoView({behavior:"smooth",block:"center"});it.el.classList.remove("hl-flash");void it.el.offsetWidth;it.el.classList.add("hl-flash");if(it.act)setTimeout(it.act,450)});li.appendChild(b);res.appendChild(li)})}
+document.getElementById("search-btn").addEventListener("click",()=>{d.showModal();q.focus();q.select()});
+document.getElementById("sb-x").addEventListener("click",()=>d.close());
+d.addEventListener("click",e=>{if(e.target===d)d.close()});
+q.addEventListener("input",run);
+document.addEventListener("keydown",e=>{if((e.key==="/"&&!/input|textarea/i.test(document.activeElement.tagName))||((e.ctrlKey||e.metaKey)&&e.key==="k")){e.preventDefault();d.showModal();q.focus()}});
+})();
+
+(()=>{let dinF="todas",dinOpen=false;const dm=document.getElementById("din-more"),cards=[...document.querySelectorAll(".din")],N=3;
+const sync=()=>{let i=0;cards.forEach(c=>{const m=dinF==="todas"||c.dataset.cat===dinF;c.hidden=!m||(dinF==="todas"&&!dinOpen&&i++>=N);});
+  if(dm){dm.parentElement.hidden=dinF!=="todas";dm.textContent=dinOpen?"Mostrar menos":"Ver las "+cards.length+" dinámicas";dm.setAttribute("aria-expanded",String(dinOpen));}};
+document.querySelectorAll("#din-filters [data-f]").forEach(b=>b.addEventListener("click",()=>{dinF=b.dataset.f;document.querySelectorAll("#din-filters [data-f]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));sync();}));
+if(dm)dm.addEventListener("click",()=>{dinOpen=!dinOpen;sync();if(!dinOpen)document.getElementById("dinamicas").scrollIntoView({behavior:"smooth"});});
+const fromHash=()=>{const el=document.getElementById(location.hash.slice(1));if(el&&el.classList.contains("din")&&el.hidden){dinF="todas";dinOpen=true;sync();el.scrollIntoView();}};
+addEventListener("hashchange",fromHash);sync();fromHash();})();
+(()=>{let k="Todas",open=false;const qs=[...document.querySelectorAll(".qf")],more=document.getElementById("qf-more"),N=6;
+const sync=()=>{let i=0;qs.forEach(q=>{const m=k==="Todas"||q.dataset.k===k;q.hidden=!m||(k==="Todas"&&!open&&i++>=N);});
+  more.parentElement.hidden=k!=="Todas";more.textContent=open?"Mostrar menos":"Ver las "+qs.length+" frases";more.setAttribute("aria-expanded",String(open));};
+document.querySelectorAll("#qf-filters [data-k]").forEach(b=>b.addEventListener("click",()=>{k=b.dataset.k;document.querySelectorAll("#qf-filters [data-k]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));sync();}));
+more.addEventListener("click",()=>{open=!open;sync();if(!open)document.getElementById("frases").scrollIntoView({behavior:"smooth"});});
+qs.forEach(q=>q.querySelector(".qf-copy").addEventListener("click",e=>{const t="«"+e.target.dataset.q.replace(" — ","» — ")+"\\n\\nLatir · "+location.origin+location.pathname+"#frases";
+  if(navigator.share){navigator.share({text:t}).catch(()=>{});return;}try{navigator.clipboard.writeText(t).then(()=>flash("Frase copiada"),()=>flash("No se pudo copiar"));}catch(_){flash("No se pudo copiar");}}));
+sync();})();
 </script>
 </body>
 </html>
