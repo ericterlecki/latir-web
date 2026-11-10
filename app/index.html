@@ -325,6 +325,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
           <label class="small muted">Fecha <input type="date" id="d-fecha"></label>
           <span class="badge" id="hoy-estado">Sin registrar</span>
         </div>
+        <div class="q"><span class="label">Hoy en mi tratamiento <span class="hint">· si corresponde</span></span><div class="chips" id="d-trat"></div></div>
       </div>
 
       <div class="card">
@@ -344,7 +345,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
       </div>
 
       <div class="card">
-        <div class="qn"><span class="num">4</span><span class="txt">Malestar corporal hoy<span class="hint">Marque lo que corresponda.</span></span></div>
+        <div class="qn"><span class="num">4</span><span class="txt">Síntomas y malestar corporal hoy<span class="hint">Marque lo que corresponda. Ante fiebre, sangrado, falta de aire o un dolor que no cede, comuníquese con su equipo médico.</span></span></div>
         <div class="chips" id="d-malestar"></div>
       </div>
 
@@ -352,6 +353,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
         <div class="qn"><span class="num">5</span><span class="txt">Ansiedad y preocupación</span></div>
         <div class="q"><span class="small">Hoy sentí ansiedad o nervios</span><div class="seg" id="d-ansiedad"></div></div>
         <div class="q"><span class="small">Hoy estuve preocupado/a</span><div class="seg" id="d-preocupacion"></div></div>
+        <div class="q"><span class="small">Lo que más me preocupó</span><div class="chips" id="d-temas"></div></div>
       </div>
 
       <div class="card">
@@ -365,7 +367,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
       </div>
 
       <div class="card">
-        <div class="qn"><span class="num">8</span><span class="txt">Pasos orientados a mis metas u objetivos<span class="hint">¿Cuánto avancé hoy hacia lo que me propuse?</span></span></div>
+        <div class="qn"><span class="num">8</span><span class="txt">Lo que me propuse, a mi ritmo<span class="hint">Según la energía que tuve hoy, ¿pude hacer algo de lo que me había propuesto?</span></span></div>
         <div class="seg" id="d-metas" style="--n:3"></div>
       </div>
 
@@ -379,7 +381,8 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
       <div class="card">
         <div class="qn"><span class="num">10</span><span class="txt">Para cerrar el día</span></div>
         <div class="q"><label for="d-sesion">Para traer a la sesión</label><textarea id="d-sesion" rows="2" placeholder="Algo que quiero conversar."></textarea></div>
-        <div class="q"><label for="d-plan">Mini plan o proyecto para mañana</label><textarea id="d-plan" rows="2"></textarea></div>
+        <div class="q"><label for="d-medico">Para consultar con mi equipo médico</label><textarea id="d-medico" rows="2" placeholder="Un síntoma nuevo, una duda sobre el tratamiento o un estudio."></textarea></div>
+        <div class="q"><label for="d-plan">Algo pequeño que me gustaría hacer mañana</label><textarea id="d-plan" rows="2"></textarea></div>
       </div>
 
       <div class="row">
@@ -410,6 +413,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
         <div class="q"><span class="label">Semana del</span>
           <div class="weeknav"><button class="dotbtn" id="sem-prev" aria-label="Semana anterior">‹</button><span id="sem-rango"></span><button class="dotbtn" id="sem-next" aria-label="Semana siguiente">›</button></div></div>
         <div class="q"><label for="w-proxima">Próxima sesión</label><input type="date" id="w-proxima"></div>
+        <div class="q"><label for="w-turnos">Turnos, estudios o tratamientos de los próximos días</label><textarea id="w-turnos" rows="2" placeholder="Por ejemplo: martes, control con oncología; jueves, tomografía."></textarea></div>
       </div>
 
       <div class="card">
@@ -438,7 +442,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
       <div class="card">
         <div class="qn"><span class="num">3</span><span class="txt">¿Cómo estuve en cada área?<span class="hint">1 = muy mal · 5 = muy bien. Elija un número por fila.</span></span></div>
         <div class="scale" id="w-areas"></div>
-        <div class="q" style="padding-top:6px"><span class="label">Malestar corporal esta semana <span class="hint">· marque lo que corresponda</span></span>
+        <div class="q" style="padding-top:6px"><span class="label">Síntomas y malestar corporal esta semana <span class="hint">· marque lo que corresponda</span></span>
           <div class="chips" id="w-malestar"></div></div>
       </div>
 
@@ -474,8 +478,9 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
       </div>
 
       <div class="card">
-        <div class="qn"><span class="num">9</span><span class="txt">¿Qué me gustaría trabajar en la próxima sesión?<span class="hint">Puede ser una situación, emoción, pensamiento, decisión, relación o preocupación.</span></span></div>
+        <div class="qn"><span class="num">9</span><span class="txt">¿Qué me gustaría trabajar en la próxima sesión?<span class="hint">Puede ser algo del diagnóstico o del tratamiento, una emoción, un pensamiento, una decisión, una relación o una preocupación.</span></span></div>
         <textarea id="w-sesion" aria-label="Qué me gustaría trabajar en la próxima sesión"></textarea>
+        <div class="q"><label for="w-medico">Preguntas para mi equipo médico</label><textarea id="w-medico" rows="2" placeholder="Lo que quiero preguntar o contar en el próximo control."></textarea></div>
         <div class="qn"><span class="num">10</span><span class="txt">Algo que quiero reconocer de esta semana<span class="hint">Un logro, algo que me ayudó, algo que disfruté o algo que descubrí de mí. (Opcional)</span></span></div>
         <textarea id="w-reconocer" aria-label="Algo que quiero reconocer de esta semana"></textarea>
       </div>
@@ -632,6 +637,48 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
       </details>
 
       <details class="guide">
+        <summary>Convivir con la incertidumbre</summary>
+        <div class="body">
+          <p>Esperar un resultado, un estudio o el comienzo de un tratamiento suele ser de los momentos más difíciles. La mente intenta adelantarse y llena los huecos con el peor escenario. No es debilidad: es la forma en que buscamos protegernos.</p>
+          <ul>
+            <li><b>Separar lo que sé de lo que imagino:</b> «hoy sé esto; lo demás todavía no ocurrió».</li>
+            <li><b>Darle un horario a la preocupación:</b> un rato breve para pensarla o escribirla, y después volver a lo que estoy haciendo.</li>
+            <li><b>Ocuparme de lo que sí depende de mí:</b> anotar preguntas, organizar los turnos, pedir compañía para el día del estudio.</li>
+            <li><b>Volver al presente</b> con la respiración o la técnica 5-4-3-2-1 cuando la espera se hace larga.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary>Cansancio y energía durante el tratamiento</summary>
+        <div class="body">
+          <p>La fatiga es uno de los efectos más frecuentes del tratamiento oncológico. No es pereza ni falta de voluntad, y no siempre mejora sólo con dormir. Registrarla ayuda a ver en qué días y horarios aparece, y a contárselo al equipo médico.</p>
+          <ul>
+            <li><b>Administrar la energía como un presupuesto:</b> elegir lo importante del día y dejar para otro momento lo que puede esperar.</li>
+            <li><b>Aprovechar las horas de más energía</b> para lo que más me importa o me hace bien.</li>
+            <li><b>Pedir y aceptar ayuda</b> con tareas concretas: compras, traslados, comidas.</li>
+            <li><b>Moverme un poco, si mi médico/a lo indica:</b> caminatas breves suelen ayudar más que el reposo total.</li>
+          </ul>
+          <p class="note">Bajar el ritmo no es rendirse: es cuidarme para poder atravesar el tratamiento.</p>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary>Hablar con mi equipo médico</summary>
+        <div class="body">
+          <p>Las consultas suelen ser breves y, con los nervios, es fácil olvidarse de lo que quería preguntar. Prepararlas ayuda a salir con menos dudas.</p>
+          <ul>
+            <li>Anotar las preguntas antes (la app tiene un espacio para eso cada día y en la revisión semanal).</li>
+            <li>Empezar por las dos o tres más importantes.</li>
+            <li>Ir acompañado/a, si es posible, y pedir que alguien tome nota.</li>
+            <li>Pedir que repitan o expliquen con otras palabras lo que no quedó claro. Es su derecho.</li>
+            <li>Contar también lo emocional: el miedo, el insomnio o la tristeza son parte de la salud.</li>
+          </ul>
+          <p class="small muted">Ante fiebre, sangrado, falta de aire, vómitos que no ceden o un dolor que aumenta, no espere al próximo control: comuníquese con su equipo de oncología o acuda a la guardia.</p>
+        </div>
+      </details>
+
+      <details class="guide">
         <summary>Pensamientos, emociones y conductas</summary>
         <div class="body">
           <p>Lo que sentimos no depende sólo de lo que pasa, sino también de cómo lo interpretamos. Registrar la situación, el pensamiento y la emoción ayuda a encontrar otras lecturas posibles.</p>
@@ -641,7 +688,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
 
       <div class="alert">
         <h3>Si está atravesando una urgencia</h3>
-        <p>Esta aplicación no reemplaza la atención inmediata. Ante una emergencia, llame o acuda a la guardia más cercana:</p>
+        <p>Esta aplicación no reemplaza la atención médica ni la atención inmediata. Ante síntomas de alarma durante el tratamiento, comuníquese primero con su equipo de oncología. Ante una emergencia, llame o acuda a la guardia más cercana:</p>
         <ul class="sos-list">
           <li><b>911</b><span>Emergencias</span><small>Policía, bomberos y urgencias en general.</small></li>
           <li><b>107</b><span>SIES · Emergencias médicas</span><small>Ambulancia y urgencias de salud en la provincia de Santa Fe.</small></li>
@@ -770,14 +817,16 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const WA="5493416601847";
 const MOODS=[{v:7,t:"Excelente"},{v:6,t:"Muy bien"},{v:5,t:"Bien"},{v:4,t:"Más o menos"},{v:3,t:"Regular"},{v:2,t:"Mal"},{v:1,t:"Muy mal"},{v:0,t:"No sé"}];
 const moodName=v=>(MOODS.find(m=>m.v===v)||{t:"—"}).t;
-const EMOS=["Alegría","Tranquilidad","Esperanza","Gratitud","Amor o ternura","Orgullo","Sorpresa","Tristeza","Soledad","Miedo","Ansiedad","Angustia","Enojo","Frustración","Culpa","Vergüenza","Celos","Aburrimiento","Confusión","Asco o rechazo"];
-const AREAS=["Sueño y descanso","Energía","Cuerpo y salud","Nutrición","Actividad física","Vínculos y afectos","Estudio","Trabajo","Espiritualidad y sentido","Disfrute y tiempo libre"];
-const MALESTAR=["Dolor de cabeza","Tensión o dolor muscular","Molestias digestivas","Cansancio o agotamiento","Palpitaciones","Opresión en el pecho","Dificultad para tragar","Cambios de temperatura (calor o frío)","Visión borrosa","Mareos","Ninguno"];
+const EMOS=["Alegría","Tranquilidad","Esperanza","Alivio","Gratitud","Amor o ternura","Fortaleza","Tristeza","Miedo","Incertidumbre","Ansiedad","Angustia","Soledad","Enojo","Frustración","Culpa","Vergüenza","Cansancio emocional","Confusión","Rechazo de mi cuerpo"];
+const AREAS=["Sueño y descanso","Energía","Dolor y bienestar físico","Apetito y alimentación","Movimiento y actividad","Vínculos y afectos","Autonomía en lo cotidiano","Trabajo o tareas","Espiritualidad y sentido","Disfrute y tiempo para mí"];
+const MALESTAR=["Cansancio o fatiga","Dolor","Náuseas o vómitos","Falta de apetito","Cambios en el gusto o llagas en la boca","Problemas para dormir","Hormigueo o adormecimiento","Falta de aire","Fiebre o escalofríos","Molestias digestivas","Cambios en la piel o el cabello","Dificultad para concentrarme","Ninguno"];
+const TRAT=["Quimioterapia","Radioterapia","Inmunoterapia u hormonoterapia","Cirugía o internación","Consulta o control médico","Estudios o análisis","Esperando resultados","Descanso entre tratamientos","Seguimiento sin tratamiento activo"];
+const PREOC=["Resultados o estudios","Efectos del tratamiento","Que la enfermedad avance o vuelva","Mi familia","Trabajo o dinero","Mi cuerpo o mi imagen","El futuro"];
 const NIVEL=["Nada","Poco","Bastante","Mucho"];
 const VOZ=["Con dureza","Mitad y mitad","Con amabilidad"];
 const PAUSA=["Sí","Un poco","No"];
 const METAS=["Nada","Algo","Mucho"];
-const CUIDADOS=["Descansando","Comiendo con tranquilidad","Moviéndome o caminando","Con un rato para mí","Pidiendo o aceptando ayuda","Poniendo un límite","Con un momento de oración o silencio"];
+const CUIDADOS=["Descansando","Comiendo lo que pude","Hidratándome","Siguiendo las indicaciones médicas","Moviéndome o caminando un poco","Hablando con alguien de cómo me siento","Con un rato para mí","Pidiendo o aceptando ayuda","Poniendo un límite","Con un momento de oración o silencio"];
 const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 const FRASES=[
  {c:"Resiliencia",t:"Cuando ya no somos capaces de cambiar una situación, nos encontramos ante el desafío de cambiarnos a nosotros mismos.",a:"Viktor Frankl"},
@@ -833,7 +882,7 @@ const animoEl=$("#d-animo");let animo=null;
 MOODS.forEach(m=>{const b=document.createElement("button");b.type="button";b.className="mood";b.setAttribute("aria-pressed","false");
   b.innerHTML=m.v?`<span class="disc" style="background:${moodColor(m.v)}"></span>${m.t}`:`<span class="disc q">?</span>${m.t}`;b.dataset.v=m.v;
   b.onclick=()=>{animo=m.v;animoEl.querySelectorAll(".mood").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));updateDayWA()};animoEl.appendChild(b)});
-chipGroup($("#d-emociones"),EMOS,true);chipGroup($("#d-malestar"),MALESTAR,true);chipGroup($("#d-cuidados"),CUIDADOS,true);
+chipGroup($("#d-emociones"),EMOS,true);chipGroup($("#d-malestar"),MALESTAR,true);chipGroup($("#d-cuidados"),CUIDADOS,true);chipGroup($("#d-trat"),TRAT,true);chipGroup($("#d-temas"),PREOC,true);
 function segGroup(el,opts,cb=()=>updateDayWA()){el.innerHTML="";opts.forEach(o=>{const b=document.createElement("button");b.type="button";b.textContent=o;b.setAttribute("aria-pressed","false");
   b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";el.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed",on?"false":"true");cb()};el.appendChild(b)})}
 const getSeg=el=>(el.querySelector('[aria-pressed="true"]')||{}).textContent||"";
@@ -867,24 +916,24 @@ function loadDay(){
   setChips($("#d-emociones"),e.emociones);$("#d-otra").value=e.otra||"";
   setAreas(e.areas);setChips($("#d-malestar"),e.malestar);
   setSeg($("#d-ansiedad"),e.ansiedad);setSeg($("#d-preocupacion"),e.preocupacion);setSeg($("#d-voz"),e.voz);setSeg($("#d-pausa"),e.pausa);setSeg($("#d-metas"),e.metas);
-  setChips($("#d-cuidados"),e.cuidados);
+  setChips($("#d-cuidados"),e.cuidados);setChips($("#d-trat"),e.tratamiento);setChips($("#d-temas"),e.temas);$("#d-medico").value=e.medico||"";
   $("#d-bueno").value=e.bueno||"";$("#d-sentido").value=e.sentido||"";$("#d-sesion").value=e.sesion||"";$("#d-plan").value=e.plan||"";
   $("#hoy-estado").textContent=daily[k]?"Registro guardado":"Sin registrar";
   updateDayWA();
 }
 function dayFromForm(){return{animo,emociones:getChips($("#d-emociones")),otra:$("#d-otra").value.trim(),areas:getAreas(),
   malestar:getChips($("#d-malestar")),ansiedad:getSeg($("#d-ansiedad")),preocupacion:getSeg($("#d-preocupacion")),
-  voz:getSeg($("#d-voz")),pausa:getSeg($("#d-pausa")),metas:getSeg($("#d-metas")),cuidados:getChips($("#d-cuidados")),bueno:$("#d-bueno").value.trim(),sentido:$("#d-sentido").value.trim(),sesion:$("#d-sesion").value.trim(),plan:$("#d-plan").value.trim()}}
+  voz:getSeg($("#d-voz")),pausa:getSeg($("#d-pausa")),metas:getSeg($("#d-metas")),cuidados:getChips($("#d-cuidados")),bueno:$("#d-bueno").value.trim(),sentido:$("#d-sentido").value.trim(),sesion:$("#d-sesion").value.trim(),plan:$("#d-plan").value.trim(),tratamiento:getChips($("#d-trat")),temas:getChips($("#d-temas")),medico:$("#d-medico").value.trim()}}
 function dayText(){
   const e=dayFromForm(),emo=[...e.emociones,e.otra].filter(Boolean);
-  const L=["*Registro diario · ¿Cómo anduve hoy?*",($("#d-nombre").value.trim()||"")&&`Nombre: ${$("#d-nombre").value.trim()}`,`Fecha: ${fmtLong(parse(dFecha.value))}`,"",
+  const L=["*Registro diario · ¿Cómo anduve hoy?*",($("#d-nombre").value.trim()||"")&&`Nombre: ${$("#d-nombre").value.trim()}`,`Fecha: ${fmtLong(parse(dFecha.value))}`,e.tratamiento.length&&`Hoy en mi tratamiento: ${e.tratamiento.join(", ")}`,"",
     e.animo!==null&&`1. Estado de ánimo: ${moodName(e.animo)}`,emo.length&&`2. Emociones: ${emo.join(", ")}`,
     Object.keys(e.areas).length&&`3. Áreas (1 a 5): ${Object.entries(e.areas).map(([a,n])=>`${a} ${n}`).join(" · ")}`,
-    e.malestar.length&&`4. Malestar corporal: ${e.malestar.join(", ")}`,
-    (e.ansiedad||e.preocupacion)&&`5. Ansiedad o nervios: ${e.ansiedad||"—"} · Preocupado/a: ${e.preocupacion||"—"}`,
-    e.voz&&`6. Voz interior: ${e.voz}`,e.pausa&&`7. Pausa para estar presente: ${e.pausa}`,e.metas&&`8. Pasos hacia mis metas: ${e.metas}`,
+    e.malestar.length&&`4. Síntomas y malestar: ${e.malestar.join(", ")}`,
+    (e.ansiedad||e.preocupacion||e.temas.length)&&`5. Ansiedad o nervios: ${e.ansiedad||"—"} · Preocupado/a: ${e.preocupacion||"—"}`+(e.temas.length?`\n   Me preocupó: ${e.temas.join(", ").toLowerCase()}`:""),
+    e.voz&&`6. Voz interior: ${e.voz}`,e.pausa&&`7. Pausa para estar presente: ${e.pausa}`,e.metas&&`8. Lo que me propuse, a mi ritmo: ${e.metas}`,
     e.cuidados.length&&`9. Me cuidé: ${e.cuidados.join(", ").toLowerCase()}`,
-    e.bueno&&`\n*Agradezco o logré:* ${e.bueno}`,e.sentido&&`*Me hizo bien o me dio sentido:* ${e.sentido}`,e.sesion&&`*Para traer a la sesión:* ${e.sesion}`,e.plan&&`*Mini plan para mañana:* ${e.plan}`];
+    e.bueno&&`\n*Agradezco o logré:* ${e.bueno}`,e.sentido&&`*Me hizo bien o me dio sentido:* ${e.sentido}`,e.sesion&&`*Para traer a la sesión:* ${e.sesion}`,e.medico&&`*Para consultar con mi equipo médico:* ${e.medico}`,e.plan&&`*Algo pequeño para mañana:* ${e.plan}`];
   return L.filter(x=>x!==false&&x!==""&&x!==0&&x!==undefined).join("\n");
 }
 function updateDayWA(){$("#d-wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(dayText())}
@@ -926,7 +975,7 @@ function loadWeek(){
    <div class="stat"><b style="font-size:.95rem;font-family:var(--body)">${s.top.join(", ")||"—"}</b><span>emociones frecuentes</span></div>`;
   const sc=$("#sem-cuidados");sc.hidden=!s.cuidados.length;sc.textContent=s.cuidados.length?"Esta semana me cuidé sobre todo: "+s.cuidados.join(", ")+".":"";
   const w=weekly[k]||{};
-  $("#w-nombre").value=prefs.nombre||"";$("#w-proxima").value=w.proxima||"";
+  $("#w-nombre").value=prefs.nombre||"";$("#w-proxima").value=w.proxima||"";$("#w-turnos").value=w.turnos||"";$("#w-medico").value=w.medico||"";
   setDayMoods(w.animos);setChips($("#w-emociones"),w.emociones);$("#w-otra").value=w.otra||"";
   setScale($("#w-areas"),W_AREAS,w.areas);setChips($("#w-malestar"),w.malestar);
   ["paso","pense","senti","hice","sesion","reconocer","vozdura","amigo","valoro"].forEach(f=>$("#w-"+f).value=w[f]||"");
@@ -940,16 +989,16 @@ function loadWeek(){
 /* constantes y controles de la revisión semanal */
 const W_MOODS=MOODS.map(m=>({v:m.v,t:m.v===0?"No recuerdo":m.v===4?"Más o menos bien":m.t}));
 const wMoodName=v=>(W_MOODS.find(m=>m.v===v)||{t:"—"}).t;
-const W_EMOS=["Alegría o entusiasmo","Tranquilidad","Esperanza o motivación","Gratitud","Amor o ternura","Orgullo o satisfacción","Sorpresa","Tristeza","Ansiedad o preocupación","Angustia","Enojo o irritabilidad","Miedo","Culpa o vergüenza","Celos","Soledad","Frustración o impotencia","Aburrimiento o apatía","Confusión","Asco o rechazo","Otra"];
-const W_AREAS=["Sueño y descanso","Energía","Cuerpo y salud","Nutrición","Actividad física","Vínculos y afectos","Estudio","Trabajo","Espiritualidad y sentido","Disfrute y tiempo para mí"];
-const W_MALESTAR=["Dolor de cabeza","Tensión o dolor muscular","Dolor de espalda o cuello","Molestias digestivas","Cansancio o agotamiento","Palpitaciones","Opresión en el pecho","Dificultad para tragar","Cambios de temperatura (calor o frío)","Visión borrosa","Mareos","Falta de aire","Otro malestar","Ninguno"];
+const W_EMOS=["Alegría o entusiasmo","Tranquilidad","Esperanza o motivación","Gratitud","Amor o ternura","Orgullo o satisfacción","Alivio","Tristeza","Ansiedad o preocupación","Angustia","Enojo o irritabilidad","Miedo","Culpa o vergüenza","Incertidumbre","Soledad","Frustración o impotencia","Cansancio emocional o apatía","Confusión","Rechazo de mi cuerpo","Otra"];
+const W_AREAS=["Sueño y descanso","Energía","Dolor y bienestar físico","Apetito y alimentación","Movimiento y actividad","Vínculos y afectos","Autonomía en lo cotidiano","Trabajo o tareas","Espiritualidad y sentido","Disfrute y tiempo para mí"];
+const W_MALESTAR=["Cansancio o fatiga","Dolor","Náuseas o vómitos","Falta de apetito","Cambios en el gusto o llagas en la boca","Problemas para dormir","Hormigueo o adormecimiento","Falta de aire","Fiebre o escalofríos","Molestias digestivas","Cambios en la piel o el cabello","Dificultad para concentrarme","Otro malestar","Ninguno"];
 const GAD=["Nunca","Varios días","Más de la mitad de los días","Casi todos los días"];
 const VEO=["Lo sigo sintiendo de la misma manera.","Ahora lo veo de otra forma.","Pude resolverlo o manejarlo.","Todavía no sé cómo interpretarlo.","Necesito hablarlo para entenderlo mejor."];
 const W_VOZ=[{t:"Con dureza",d:"Me exigí, me critiqué o me reproché mucho."},{t:"Mitad y mitad",d:"Hubo momentos duros y otros más amables."},{t:"Con amabilidad",d:"Me hablé con comprensión, como a alguien querido."}];
 const PRACTIQUE=["Notar mi voz crítica","Cambiar una frase dura","Hablarme como a un amigo/a","Reconocer algo que hice bien"];
 const DIAS_L=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
 // mapeo del registro diario a las opciones semanales
-const MAP_EMO={"Alegría":"Alegría o entusiasmo","Esperanza":"Esperanza o motivación","Enojo":"Enojo o irritabilidad","Culpa":"Culpa o vergüenza","Vergüenza":"Culpa o vergüenza","Frustración":"Frustración o impotencia","Orgullo":"Orgullo o satisfacción","Ansiedad":"Ansiedad o preocupación","Aburrimiento":"Aburrimiento o apatía"};
+const MAP_EMO={"Alegría":"Alegría o entusiasmo","Esperanza":"Esperanza o motivación","Enojo":"Enojo o irritabilidad","Culpa":"Culpa o vergüenza","Vergüenza":"Culpa o vergüenza","Frustración":"Frustración o impotencia","Orgullo":"Orgullo o satisfacción","Ansiedad":"Ansiedad o preocupación","Cansancio emocional":"Cansancio emocional o apatía"};
 const MAP_AREA={"Disfrute y tiempo libre":"Disfrute y tiempo para mí"};
 
 $("#w-animos").innerHTML=DIAS_L.map((d,i)=>`<div class="daymood"><label for="w-dia-${i}">${d}</label><span class="disc" id="w-disc-${i}"></span>
@@ -992,6 +1041,7 @@ $("#w-traer").onclick=()=>{
   // lo escrito cada día alimenta las preguntas 9 y 10 (sólo si están vacías), sin volver a preguntarlo
   const lines=f=>days.map((e,i)=>e&&e[f]?`${DIAS[i]}: ${e[f]}`:"").filter(Boolean);
   if(!$("#w-sesion").value.trim()){const l=lines("sesion");if(l.length)$("#w-sesion").value=l.join("\n")}
+  if(!$("#w-medico").value.trim()){const l=lines("medico");if(l.length)$("#w-medico").value=l.join("\n")}
   if(!$("#w-reconocer").value.trim()){const l=[...lines("bueno"),...lines("sentido")];if(l.length)$("#w-reconocer").value=l.join("\n")}
   updateWA();toast("Se completó con sus registros diarios. Puede revisarlo y cambiar lo que quiera.");
 };
@@ -1000,7 +1050,7 @@ function weekFromForm(){return{proxima:$("#w-proxima").value,animos:getDayMoods(
   areas:getScale($("#w-areas"),W_AREAS),malestar:getChips($("#w-malestar")),
   paso:$("#w-paso").value.trim(),pense:$("#w-pense").value.trim(),senti:$("#w-senti").value.trim(),hice:$("#w-hice").value.trim(),
   afecto:getAfecto(),gad1:getSeg($("#w-gad1")),gad2:getSeg($("#w-gad2")),veo:getChips($("#w-veo")),voz:getVoz(),
-  sesion:$("#w-sesion").value.trim(),reconocer:$("#w-reconocer").value.trim(),
+  turnos:$("#w-turnos").value.trim(),medico:$("#w-medico").value.trim(),sesion:$("#w-sesion").value.trim(),reconocer:$("#w-reconocer").value.trim(),
   presente:$$("#w-presente .dotbtn").map(b=>b.getAttribute("aria-pressed")==="true"),presenteNota:$("#w-presente-nota").value.trim(),
   vozdura:$("#w-vozdura").value.trim(),amigo:$("#w-amigo").value.trim(),valoro:$("#w-valoro").value.trim(),practique:getChips($("#w-practique"))}}
 function weekText(){
@@ -1010,18 +1060,19 @@ function weekText(){
   const gadPts=v=>GAD.indexOf(v);const gad=(w.gad1&&w.gad2)?gadPts(w.gad1)+gadPts(w.gad2):null;
   const pres=w.presente.map((on,i)=>on?DIAS_L[i]:"").filter(Boolean);
   const head=["*Revisión semanal · ¿Cómo anduve esta semana?*",nom&&`Nombre: ${nom}`,`Semana del ${fmtShort(wk)} al ${fmtShort(addDays(wk,6))}`,
-    w.proxima&&`Próxima sesión: ${fmtLong(parse(w.proxima))}`].filter(Boolean).join("\n");
+    w.proxima&&`Próxima sesión: ${fmtLong(parse(w.proxima))}`,w.turnos&&`Turnos y estudios: ${w.turnos}`].filter(Boolean).join("\n");
   const L=[head,
     dias.length&&`*1. Estado de ánimo*\n${dias.join("\n")}`,
     emo.length&&`*2. Emociones:* ${emo.join(", ")}`,
     Object.keys(w.areas).length&&`*3. Áreas (1 a 5):* ${Object.entries(w.areas).map(([a,n])=>`${a} ${n}`).join(" · ")}`,
-    w.malestar.length&&`Malestar corporal: ${w.malestar.join(", ")}`,
+    w.malestar.length&&`Síntomas y malestar: ${w.malestar.join(", ")}`,
     (w.paso||w.pense||w.senti||w.hice)&&["*4. Situación significativa*",w.paso&&`Qué pasó: ${w.paso}`,w.pense&&`Qué pensé: ${w.pense}`,w.senti&&`Cómo me sentí: ${w.senti}`,w.hice&&`Qué hice: ${w.hice}`].filter(Boolean).join("\n"),
     w.afecto!==null&&`*5. Cuánto me afectó:* ${w.afecto}/10`,
     (w.gad1||w.gad2)&&`*6. Ansiedad y preocupación*\nNervioso/a o ansioso/a: ${w.gad1||"—"}\nNo poder dejar de preocuparme: ${w.gad2||"—"}`+(gad!==null?`\n(GAD-2: ${gad}/6)`:""),
     w.veo.length&&`*7. Cómo lo veo ahora:* ${w.veo.join(" ")}`,
     w.voz&&`*8. Cómo me hablé:* ${w.voz}`,
     w.sesion&&`*9. Para trabajar en la próxima sesión:* ${w.sesion}`,
+    w.medico&&`*Para mi equipo médico:* ${w.medico}`,
     w.reconocer&&`*10. Algo que quiero reconocer:* ${w.reconocer}`,
     (pres.length||w.presenteNota)&&`*Práctica de presente:* ${pres.length?pres.join(", "):"ningún día"}`+(w.presenteNota?`\nQué noté: ${w.presenteNota}`:""),
     (w.vozdura||w.amigo||w.valoro||w.practique.length)&&["*Práctica con la voz amable*",w.vozdura&&`Mi voz dura me dijo: ${w.vozdura}`,w.amigo&&`Lo que le diría a un amigo/a: ${w.amigo}`,w.valoro&&`Algo que valoro de mí: ${w.valoro}`,w.practique.length&&`Practiqué: ${w.practique.join(", ")}`].filter(Boolean).join("\n")];
@@ -1046,7 +1097,7 @@ function loadHist(){
   $("#h-dias").innerHTML=dk.length?dk.map(k=>{const e=daily[k];const row=(t,v)=>v&&v.length?`<dt>${t}</dt><dd>${esc(Array.isArray(v)?v.join(", "):v)}</dd>`:"";
     const emo=[...(e.emociones||[]),e.otra].filter(Boolean);const ar=Object.entries(e.areas||{}).map(([a,n])=>`${a} ${n}`);
     return `<details class="entry"><summary><span class="disc" style="background:${moodColor(e.animo)}"></span><span style="flex:1">${fmtLong(parse(k))}</span><span class="small muted">${moodName(e.animo)}</span></summary>
-    <div class="body"><dl style="margin:0">${row("Emociones",emo)}${row("Áreas (1 a 5)",ar.join(" · "))}${row("Malestar corporal",e.malestar)}${row("Ansiedad o nervios",e.ansiedad)}${row("Preocupación",e.preocupacion)}${row("Voz interior",e.voz)}${row("Pausa presente",e.pausa)}${row("Pasos hacia mis metas",e.metas)}${row("Me cuidé",e.cuidados)}${row("Agradezco o logré",e.bueno)}${row("Me hizo bien o me dio sentido",e.sentido)}${row("Para traer a la sesión",e.sesion)}${row("Mini plan para mañana",e.plan)}</dl>
+    <div class="body"><dl style="margin:0">${row("Emociones",emo)}${row("Áreas (1 a 5)",ar.join(" · "))}${row("Tratamiento",e.tratamiento)}${row("Síntomas y malestar",e.malestar)}${row("Ansiedad o nervios",e.ansiedad)}${row("Preocupación",e.preocupacion)}${row("Me preocupó",e.temas)}${row("Voz interior",e.voz)}${row("Pausa presente",e.pausa)}${row("Lo que me propuse",e.metas)}${row("Me cuidé",e.cuidados)}${row("Agradezco o logré",e.bueno)}${row("Me hizo bien o me dio sentido",e.sentido)}${row("Para traer a la sesión",e.sesion)}${row("Para mi equipo médico",e.medico)}${row("Algo pequeño para mañana",e.plan)}</dl>
     <button class="linkbtn" data-edit="${k}">Editar este día</button></div></details>`}).join("")
     :`<div class="empty">Todavía no hay registros. Empiece hoy desde la pestaña <b>Hoy</b>: le lleva un par de minutos.</div>`;
   const wkKeys=Object.keys(weekly).sort().reverse();
