@@ -279,6 +279,20 @@ dl.kv dd{margin:0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;
 .sos-list small{color:var(--muted);font-size:.82rem;grid-column:2}
 footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+/* Cuaderno */
+nav.tabs .in{grid-template-columns:repeat(6,1fr)!important}
+nav.tabs a{font-size:.68rem!important;padding:6px 0!important}
+.nb-ed{display:grid;gap:10px}
+.nb-ed input[type=text]{font-family:var(--display);font-size:1.15rem}
+.nb-ed textarea{min-height:240px;font-family:var(--quote);font-size:1.1rem;line-height:1.55;background:var(--surface)}
+.nb-prompts{display:flex;flex-wrap:wrap;gap:6px}
+.nb-prompts .chip{font-size:.82rem;padding:6px 11px}
+.nb-meta{font-size:.78rem;color:var(--muted)}
+.nb-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:4px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.nb-item b{font-family:var(--display);font-weight:400;font-size:1.05rem}
+.nb-item span{font-size:.86rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nb-item small{font-size:.74rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -521,6 +535,32 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
       </div>
     </section>
 
+    <!-- CUADERNO -->
+    <section class="view" id="v-cuaderno" hidden>
+      <div class="lead">
+        <span class="eyebrow">Escritura libre</span>
+        <h2>Mi cuaderno</h2>
+        <p class="muted">Un espacio para escribir lo que quiera: lo que siente, lo que le da miedo, lo que le dio fuerza, lo que no quiere olvidar, una carta que no va a mandar. Sin preguntas ni casilleros.</p>
+      </div>
+      <p class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Lo que escribe acá queda sólo en este celular. Nadie más puede leerlo, salvo que usted decida compartir una nota.</span></p>
+      <div class="card nb-ed" id="nb-ed">
+        <input type="text" id="nb-title" placeholder="Título (opcional)" aria-label="Título de la nota">
+        <div class="nb-prompts" id="nb-prompts" aria-label="Para empezar a escribir"></div>
+        <textarea id="nb-text" placeholder="Escriba libremente…" aria-label="Texto de la nota"></textarea>
+        <span class="nb-meta" id="nb-meta">Se guarda solo mientras escribe.</span>
+        <div class="row">
+          <button class="btn" id="nb-save" type="button">Guardar nota</button>
+          <button class="btn ghost" id="nb-new" type="button">Nueva nota</button>
+        </div>
+        <div class="row" id="nb-actions" hidden>
+          <button class="linkbtn" id="nb-share" type="button">Compartir esta nota</button>
+          <button class="linkbtn" id="nb-del" type="button" style="color:var(--danger)">Eliminar</button>
+        </div>
+      </div>
+      <div class="q"><input type="text" id="nb-q" placeholder="Buscar en mis notas" aria-label="Buscar en mis notas"></div>
+      <div class="list" id="nb-list"></div>
+    </section>
+
     <!-- HISTORIAL -->
     <section class="view" id="v-historial" hidden>
       <div class="lead">
@@ -564,6 +604,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
           <ul>
             <li><b>Hoy:</b> un registro breve cada día, idealmente a la noche.</li>
             <li><b>Semana:</b> una revisión antes de cada sesión, que puede enviar por WhatsApp.</li>
+            <li><b>Cuaderno:</b> un espacio para escribir libremente, sin preguntas ni casilleros. Puede buscar entre sus notas y compartir una si quiere.</li>
             <li><b>Historial:</b> le permite ver cómo fue variando su ánimo.</li>
             <li>Sus respuestas quedan guardadas <b>sólo en este dispositivo</b>. Nadie más puede verlas, salvo lo que usted decida enviar.</li>
           </ul>
@@ -795,6 +836,7 @@ footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--
   <div class="in">
     <a href="#hoy" data-nav="hoy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Hoy</a>
     <a href="#semana" data-nav="semana"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Semana</a>
+    <a href="#cuaderno" data-nav="cuaderno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3z"/><path d="M9 8h6M9 12h6"/></svg>Cuaderno</a>
     <a href="#historial" data-nav="historial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19V11M10 19V5M16 19v-6M22 19H2"/></svg>Historial</a>
     <a href="#frases" data-nav="frases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7H6a2 2 0 0 0-2 2v3h5v5H4M20 7h-4a2 2 0 0 0-2 2v3h5v5h-5"/></svg>Frases</a>
     <a href="#guia" data-nav="guia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>Guía</a>
@@ -1203,14 +1245,14 @@ $("#breath-btn").onclick=()=>{
 /* ---------- AJUSTES ---------- */
 $("#a-nombre").value=prefs.nombre||"";
 $("#a-guardar").onclick=()=>{prefs.nombre=$("#a-nombre").value.trim();store.set("prefs",prefs);toast("Datos guardados")};
-$("#a-export").onclick=()=>copy(JSON.stringify({app:"entre-nosotros",v:1,daily,weekly,prefs}),"Respaldo copiado");
+$("#a-export").onclick=()=>copy(JSON.stringify({app:"entre-nosotros",v:1,daily,weekly,prefs,notes}),"Respaldo copiado");
 $("#a-import-btn").onclick=()=>{try{const d=JSON.parse($("#a-import").value);if(d.app!=="entre-nosotros")throw 0;
-  daily={...daily,...d.daily};weekly={...weekly,...d.weekly};if(d.prefs)prefs={...prefs,...d.prefs};
+  daily={...daily,...d.daily};weekly={...weekly,...d.weekly};if(d.prefs)prefs={...prefs,...d.prefs};if(Array.isArray(d.notes)){const nid=new Set(notes.map(n=>n.id));d.notes.forEach(n=>{if(!nid.has(n.id))notes.push(n)});store.set("notes",notes)}
   store.set("daily",daily);store.set("weekly",weekly);store.set("prefs",prefs);$("#a-import").value="";toast("Respaldo restaurado")}
   catch(e){toast("El texto no es un respaldo válido. Pegue el respaldo completo.")}};
 $("#a-borrar").onclick=()=>{$("#a-confirm").hidden=false;$("#a-borrar").hidden=true};
 $("#a-borrar-no").onclick=()=>{$("#a-confirm").hidden=true;$("#a-borrar").hidden=false};
-$("#a-borrar-si").onclick=()=>{daily={};weekly={};store.set("daily",daily);store.set("weekly",weekly);$("#a-confirm").hidden=true;$("#a-borrar").hidden=false;toast("Registros borrados");loadDay()};
+$("#a-borrar-si").onclick=()=>{notes=[];store.set("notes",notes);nbNew();daily={};weekly={};store.set("daily",daily);store.set("weekly",weekly);$("#a-confirm").hidden=true;$("#a-borrar").hidden=false;toast("Registros borrados");loadDay()};
 
 /* ---------- instalar en el celular ---------- */
 const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
@@ -1241,13 +1283,40 @@ $("#p-share").onclick=async()=>{const url=location.origin+location.pathname;
   try{if(navigator.share){await navigator.share(data);return}}catch(e){if(e&&e.name==="AbortError")return}
   copy(url,"Enlace copiado")};
 
+/* ---------- CUADERNO ---------- */
+let notes=store.get("notes",[]);let nbCur=null,nbTimer=null;
+const NBP=["Hoy agradezco…","Lo que siento hoy…","Lo que me da miedo…","Lo que me dio fuerza…","Lo que le diría a mi cuerpo…","Preguntas que me hago…","Una carta a…","Lo que no quiero olvidar…"];
+const nbEsc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtDT=t=>{const d=new Date(t);return d.toLocaleDateString("es-AR",{day:"numeric",month:"short",year:"numeric"})+" · "+d.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})};
+function nbSaveSilent(){const ti=$("#nb-title").value.trim(),tx=$("#nb-text").value;
+  if(!ti&&!tx.trim())return;const now=Date.now();
+  if(nbCur===null){nbCur="n"+now;notes.unshift({id:nbCur,t:now,u:now,titulo:ti,texto:tx})}
+  else{const n=notes.find(x=>x.id===nbCur);if(n){n.titulo=ti;n.texto=tx;n.u=now}}
+  store.set("notes",notes);$("#nb-meta").textContent="Guardado · "+fmtDT(now);$("#nb-actions").hidden=false;nbList()}
+function nbOpen(id){const n=notes.find(x=>x.id===id);if(!n)return;nbCur=id;$("#nb-title").value=n.titulo||"";$("#nb-text").value=n.texto||"";
+  $("#nb-meta").textContent="Creada "+fmtDT(n.t)+(n.u!==n.t?" · editada "+fmtDT(n.u):"");$("#nb-actions").hidden=false;$("#nb-ed").scrollIntoView({behavior:"smooth"});nbList()}
+function nbNew(){nbCur=null;$("#nb-title").value="";$("#nb-text").value="";$("#nb-meta").textContent="Se guarda solo mientras escribe.";$("#nb-actions").hidden=true;$("#nb-text").focus();nbList()}
+function nbList(){const q=($("#nb-q").value||"").toLowerCase().trim();
+  const ls=notes.filter(n=>!q||((n.titulo||"")+" "+(n.texto||"")).toLowerCase().includes(q));
+  $("#nb-list").innerHTML=ls.length?ls.map(n=>`<button class="nb-item" type="button" data-nb="${n.id}"${n.id===nbCur?' style="border-color:var(--brand)"':""}><b>${nbEsc(n.titulo||"Sin título")}</b><span>${nbEsc((n.texto||"").slice(0,180))}</span><small>${nbEsc(fmtDT(n.u||n.t))}</small></button>`).join(""):`<p class="empty">${q?"No hay notas con esa búsqueda.":"Todavía no hay notas. Lo que escriba arriba aparece acá."}</p>`}
+function loadCuaderno(){const pr=$("#nb-prompts");if(!pr.children.length){NBP.forEach(t=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=t;b.addEventListener("click",()=>{const ta=$("#nb-text");ta.value=(ta.value&&!ta.value.endsWith("\n")?ta.value+"\n\n":ta.value)+t.replace("…"," ");ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length)});pr.appendChild(b)})}nbList()}
+["#nb-title","#nb-text"].forEach(sel=>$(sel).addEventListener("input",()=>{$("#nb-meta").textContent="Escribiendo…";clearTimeout(nbTimer);nbTimer=setTimeout(nbSaveSilent,800)}));
+$("#nb-save").addEventListener("click",()=>{clearTimeout(nbTimer);if(!$("#nb-title").value.trim()&&!$("#nb-text").value.trim()){toast("La nota está vacía");return}nbSaveSilent();toast("Nota guardada")});
+$("#nb-new").addEventListener("click",()=>{clearTimeout(nbTimer);nbSaveSilent();nbNew()});
+$("#nb-list").addEventListener("click",e=>{const b=e.target.closest("[data-nb]");if(b){clearTimeout(nbTimer);nbSaveSilent();nbOpen(b.dataset.nb)}});
+$("#nb-q").addEventListener("input",nbList);
+$("#nb-share").addEventListener("click",async()=>{const ti=$("#nb-title").value.trim(),tx=$("#nb-text").value.trim();const text=(ti?ti+"\n\n":"")+tx;if(!text)return;
+  if(navigator.share){try{await navigator.share({text});return}catch(e){if(e&&e.name==="AbortError")return}}copy(text,"Nota copiada")});
+let nbDelAsk=false;$("#nb-del").addEventListener("click",()=>{if(nbCur===null)return;if(!nbDelAsk){nbDelAsk=true;$("#nb-del").textContent="¿Seguro/a? Toque de nuevo para eliminar";setTimeout(()=>{nbDelAsk=false;$("#nb-del").textContent="Eliminar"},4000);return}
+  notes=notes.filter(n=>n.id!==nbCur);store.set("notes",notes);nbDelAsk=false;$("#nb-del").textContent="Eliminar";nbNew();toast("Nota eliminada")});
+
 /* ---------- navegación ---------- */
-const VIEWS=["hoy","semana","historial","frases","guia","profesional","ajustes"];
+const VIEWS=["hoy","semana","cuaderno","historial","frases","guia","profesional","ajustes"];
 function route(){
   const v=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"hoy";
   VIEWS.forEach(n=>$("#v-"+n).hidden=n!==v);
   $$("[data-nav]").forEach(a=>a.dataset.nav===v?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));
-  if(v==="hoy")loadDay();if(v==="semana")loadWeek();if(v==="historial")loadHist();if(v==="frases")loadFrases();
+  if(v==="hoy")loadDay();if(v==="semana")loadWeek();if(v==="historial")loadHist();if(v==="cuaderno")loadCuaderno();if(v==="frases")loadFrases();
   window.scrollTo(0,0);
 }
 addEventListener("hashchange",route);route();
