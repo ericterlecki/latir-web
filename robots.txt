@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://latir-web.vercel.app/sitemap.xml

@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Registro diario y semanal para acompañar su proceso terapéutico. Sus respuestas quedan guardadas sólo en su dispositivo.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Latir">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Latir · Mi registro</title>
+<meta name="theme-color" content="#1f4955">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: app de una columna, encabezado de marca arriba, pestañas fijas abajo; cada vista es una "hoja" tranquila */
+:root{
+  --bg:#f7f2e9;        /* crema de la web */
+  --surface:#fbf7f0;
+  --sunk:#efe6d6;
+  --fg:#1d2f33;
+  --muted:#56686b;
+  --line:#d9cdb9;
+  --brand:#1f4955;     /* azul petróleo del logo */
+  --brand-soft:#d6e0e0;
+  --warm:#d9906f;      /* terracota */
+  --warm-ink:#b35a33;
+  --dot:#d9906f;       /* terracota del logo */
+  --dot-soft:#f3dccf;
+  --dot-ink:#9a4f30;
+  --danger:#a8402a;
+  --on-brand:#f2ebdb;
+  --head-bg:#1f4955;
+  --head-fg:#f2ebdb;
+  --logo-a:#f2ebdb; --logo-b:#d9906f; --logo-c:#e3b866;
+  --m7:#4f8a5b; --m6:#79a368; --m5:#a8b86a; --m4:#e3b866; --m3:#e39c5e; --m2:#d9774f; --m1:#b0473a;
+  --display:"Gloock", Georgia, "Times New Roman", serif;
+  --quote:"Newsreader", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f262b; --surface:#163339; --sunk:#1c3d44; --fg:#ece3d3; --muted:#a3b3b2; --line:#29484e;
+  --brand:#8fc0c9; --brand-soft:#21434d; --warm:#e08a60; --warm-ink:#e08a60; --dot:#e3a07f; --dot-soft:#4a3128; --dot-ink:#eab196; --danger:#f08a70; --on-brand:#10232a;
+  --head-bg:#173a44; --head-fg:#f2ebdb;
+  --m7:#6fae7c; --m6:#93bd80; --m5:#bccb80; --m4:#ecc77e; --m3:#eba774; --m2:#e48a66; --m1:#d2685a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f262b; --surface:#163339; --sunk:#1c3d44; --fg:#ece3d3; --muted:#a3b3b2; --line:#29484e;
+  --brand:#8fc0c9; --brand-soft:#21434d; --warm:#e08a60; --warm-ink:#e08a60; --dot:#e3a07f; --dot-soft:#4a3128; --dot-ink:#eab196; --danger:#f08a70; --on-brand:#10232a;
+  --head-bg:#173a44; --head-fg:#f2ebdb;
+  --m7:#6fae7c; --m6:#93bd80; --m5:#bccb80; --m4:#ecc77e; --m3:#eba774; --m2:#e48a66; --m1:#d2685a; color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 calc(88px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--head-bg)}
+.wrap{max-width:620px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;line-height:1.2;margin:0}
+h2{font-size:1.65rem}
+h3{font-size:1.15rem}
+p{margin:0}
+button,input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--dot);outline-offset:2px}
+.muted{color:var(--muted)}
+.small{font-size:.875rem}
+.eyebrow{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--warm-ink);font-weight:700}
+
+/* encabezado */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--head-bg);color:var(--head-fg);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 12px;margin-inline:-16px;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,var(--dot),var(--head-fg)) 1}
+@media (min-width:652px){header.top{margin-inline:0;border-radius:0 0 14px 14px}}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--head-fg);min-width:0}
+.brand svg{width:42px;height:38px;flex:none}
+.brand .name{font-family:var(--display);font-size:1.3rem;font-weight:400;line-height:1}
+.brand .sub{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--logo-b);margin-top:3px}
+.top-actions{display:flex;gap:6px}
+.icon-btn{border:1px solid color-mix(in srgb,var(--head-fg) 40%,transparent);background:transparent;border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--head-fg);text-decoration:none}
+.icon-btn[aria-current="page"]{background:var(--head-fg);color:var(--head-bg);border-color:var(--head-fg)}
+
+/* pestañas */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);
+  padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
+nav.tabs .in{max-width:620px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:10px;
+  text-decoration:none;color:var(--muted);font-size:.74rem;font-weight:600}
+nav.tabs a svg{width:22px;height:22px}
+nav.tabs a[aria-current="page"]{color:var(--brand);background:var(--brand-soft);box-shadow:inset 0 -2px 0 var(--warm)}
+
+/* vistas */
+main{padding-block:22px 10px}
+section.view{display:grid;gap:18px}
+.lead{display:grid;gap:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:14px}
+.q{display:grid;gap:10px}
+.q > label, .q > .label{font-weight:600}
+.hint{font-size:.85rem;color:var(--muted);font-weight:400}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 14px;cursor:pointer;font-size:.92rem}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+
+.moods{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mood .disc.q{display:grid;place-items:center;border:1px dashed var(--muted);background:transparent;color:var(--muted);font-weight:700;font-size:.8rem}
+.qn{display:flex;gap:12px;align-items:flex-start}
+.qn .num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--dot-soft);color:var(--dot-ink);display:grid;place-items:center;font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums}
+.qn .txt{display:grid;gap:2px;font-weight:600}
+.scale{display:grid;gap:8px}
+.scale-head,.scale-row{display:grid;grid-template-columns:minmax(0,1fr) repeat(5,34px);gap:6px;align-items:center}
+.scale-head span{text-align:center;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.scale-row > span{font-size:.92rem;min-width:0}
+.dotbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);cursor:pointer;font-size:.8rem;font-weight:700;color:var(--muted);padding:0}
+.dotbtn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.seg{display:grid;grid-template-columns:repeat(var(--n,4),1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;border-left:1px solid var(--line);background:var(--bg);padding:9px 2px;cursor:pointer;font-size:.84rem}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--on-brand);font-weight:600}
+.weeknav{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:5px}
+.weeknav span{font-weight:600;text-align:center;flex:1}
+.weeknav .dotbtn:disabled{opacity:.35;cursor:default}
+.daymoods{display:grid;gap:8px}
+.daymood{display:grid;grid-template-columns:5.5rem 18px minmax(0,1fr);gap:10px;align-items:center}
+.daymood .disc{width:18px;height:18px;border-radius:50%;background:var(--sunk);border:1px dashed var(--line)}
+.daymood .disc.on{border:0}
+.daymood select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:9px 10px}
+.note{font-size:.88rem;color:var(--muted);border-left:3px solid var(--dot);padding:4px 0 4px 12px;max-width:65ch}
+.afecto{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:3px}
+.afecto .dotbtn{width:100%;height:36px;border-radius:8px;font-variant-numeric:tabular-nums}
+.afecto-x{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted)}
+.seg.wrap button{font-size:.78rem;line-height:1.2;padding:9px 3px}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.opt{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px 10px;cursor:pointer;text-align:left;display:grid;gap:4px;align-content:start}
+.opt b{font-size:.92rem}
+.opt span{font-size:.78rem;color:var(--muted);line-height:1.35}
+.opt[aria-pressed="true"]{background:var(--brand);border-color:var(--brand)}
+.opt[aria-pressed="true"] b,.opt[aria-pressed="true"] span{color:var(--on-brand)}
+@media (max-width:440px){.opts{grid-template-columns:1fr}}
+.weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.weekdays .dotbtn{width:100%;height:40px;border-radius:10px}
+/* guía: diagramas */
+.timeline3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tcol{border-radius:12px;padding:12px 10px;display:grid;gap:4px;text-align:center;align-content:start;background:var(--bg);border:1px solid var(--line)}
+.tcol.now{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.tcol .k{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.tcol .s{font-family:var(--quote);font-style:italic;font-size:.95rem;line-height:1.25}
+.tcol .e{font-size:.75rem;opacity:.85}
+.senses{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;text-align:center}
+.senses div{display:grid;gap:2px;justify-items:center;font-size:.72rem;color:var(--muted);line-height:1.25}
+.senses b{font-family:var(--display);font-size:1.8rem;color:var(--brand);line-height:1}
+.pairs{display:grid;gap:8px}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:8px;align-items:center;font-size:.88rem}
+.pair .hard{background:var(--dot-soft);border-radius:10px;padding:8px 10px}
+.pair .kind{background:var(--brand-soft);border-radius:10px;padding:8px 10px}
+.pair i{font-style:normal;color:var(--muted);text-align:center}
+.trio,.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pillars{grid-template-columns:repeat(2,minmax(0,1fr))}
+.trio div,.pillars div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:3px;font-size:.8rem;color:var(--muted);line-height:1.35}
+.trio b,.pillars b{color:var(--fg);font-size:.9rem}
+@media (max-width:440px){.trio{grid-template-columns:1fr}}
+.closing{font-family:var(--quote);font-style:italic;font-size:1.1rem;text-align:center;color:var(--muted);max-width:44ch;margin:0 auto}
+.mood{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 2px;cursor:pointer;display:grid;justify-items:center;gap:6px;font-size:.78rem;text-align:center;line-height:1.2}
+.mood .disc{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--fg) 12%,transparent)}
+.mood[aria-pressed="true"]{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand);background:var(--brand-soft)}
+
+input[type=text],input[type=date],textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px}
+textarea{min-height:84px;resize:vertical}
+.range{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.range input{width:100%;accent-color:var(--brand)}
+.range output{font-variant-numeric:tabular-nums;font-weight:700;min-width:2.2ch;text-align:right;color:var(--brand)}
+
+.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:700;cursor:pointer;background:var(--brand);color:var(--on-brand);text-align:center;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--fg)}
+.btn.danger{background:transparent;border:1px solid var(--danger);color:var(--danger)}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.row > .btn{flex:1 1 160px}
+
+.datebar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.datebar input{width:auto}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--dot-soft);color:var(--dot-ink)}
+
+/* resumen semanal */
+.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.wd{display:grid;justify-items:center;gap:5px;font-size:.75rem;color:var(--muted)}
+.wd .disc{width:30px;height:30px;border-radius:50%;border:1px dashed var(--line)}
+.wd .disc.on{border:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--bg);border-radius:10px;padding:10px;display:grid;gap:2px}
+.stat b{font-family:var(--display);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:.75rem;color:var(--muted)}
+
+/* historial */
+.chart{display:grid;grid-template-columns:repeat(14,1fr);gap:4px;align-items:end;height:120px;padding-top:6px}
+.bar{border-radius:6px 6px 3px 3px;background:var(--sunk);min-height:6px}
+.chart-x{display:grid;grid-template-columns:repeat(14,1fr);gap:4px;font-size:.66rem;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.75rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+details.entry{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+details.entry summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;gap:12px}
+details.entry summary::-webkit-details-marker{display:none}
+details.entry .disc{width:14px;height:14px;border-radius:50%;flex:none}
+details.entry .body{padding:0 14px 14px;display:grid;gap:6px;font-size:.92rem}
+details.entry .body dt{font-weight:600;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+details.entry .body dd{margin:0 0 4px}
+.list{display:grid;gap:8px}
+.empty{border:1px dashed var(--line);border-radius:12px;padding:18px;color:var(--muted);text-align:center;font-size:.92rem}
+
+/* frases */
+.quote{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 18px 16px;display:grid;gap:12px}
+.quote blockquote{margin:0;font-family:var(--quote);font-size:1.25rem;line-height:1.4;font-style:italic}
+.quote .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.quote cite{font-style:normal;font-weight:600;font-size:.9rem}
+.qtop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.ill{width:64px;height:64px;border-radius:14px;background:var(--head-bg);flex:none;padding:6px;display:block}
+.ill svg{width:100%;height:100%;display:block}
+.tag{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--warm-ink);font-weight:700}
+.linkbtn{background:none;border:0;color:var(--brand);font-weight:700;cursor:pointer;padding:4px 0;font-size:.88rem}
+
+/* guía */
+details.guide{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+details.guide summary{cursor:pointer;padding:16px 18px;font-family:var(--display);font-size:1.15rem;font-weight:400;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details.guide summary::-webkit-details-marker{display:none}
+details.guide summary::after{content:"+";color:var(--brand);font-family:var(--body)}
+details.guide[open] summary::after{content:"–"}
+details.guide .body{padding:0 18px 18px;display:grid;gap:10px;max-width:65ch}
+details.guide ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.breath{display:grid;justify-items:center;gap:10px;padding:10px 0}
+.breath .ring{width:120px;height:120px;border-radius:50%;background:var(--brand-soft);display:grid;place-items:center;transform:scale(.7);transition:transform 4s ease-in-out}
+.breath .ring span{font-weight:700;color:var(--brand);font-size:.9rem}
+.alert{background:var(--dot-soft);border-radius:var(--r);padding:16px 18px;display:grid;gap:6px}
+.alert h3{color:var(--dot-ink)}
+
+/* profesional */
+.pro-hero{display:grid;gap:14px;justify-items:start}
+.pro-hero svg{width:88px;height:80px;background:var(--head-bg);border-radius:18px;padding:14px}
+.pro-hero .t{font-family:var(--display);font-size:2rem;font-weight:400;line-height:1.1}
+.creds{display:flex;flex-wrap:wrap;gap:6px}
+.creds span{font-size:.8rem;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:var(--surface)}
+dl.kv{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:baseline}
+dl.kv dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+dl.kv dd{margin:0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;min-width:0;overflow-wrap:anywhere}
+.copy{border:0;background:var(--brand-soft);color:var(--brand);border-radius:999px;padding:3px 10px;font-size:.75rem;font-weight:700;cursor:pointer}
+
+/* modal y aviso */
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);
+  background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:600;font-size:.9rem;opacity:0;pointer-events:none;transition:.25s;z-index:30;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal{position:fixed;inset:0;z-index:40;background:color-mix(in srgb,var(--fg) 55%,transparent);display:grid;place-items:center;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.modal .box{background:var(--surface);border-radius:var(--r);padding:18px;max-width:440px;width:100%;display:grid;gap:12px;max-height:100%;overflow:auto}
+.modal img{border-radius:10px;border:1px solid var(--line);width:100%}
+
+/* instalar, confidencialidad, instagram */
+.install{background:var(--head-bg);color:var(--head-fg);border-radius:var(--r);padding:16px 18px;display:grid;gap:10px}
+.install h3{color:var(--head-fg)}
+.install p{font-size:.9rem;color:color-mix(in srgb,var(--head-fg) 82%,transparent)}
+.install ol{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:.9rem}
+.install .row .btn{flex:0 1 auto}
+.install .btn{background:var(--logo-b);color:#1f2f33}
+.install .btn.ghost{background:transparent;color:var(--head-fg);border-color:color-mix(in srgb,var(--head-fg) 40%,transparent)}
+.ico{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em}
+.inst-ios + .inst-android,.inst-android + .inst-ios{margin-top:18px}
+.privacy{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--muted);background:var(--sunk);border-radius:12px;padding:10px 12px}
+.privacy svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--brand)}
+.privacy a{color:var(--brand);font-weight:600}
+#conf,details.guide{scroll-margin-top:calc(84px + env(safe-area-inset-top,0px))}
+.conf ul{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:.93rem}
+.ig-card{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.ig-badge{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--logo-c),var(--logo-b) 55%,#b35a33);color:#fff}
+.ig-badge svg{width:28px;height:28px}
+.sos-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sos-list li{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:baseline}
+.sos-list b{font-family:var(--display);font-weight:400;font-size:1.35rem;color:var(--dot-ink);grid-row:span 2;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sos-list span{font-weight:600;font-size:.92rem}
+.sos-list small{color:var(--muted);font-size:.82rem;grid-column:2}
+footer.sig{padding-block:26px 6px;text-align:center;font-size:.8rem;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="-150 -150 300 300">
+    <circle cx="0" cy="8" r="30" fill="var(--logo-c)"/><circle cx="-30" cy="-50" r="34" fill="var(--logo-a)"/><circle cx="30" cy="-50" r="34" fill="var(--logo-b)"/>
+    <path fill="var(--logo-c)" d="M-112 -8 A112 112 0 0 0 112 -8 A12 12 0 0 0 88 -8 A88 88 0 0 1 -88 -8 A12 12 0 0 0 -112 -8 Z"/>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#profesional" aria-label="Latir, ver datos del profesional">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <div><div class="name">Latir</div><div class="sub">Lic. Eric Terlecki</div></div>
+    </a>
+    <div class="top-actions">
+      <a class="icon-btn" href="#profesional" data-nav="profesional">Contacto</a>
+      <a class="icon-btn" href="#ajustes" data-nav="ajustes">Ajustes</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOY -->
+    <section class="view" id="v-hoy" hidden>
+      <div class="lead">
+        <span class="eyebrow" id="hoy-fecha"></span>
+        <h2 id="hoy-saludo">¿Cómo anduve hoy?</h2>
+        <p class="muted">Registro diario. Complételo a su ritmo; casi todo se responde tocando una opción.</p>
+      </div>
+      <div class="install" id="install-card" hidden>
+        <h3>Tenga la app a mano en su celular</h3>
+        <p>Instálela en la pantalla de inicio: se abre como cualquier aplicación, sin buscarla en el navegador, y funciona sin conexión.</p>
+        <div id="install-steps">
+          <div class="inst-ios"><b>En iPhone (Safari)</b><ol><li>Abra este enlace en <b>Safari</b>.</li><li>Toque el botón Compartir <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Compartir"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> en la barra de abajo.</li><li>Deslice hacia abajo y elija <b>«Agregar a inicio»</b>.</li><li>Toque <b>«Agregar»</b> arriba a la derecha. El ícono de Latir aparece en su pantalla de inicio.</li></ol></div>
+          <div class="inst-android"><b>En Android (Chrome)</b><ol><li>Abra este enlace en <b>Chrome</b>.</li><li>Toque el menú <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-label="menú de tres puntos"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg> <b>(tres puntos)</b> arriba a la derecha.</li><li>Elija <b>«Instalar aplicación»</b> o <b>«Agregar a la pantalla principal»</b>.</li><li>Confirme con <b>«Instalar»</b>. El ícono de Latir aparece en su pantalla de inicio.</li></ol><p class="small muted">¿Usa Samsung Internet? Toque el menú <b>☰</b> abajo a la derecha, elija <b>«Agregar página a»</b> y luego <b>«Pantalla de inicio»</b>.</p></div>
+        </div>
+        <div class="row"><button class="btn" id="install-btn" type="button" hidden>Instalar la app</button><button class="btn ghost" id="install-later" type="button">Ahora no</button></div>
+      </div>
+      <p class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Lo que registra queda guardado sólo en este celular. Nadie más puede verlo, salvo lo que usted decida enviarme. <a href="#profesional" data-goto="conf">Sobre la confidencialidad</a></span></p>
+      <div class="card">
+        <div class="q"><label for="d-nombre">Nombre o iniciales</label><input type="text" id="d-nombre" placeholder="Por ejemplo: M. G."></div>
+        <div class="datebar">
+          <label class="small muted">Fecha <input type="date" id="d-fecha"></label>
+          <span class="badge" id="hoy-estado">Sin registrar</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">1</span><span class="txt">¿Cómo estuvo mi estado de ánimo hoy?</span></div>
+        <div class="moods" id="d-animo" role="group" aria-label="Estado de ánimo"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">2</span><span class="txt">¿Qué emociones estuvieron presentes hoy?<span class="hint">Puede marcar varias.</span></span></div>
+        <div class="chips" id="d-emociones"></div>
+        <input type="text" id="d-otra" placeholder="Otra:" aria-label="Otra emoción">
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">3</span><span class="txt">¿Cómo estuve hoy en cada área?<span class="hint">1 = muy mal · 5 = muy bien</span></span></div>
+        <div class="scale" id="d-areas"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">4</span><span class="txt">Malestar corporal hoy<span class="hint">Marque lo que corresponda.</span></span></div>
+        <div class="chips" id="d-malestar"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">5</span><span class="txt">Ansiedad y preocupación</span></div>
+        <div class="q"><span class="small">Hoy sentí ansiedad o nervios</span><div class="seg" id="d-ansiedad"></div></div>
+        <div class="q"><span class="small">Hoy estuve preocupado/a</span><div class="seg" id="d-preocupacion"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">6</span><span class="txt">Mi voz interior hoy<span class="hint">¿Cómo me hablé a mí mismo/a?</span></span></div>
+        <div class="seg" id="d-voz" style="--n:3"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">7</span><span class="txt">Un momento de presente<span class="hint">Pausa de 1 minuto: apoye los pies, respire lento y nombre 3 cosas que ve.</span></span></div>
+        <div class="q"><span class="small">Hoy pude hacer una pausa para estar presente:</span><div class="seg" id="d-pausa" style="--n:3"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">8</span><span class="txt">Pasos orientados a mis metas u objetivos<span class="hint">¿Cuánto avancé hoy hacia lo que me propuse?</span></span></div>
+        <div class="seg" id="d-metas" style="--n:3"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">9</span><span class="txt">Lo que me sostuvo hoy<span class="hint">No hace falta completar todo: con una línea alcanza.</span></span></div>
+        <div class="q"><span class="label">Hoy me cuidé…</span><div class="chips" id="d-cuidados"></div></div>
+        <div class="q"><label for="d-bueno">Algo que agradezco o un pequeño logro de hoy</label><textarea id="d-bueno" rows="2" placeholder="Aunque sea mínimo."></textarea></div>
+        <div class="q"><label for="d-sentido">Un encuentro o un gesto que me hizo bien o me dio sentido</label><textarea id="d-sentido" rows="2" placeholder="Con alguien, hacia alguien, o algo que viví de acuerdo con lo que valoro."></textarea></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">10</span><span class="txt">Para cerrar el día</span></div>
+        <div class="q"><label for="d-sesion">Para traer a la sesión</label><textarea id="d-sesion" rows="2" placeholder="Algo que quiero conversar."></textarea></div>
+        <div class="q"><label for="d-plan">Mini plan o proyecto para mañana</label><textarea id="d-plan" rows="2"></textarea></div>
+      </div>
+
+      <div class="row">
+        <button class="btn" id="d-guardar">Guardar registro del día</button>
+        <a class="btn ghost" id="d-wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      </div>
+      <p class="closing">Gracias por darse este momento. Complételo a su ritmo: con lo que pueda, alcanza.</p>
+      <div class="card ig-card">
+        <span class="ig-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+        <div style="display:grid;gap:6px">
+          <h3>Compartir en Instagram</h3>
+          <p class="small muted">Cree una imagen para sus historias que diga que hoy se tomó un momento para usted. No incluye nada de lo que registró.</p>
+          <div class="row"><button class="btn ghost" id="d-ig" type="button">Crear imagen para Instagram</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEMANA -->
+    <section class="view" id="v-semana" hidden>
+      <div class="lead">
+        <span class="eyebrow">Revisión semanal</span>
+        <h2>¿Cómo anduve esta semana?</h2>
+        <p class="muted">Complete los apartados que considere útiles. No existen respuestas correctas ni incorrectas; puede dejar en blanco lo que prefiera no responder.</p>
+      </div>
+
+      <div class="card">
+        <div class="q"><label for="w-nombre">Nombre o iniciales</label><input type="text" id="w-nombre" placeholder="Por ejemplo: M. G."></div>
+        <div class="q"><span class="label">Semana del</span>
+          <div class="weeknav"><button class="dotbtn" id="sem-prev" aria-label="Semana anterior">‹</button><span id="sem-rango"></span><button class="dotbtn" id="sem-next" aria-label="Semana siguiente">›</button></div></div>
+        <div class="q"><label for="w-proxima">Próxima sesión</label><input type="date" id="w-proxima"></div>
+      </div>
+
+      <div class="card">
+        <div class="row" style="justify-content:space-between;align-items:center">
+          <h3>Mis registros diarios de esta semana</h3>
+        </div>
+        <div class="week-strip" id="sem-strip"></div>
+        <div class="stats" id="sem-stats"></div>
+        <p class="small muted" id="sem-cuidados" hidden></p>
+        <button class="btn ghost" id="w-traer">Traer mis registros diarios a esta revisión</button>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">1</span><span class="txt">¿Cómo estuvo mi estado de ánimo?<span class="hint">Elija una opción por día.</span></span></div>
+        <div class="daymoods" id="w-animos"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">2</span><span class="txt">¿Qué emociones estuvieron más presentes?<span class="hint">Puede marcar todas las que quiera.</span></span></div>
+        <div class="chips" id="w-emociones"></div>
+        <input type="text" id="w-otra" placeholder="Si marcó «Otra», ¿cuál?" aria-label="Otra emoción">
+      </div>
+
+      <p class="note">Nota: no es necesario que la semana haya sido difícil ni que complete todos los apartados. Si no recuerda algún día, elija «No recuerdo». Lo importante es que el registro refleje su experiencia.</p>
+
+      <div class="card">
+        <div class="qn"><span class="num">3</span><span class="txt">¿Cómo estuve en cada área?<span class="hint">1 = muy mal · 5 = muy bien. Elija un número por fila.</span></span></div>
+        <div class="scale" id="w-areas"></div>
+        <div class="q" style="padding-top:6px"><span class="label">Malestar corporal esta semana <span class="hint">· marque lo que corresponda</span></span>
+          <div class="chips" id="w-malestar"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">4</span><span class="txt">Una situación significativa de la semana<span class="hint">Puede ser algo difícil, agradable o que le haya quedado dando vueltas.</span></span></div>
+        <div class="q"><label for="w-paso">¿Qué pasó?</label><textarea id="w-paso" rows="2"></textarea></div>
+        <div class="q"><label for="w-pense">¿Qué pensé en ese momento?</label><textarea id="w-pense" rows="2"></textarea></div>
+        <div class="q"><label for="w-senti">¿Cómo me sentí?</label><textarea id="w-senti" rows="2"></textarea></div>
+        <div class="q"><label for="w-hice">¿Qué hice o cómo reaccioné?</label><textarea id="w-hice" rows="2"></textarea></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">5</span><span class="txt">¿Cuánto me afectó esa situación?<span class="hint">0 = nada · 5 = moderadamente · 10 = muchísimo. Elija un número.</span></span></div>
+        <div class="afecto" id="w-afecto"></div>
+        <div class="afecto-x"><span>Casi nada</span><span>Moderadamente</span><span>Muchísimo</span></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">6</span><span class="txt">Ansiedad y preocupación durante la semana<span class="hint">Durante esta semana, ¿con qué frecuencia me ocurrió lo siguiente? Elija una opción por fila.</span></span></div>
+        <div class="q"><span class="small">Sentirme nervioso/a, ansioso/a o con los nervios de punta</span><div class="seg wrap" id="w-gad1"></div></div>
+        <div class="q"><span class="small">No poder dejar de preocuparme o no poder controlar la preocupación</span><div class="seg wrap" id="w-gad2"></div></div>
+        <p class="small muted">Ítems basados en la escala GAD-2 (Kroenke et al., 2007), referidos a la última semana. Indicador de seguimiento; no constituye un diagnóstico.</p>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">7</span><span class="txt">¿Cómo lo veo ahora?<span class="hint">Puede marcar más de una.</span></span></div>
+        <div class="chips" id="w-veo"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">8</span><span class="txt">¿Cómo me hablé esta semana?<span class="hint">La voz con la que me hablo por dentro también cuenta. Elija una.</span></span></div>
+        <div class="opts" id="w-voz"></div>
+      </div>
+
+      <div class="card">
+        <div class="qn"><span class="num">9</span><span class="txt">¿Qué me gustaría trabajar en la próxima sesión?<span class="hint">Puede ser una situación, emoción, pensamiento, decisión, relación o preocupación.</span></span></div>
+        <textarea id="w-sesion" aria-label="Qué me gustaría trabajar en la próxima sesión"></textarea>
+        <div class="qn"><span class="num">10</span><span class="txt">Algo que quiero reconocer de esta semana<span class="hint">Un logro, algo que me ayudó, algo que disfruté o algo que descubrí de mí. (Opcional)</span></span></div>
+        <textarea id="w-reconocer" aria-label="Algo que quiero reconocer de esta semana"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Vivir el presente</span>
+        <h3>Mi práctica de la semana</h3>
+        <p class="small muted">Marque los días en que pudo hacer un momento de presente (aunque sea 1 minuto).</p>
+        <div class="weekdays" id="w-presente"></div>
+        <div class="q"><label for="w-presente-nota">¿Qué noté cuando volví al presente?</label><textarea id="w-presente-nota" rows="2"></textarea></div>
+        <a class="linkbtn" href="#guia" style="text-decoration:none">Ver la guía «Vivir el presente» →</a>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">Mi voz interior</span>
+        <h3>Mi práctica con la voz amable</h3>
+        <div class="q"><label for="w-vozdura">Esta semana, mi voz dura me dijo…</label><textarea id="w-vozdura" rows="2"></textarea></div>
+        <div class="q"><label for="w-amigo">Lo que le diría a un amigo/a querido/a en mi lugar…</label><textarea id="w-amigo" rows="2"></textarea></div>
+        <div class="q"><label for="w-valoro">Algo que valoro de mí o de cómo actué esta semana…</label><textarea id="w-valoro" rows="2"></textarea></div>
+        <div class="q"><span class="label">Esta semana practiqué:</span><div class="chips" id="w-practique"></div></div>
+        <a class="linkbtn" href="#guia" style="text-decoration:none">Ver la guía «Mi voz interior» →</a>
+      </div>
+
+      <div class="card">
+        <h3>Envío del registro</h3>
+        <p class="small muted">Guárdelo y envíemelo por WhatsApp al 341 660-1847 antes de la sesión. El mensaje se arma solo con lo que completó.</p>
+        <div class="row">
+          <button class="btn" id="w-guardar">Guardar semana</button>
+          <a class="btn ghost" id="w-wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+        </div>
+        <button class="linkbtn" id="w-copiar">Copiar el resumen como texto</button>
+      </div>
+
+      <div class="alert" style="background:var(--brand-soft)">
+        <h3 style="color:var(--brand)">Para recordar</h3>
+        <p>Este registro es material para la sesión, no una tarea para resolver por su cuenta.</p>
+        <p>WhatsApp no es un canal de urgencias ni implica respuesta inmediata fuera del horario acordado.</p>
+      </div>
+    </section>
+
+    <!-- HISTORIAL -->
+    <section class="view" id="v-historial" hidden>
+      <div class="lead">
+        <span class="eyebrow">Últimos 14 días</span>
+        <h2>Historial</h2>
+        <p class="muted">Ver el recorrido ayuda a notar procesos, no sólo días sueltos.</p>
+      </div>
+      <div class="card">
+        <div class="chart" id="h-chart" aria-label="Ánimo de los últimos 14 días"></div>
+        <div class="chart-x" id="h-x"></div>
+        <div class="legend" id="h-legend"></div>
+      </div>
+      <h3>Registros diarios</h3>
+      <div class="list" id="h-dias"></div>
+      <h3>Revisiones semanales</h3>
+      <div class="list" id="h-semanas"></div>
+    </section>
+
+    <!-- FRASES -->
+    <section class="view" id="v-frases" hidden>
+      <div class="lead">
+        <span class="eyebrow">Para mirar</span>
+        <h2>Frases que acompañan</h2>
+        <p class="muted">Elija una categoría. Puede crear una imagen con la frase para guardar o compartir en Instagram.</p>
+      </div>
+      <div class="chips" id="f-cats"></div>
+      <div class="list" id="f-list"></div>
+    </section>
+
+    <!-- GUIA -->
+    <section class="view" id="v-guia" hidden>
+      <div class="lead">
+        <span class="eyebrow">Psicoeducación</span>
+        <h2>Guía breve</h2>
+        <p class="muted">Recursos para usar dentro de su proceso terapéutico. Si algo le genera dudas, lo conversamos en sesión.</p>
+      </div>
+
+      <details class="guide" open>
+        <summary>Cómo usar esta aplicación</summary>
+        <div class="body">
+          <ul>
+            <li><b>Hoy:</b> un registro breve cada día, idealmente a la noche.</li>
+            <li><b>Semana:</b> una revisión antes de cada sesión, que puede enviar por WhatsApp.</li>
+            <li><b>Historial:</b> le permite ver cómo fue variando su ánimo.</li>
+            <li>Sus respuestas quedan guardadas <b>sólo en este dispositivo</b>. Nadie más puede verlas, salvo lo que usted decida enviar.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="guide" id="guia-instalar">
+        <summary>Instalar la app en el celular</summary>
+        <div class="body">
+          <p>Así la tiene en la pantalla de inicio, con el logo de Latir, y se abre aunque no tenga conexión.</p>
+          <div class="inst-ios"><b>En iPhone (Safari)</b><ol><li>Abra este enlace en <b>Safari</b>.</li><li>Toque el botón Compartir <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Compartir"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> en la barra de abajo.</li><li>Deslice hacia abajo y elija <b>«Agregar a inicio»</b>.</li><li>Toque <b>«Agregar»</b> arriba a la derecha. El ícono de Latir aparece en su pantalla de inicio.</li></ol></div>
+          <div class="inst-android"><b>En Android (Chrome)</b><ol><li>Abra este enlace en <b>Chrome</b>.</li><li>Toque el menú <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-label="menú de tres puntos"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg> <b>(tres puntos)</b> arriba a la derecha.</li><li>Elija <b>«Instalar aplicación»</b> o <b>«Agregar a la pantalla principal»</b>.</li><li>Confirme con <b>«Instalar»</b>. El ícono de Latir aparece en su pantalla de inicio.</li></ol><p class="small muted">¿Usa Samsung Internet? Toque el menú <b>☰</b> abajo a la derecha, elija <b>«Agregar página a»</b> y luego <b>«Pantalla de inicio»</b>.</p></div>
+          <p class="small muted">Si ya la instaló, se actualiza sola cada vez que la abre con internet.</p>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary>Vivir el presente</summary>
+        <div class="body">
+          <p>Estar en el presente es prestar atención a lo que sucede ahora (en el cuerpo, en el entorno, en lo que estoy haciendo) con curiosidad y sin juzgar. La mente suele viajar: al pasado (rumiación: «¿por qué hice eso?») o al futuro (anticipación: «¿y si sale mal?»). No se trata de dejar la mente en blanco, sino de notar adónde se fue y volver, las veces que haga falta.</p>
+          <div class="timeline3">
+            <div class="tcol"><span class="k">Pasado</span><span class="s">«¿Por qué hice eso?»</span><span class="e">Rumiación<br>→ tristeza, culpa</span></div>
+            <div class="tcol now"><span class="k">Presente</span><span class="s">Acá y ahora</span><span class="e">Es donde puedo elegir y actuar<br>→ calma, claridad</span></div>
+            <div class="tcol"><span class="k">Futuro</span><span class="s">«¿Y si sale mal?»</span><span class="e">Anticipación<br>→ ansiedad, tensión</span></div>
+          </div>
+          <h3 style="margin-top:6px">Técnica 5-4-3-2-1: anclarme con los sentidos</h3>
+          <p class="small muted">Hágalo despacio, nombrando mentalmente cada cosa. Sirve en cualquier lugar.</p>
+          <div class="senses">
+            <div><b>5</b>cosas que veo</div><div><b>4</b>cosas que puedo tocar</div><div><b>3</b>sonidos que escucho</div><div><b>2</b>aromas que percibo</div><div><b>1</b>sabor que noto</div>
+          </div>
+          <h3 style="margin-top:6px">Respiración lenta</h3>
+          <div class="breath"><div class="ring" id="ring"><span id="ring-t">Respirar</span></div>
+            <button class="btn ghost" id="breath-btn">Empezar 1 minuto · inhalo 4 s / exhalo 6 s</button></div>
+          <h3>Otras formas de volver al presente</h3>
+          <ul>
+            <li>Apoyar los pies en el piso y sentir el peso del cuerpo.</li>
+            <li>Hacer una tarea cotidiana (ducha, mate, caminar) con los 5 sentidos.</li>
+            <li>Ponerle nombre: «estoy pensando en el futuro» y volver a lo que hacía.</li>
+            <li>Aceptar que la mente se va: volver es la práctica, no un fracaso.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary>Mi voz interior</summary>
+        <div class="body">
+          <p>Todos tenemos una voz interior que comenta lo que hacemos. Cuando es muy dura («soy un desastre»), suele aumentar la angustia y la inseguridad. Una autoestima sana no es creerse superior ni no equivocarse nunca: es valorarme de forma realista y tratarme con respeto, también cuando algo sale mal. Tratarse con amabilidad se asocia con menos malestar emocional y más capacidad de aprender de los errores.</p>
+          <h3 style="margin-top:6px">De la voz dura a la voz amable</h3>
+          <div class="pairs">
+            <div class="pair"><span class="hard">«Soy un desastre. Siempre lo arruino todo.»</span><i>→</i><span class="kind">«Me equivoqué y duele. Puedo aprender de esto y seguir.»</span></div>
+            <div class="pair"><span class="hard">«Nunca hago nada bien.»</span><i>→</i><span class="kind">«Hoy me salió difícil; otras veces me salió bien.»</span></div>
+            <div class="pair"><span class="hard">«No debería sentirme así.»</span><i>→</i><span class="kind">«Es comprensible que me sienta así. Es humano.»</span></div>
+            <div class="pair"><span class="hard">«Los demás pueden y yo no.»</span><i>→</i><span class="kind">«Cada quien tiene su ritmo. Yo también estoy haciendo lo que puedo.»</span></div>
+          </div>
+          <p class="note">Sugerencia: ¿qué le diría a un amigo/a querido/a que me cuente lo mismo? Ese tono es el que busco.</p>
+          <h3>Tres ingredientes del trato amable conmigo</h3>
+          <p class="small muted">Propuestos por la investigadora Kristin Neff (autocompasión).</p>
+          <div class="trio">
+            <div><b>Amabilidad conmigo</b>Tratarme con calidez en lugar de castigarme.</div>
+            <div><b>Humanidad compartida</b>Equivocarse y sufrir es parte de ser persona: no estoy solo/a.</div>
+            <div><b>Atención plena</b>Notar lo que siento sin exagerarlo ni negarlo.</div>
+          </div>
+          <h3>Pilares de una autoestima sana</h3>
+          <div class="pillars">
+            <div><b>Aceptarme</b>con mis límites y mi historia</div>
+            <div><b>Valorarme</b>mis valores y lo que hago bien</div>
+            <div><b>Cuidarme</b>descanso, límites y salud</div>
+            <div><b>Vincularme</b>vínculos que suman</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="guide">
+        <summary>Pensamientos, emociones y conductas</summary>
+        <div class="body">
+          <p>Lo que sentimos no depende sólo de lo que pasa, sino también de cómo lo interpretamos. Registrar la situación, el pensamiento y la emoción ayuda a encontrar otras lecturas posibles.</p>
+          <p>Algunas trampas frecuentes: pensar en “todo o nada”, adivinar lo que el otro piensa, anticipar catástrofes, o descalificar lo positivo.</p>
+        </div>
+      </details>
+
+      <div class="alert">
+        <h3>Si está atravesando una urgencia</h3>
+        <p>Esta aplicación no reemplaza la atención inmediata. Ante una emergencia, llame o acuda a la guardia más cercana:</p>
+        <ul class="sos-list">
+          <li><b>911</b><span>Emergencias</span><small>Policía, bomberos y urgencias en general.</small></li>
+          <li><b>107</b><span>SIES · Emergencias médicas</span><small>Ambulancia y urgencias de salud en la provincia de Santa Fe.</small></li>
+          <li><b>0800-999-0091</b><span>Línea Nacional de Salud Mental</span><small>Orientación y apoyo en la urgencia. Gratuita, las 24 horas, en todo el país.</small></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROFESIONAL -->
+    <section class="view" id="v-profesional" hidden>
+      <div class="pro-hero">
+        <svg aria-hidden="true"><use href="#logo"/></svg>
+        <div class="eyebrow">Latir · Psicooncología</div>
+        <div class="t">Lic. Eric Terlecki</div>
+        <div class="creds"><span>Lic. en Psicología</span><span>Esp. en Psicoterapia Clínica</span><span>Mg. en Psicooncología</span><span>Mat. N.º 4331</span></div>
+        <p class="muted" style="max-width:60ch">Psicoterapia clínica con un enfoque humanista, integrativo y trascendente.</p>
+      </div>
+
+      <div class="card">
+        <h3>Atención</h3>
+        <ul style="margin:0;padding-left:1.2em;display:grid;gap:4px">
+          <li>Acompañamiento en psicooncología, para pacientes y familias</li><li>Psicoterapia individual, de pareja y de familia</li>
+          <li>Modalidad presencial o virtual</li>
+          <li>Conferencias y talleres grupales</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Contacto</h3>
+        <dl class="kv">
+          <dt>WhatsApp</dt><dd><span>341 660-1847</span><button class="copy" data-copy="3416601847">Copiar</button><a class="copy" href="https://wa.me/5493416601847" target="_blank" rel="noopener" style="text-decoration:none">Escribir</a></dd>
+          <dt>Correo</dt><dd><span>ericterlecki@gmail.com</span><button class="copy" data-copy="ericterlecki@gmail.com">Copiar</button></dd>
+          <dt>Consultorio</dt><dd><span>Rizzuto 3451, Rosario</span><a class="copy" href="https://www.google.com/maps/search/?api=1&query=Rizzuto+3451+Rosario+Santa+Fe" target="_blank" rel="noopener" style="text-decoration:none">Mapa</a></dd>
+          <dt>Instagram</dt><dd><span>@entrenosotros.psicoterapia</span><a class="copy" href="https://www.instagram.com/entrenosotros.psicoterapia/" target="_blank" rel="noopener" style="text-decoration:none">Ver perfil</a></dd>
+          <dt>Horarios</dt><dd><span>Lunes a viernes de 8 a 21 h · Sábados de 8 a 13 h</span></dd>
+          <dt>Modalidad</dt><dd><span>Presencial en Pasaje Rizzuto 3451 (Uruguay al 1150) o virtual por Meet</span></dd>
+          <dt>Sesiones</dt><dd><span>Una hora aprox., semanales o quincenales</span></dd>
+        </dl>
+        <div class="row"><a class="btn" href="https://wa.me/5493416601847?text=Hola%20Eric%2C%20quisiera%20consultar%20por%20un%20turno." target="_blank" rel="noopener">Escribir por WhatsApp</a></div>
+      </div>
+
+      <div class="card ig-card">
+        <span class="ig-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+        <div style="display:grid;gap:6px">
+          <h3>Entre Nosotros en Instagram</h3>
+          <p class="small muted">Psicoeducación, frases y recursos para el día a día.</p>
+          <div class="row"><a class="btn ghost" href="https://www.instagram.com/entrenosotros.psicoterapia/" target="_blank" rel="noopener">Seguir a @entrenosotros.psicoterapia</a></div>
+        </div>
+      </div>
+
+      <div class="card conf" id="conf">
+        <h3>Confidencialidad</h3>
+        <ul>
+          <li><b>Sus registros quedan sólo en este celular.</b> La app no los envía a ningún servidor ni a ninguna base de datos. Tampoco yo puedo verlos.</li>
+          <li><b>Sólo me llega lo que usted decide enviar</b>, cuando toca «Enviar por WhatsApp». Ese mensaje queda también en su chat de WhatsApp.</li>
+          <li><b>Lo que comparte conmigo está protegido por el secreto profesional</b>, igual que lo que conversamos en sesión.</li>
+          <li><b>Las imágenes para Instagram no incluyen datos de sus registros.</b> Sólo muestran una frase o un mensaje general.</li>
+          <li>Si otra persona usa su celular, podría abrir la app. Puede borrar sus datos cuando quiera desde <a href="#ajustes" style="color:var(--brand);font-weight:600">Ajustes</a>.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Recomendar la app</h3>
+        <p class="small muted">Si a alguien de su confianza le puede servir, compártale el enlace. Para usarla dentro de un proceso terapéutico, puede escribirme.</p>
+        <div class="row"><button class="btn ghost" id="p-share" type="button">Compartir el enlace</button></div>
+      </div>
+      <p class="small muted">Los materiales de esta aplicación son recursos para usar dentro de un proceso psicológico clínico profesional. No constituyen un tratamiento en sí mismos.</p>
+    </section>
+
+    <!-- AJUSTES -->
+    <section class="view" id="v-ajustes" hidden>
+      <div class="lead"><h2>Ajustes</h2><p class="muted">Todo se guarda sólo en este dispositivo.</p></div>
+      <div class="card">
+        <h3>Instalar en el celular</h3>
+        <p class="small muted">Tenga la app en la pantalla de inicio, con el logo de Latir.</p>
+        <div class="row"><button class="btn" id="a-install" type="button">Instalar la app</button><a class="btn ghost" href="#guia" data-goto="guia-instalar">Ver los pasos</a></div>
+      </div>
+      <div class="card">
+        <div class="q"><label for="a-nombre">Mi nombre <span class="hint">· aparece en el resumen que envía</span></label>
+          <input type="text" id="a-nombre" placeholder="Nombre y apellido"></div>
+        <button class="btn" id="a-guardar">Guardar</button>
+      </div>
+      <div class="card">
+        <h3>Copia de seguridad</h3>
+        <p class="small muted">Si cambia de teléfono o borra los datos del navegador, sus registros se pierden. Copie este respaldo y guárdelo (por ejemplo, enviándoselo a usted mismo/a por WhatsApp).</p>
+        <div class="row"><button class="btn ghost" id="a-export">Copiar respaldo</button></div>
+        <div class="q"><label for="a-import">Restaurar un respaldo</label>
+          <textarea id="a-import" placeholder="Pegue aquí el texto del respaldo"></textarea>
+          <button class="btn ghost" id="a-import-btn">Restaurar</button></div>
+      </div>
+      <div class="card">
+        <h3>Borrar mis datos</h3>
+        <p class="small muted">Elimina todos los registros de este dispositivo. No se puede deshacer.</p>
+        <button class="btn danger" id="a-borrar">Borrar todo</button>
+        <div id="a-confirm" hidden class="row"><span class="small">¿Seguro/a?</span><button class="btn danger" id="a-borrar-si">Sí, borrar</button><button class="btn ghost" id="a-borrar-no">Cancelar</button></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sig">Latir · Lic. Eric Terlecki · Mat. 4331 · Rosario</footer>
+</div>
+
+<nav class="tabs" aria-label="Secciones">
+  <div class="in">
+    <a href="#hoy" data-nav="hoy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Hoy</a>
+    <a href="#semana" data-nav="semana"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Semana</a>
+    <a href="#historial" data-nav="historial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19V11M10 19V5M16 19v-6M22 19H2"/></svg>Historial</a>
+    <a href="#frases" data-nav="frases"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7H6a2 2 0 0 0-2 2v3h5v5H4M20 7h-4a2 2 0 0 0-2 2v3h5v5h-5"/></svg>Frases</a>
+    <a href="#guia" data-nav="guia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>Guía</a>
+  </div>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal" id="modal" hidden>
+  <div class="box">
+    <h3>Imagen para Instagram</h3>
+    <img id="m-img" alt="Frase con el logo de Latir">
+    <p class="small muted">Toque «Compartir en Instagram» y elija Instagram (historia o publicación). El texto queda copiado para pegarlo. Si no aparece el botón, mantenga presionada la imagen para guardarla en su galería y súbala desde Instagram.</p>
+    <div class="row"><button class="btn" id="m-share" hidden>Compartir en Instagram</button><button class="btn ghost" id="m-caption">Copiar texto de la publicación</button><button class="btn ghost" id="m-cerrar">Cerrar</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const WA="5493416601847";
+const MOODS=[{v:7,t:"Excelente"},{v:6,t:"Muy bien"},{v:5,t:"Bien"},{v:4,t:"Más o menos"},{v:3,t:"Regular"},{v:2,t:"Mal"},{v:1,t:"Muy mal"},{v:0,t:"No sé"}];
+const moodName=v=>(MOODS.find(m=>m.v===v)||{t:"—"}).t;
+const EMOS=["Alegría","Tranquilidad","Esperanza","Gratitud","Amor o ternura","Orgullo","Sorpresa","Tristeza","Soledad","Miedo","Ansiedad","Angustia","Enojo","Frustración","Culpa","Vergüenza","Celos","Aburrimiento","Confusión","Asco o rechazo"];
+const AREAS=["Sueño y descanso","Energía","Cuerpo y salud","Nutrición","Actividad física","Vínculos y afectos","Estudio","Trabajo","Espiritualidad y sentido","Disfrute y tiempo libre"];
+const MALESTAR=["Dolor de cabeza","Tensión o dolor muscular","Molestias digestivas","Cansancio o agotamiento","Palpitaciones","Opresión en el pecho","Dificultad para tragar","Cambios de temperatura (calor o frío)","Visión borrosa","Mareos","Ninguno"];
+const NIVEL=["Nada","Poco","Bastante","Mucho"];
+const VOZ=["Con dureza","Mitad y mitad","Con amabilidad"];
+const PAUSA=["Sí","Un poco","No"];
+const METAS=["Nada","Algo","Mucho"];
+const CUIDADOS=["Descansando","Comiendo con tranquilidad","Moviéndome o caminando","Con un rato para mí","Pidiendo o aceptando ayuda","Poniendo un límite","Con un momento de oración o silencio"];
+const DIAS=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
+const FRASES=[
+ {c:"Resiliencia",t:"Cuando ya no somos capaces de cambiar una situación, nos encontramos ante el desafío de cambiarnos a nosotros mismos.",a:"Viktor Frankl"},
+ {c:"Resiliencia",t:"El que tiene un porqué para vivir puede soportar casi cualquier cómo.",a:"Friedrich Nietzsche"},
+ {c:"Momento presente",t:"Mientras se espera vivir, la vida pasa.",a:"Séneca"},
+ {c:"Momento presente",t:"No podés detener las olas, pero podés aprender a surfear.",a:"Jon Kabat-Zinn"},
+ {c:"Esperanza",t:"Lo esencial es invisible a los ojos.",a:"Antoine de Saint-Exupéry"},
+ {c:"Esperanza",t:"Un viaje de mil leguas comienza con un primer paso.",a:"Lao Tse"},
+ {c:"Autovaloración",t:"La curiosa paradoja es que cuando me acepto tal como soy, entonces puedo cambiar.",a:"Carl Rogers"},
+ {c:"Autovaloración",t:"Nadie puede hacerte sentir inferior sin tu consentimiento.",a:"Eleanor Roosevelt"},
+ {c:"Empatía",t:"Sé amable, porque cada persona que encontrás está librando una batalla.",a:"Atribuida a Platón"},
+ {c:"Empatía",t:"El hombre se hace persona en el encuentro con el tú.",a:"Martin Buber (paráfrasis)"},
+ {c:"Procesos",t:"Lo que se resiste, persiste.",a:"Carl G. Jung (atribuida)"},
+ {c:"Procesos",t:"Nadie se baña dos veces en el mismo río.",a:"Heráclito"}
+];
+
+const ILL={"Viktor Frankl": "<path d=\"M18 92 Q60 72 102 92 L102 102 L18 102Z\" fill=\"#3d6b77\"/><path d=\"M57 86 L60 92 L63 85\" stroke=\"#1f4955\" stroke-width=\"2\" fill=\"none\"/><path d=\"M60 90 C60 72 58 60 60 44\" stroke=\"#f2ebdb\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M60 64 C44 62 38 50 40 42 C52 42 60 52 60 64Z\" fill=\"#d9906f\"/><path d=\"M60 54 C74 52 82 40 80 32 C68 32 60 42 60 54Z\" fill=\"#f2ebdb\"/>", "Friedrich Nietzsche": "<circle cx=\"80\" cy=\"34\" r=\"11\" fill=\"#d9906f\"/><path d=\"M12 98 L48 50 L64 70 L76 58 L108 98Z\" fill=\"#3d6b77\"/><path d=\"M48 50 L56 61 L50 60 L44 66 L40 61Z\" fill=\"#f2ebdb\"/><path d=\"M34 98 Q50 88 44 82 T58 70\" stroke=\"#f2ebdb\" stroke-width=\"3\" fill=\"none\" stroke-dasharray=\"2 6\" stroke-linecap=\"round\"/>", "Séneca": "<rect x=\"36\" y=\"20\" width=\"48\" height=\"6\" rx=\"3\" fill=\"#f2ebdb\"/><rect x=\"36\" y=\"94\" width=\"48\" height=\"6\" rx=\"3\" fill=\"#f2ebdb\"/><path d=\"M42 26 L78 26 C78 46 64 52 60 60 C64 68 78 74 78 94 L42 94 C42 74 56 68 60 60 C56 52 42 46 42 26Z\" fill=\"none\" stroke=\"#f2ebdb\" stroke-width=\"3\"/><path d=\"M48 34 L72 34 C70 45 62 51 60 55 C58 51 50 45 48 34Z\" fill=\"#d9906f\"/><path d=\"M60 58 L60 84\" stroke=\"#d9906f\" stroke-width=\"2\"/><path d=\"M46 91 C50 79 70 79 74 91Z\" fill=\"#d9906f\"/>", "Jon Kabat-Zinn": "<circle cx=\"84\" cy=\"34\" r=\"11\" fill=\"#d9906f\"/><path d=\"M12 70 C26 56 40 56 46 66 C50 72 58 72 60 64 C64 52 82 50 94 62 C100 68 106 70 110 68 L110 102 L12 102Z\" fill=\"#3d6b77\"/><path d=\"M16 86 C28 78 40 80 52 86 C64 92 78 92 90 86 C98 82 104 82 108 84\" stroke=\"#f2ebdb\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/>", "Antoine de Saint-Exupéry": "<path d=\"M60 96 C30 74 20 60 22 46 C24 34 36 28 46 32 C53 35 58 41 60 46 C62 41 67 35 74 32 C84 28 96 34 98 46 C100 60 90 74 60 96Z\" fill=\"#d9906f\"/><path d=\"M60 50 L63 58 L71 58 L65 63 L67 71 L60 66 L53 71 L55 63 L49 58 L57 58Z\" fill=\"#f2ebdb\"/>", "Lao Tse": "<path d=\"M18 104 C40 84 80 88 94 62 C102 48 96 34 86 26\" stroke=\"#3d6b77\" stroke-width=\"16\" fill=\"none\" stroke-linecap=\"round\"/><circle cx=\"86\" cy=\"22\" r=\"8\" fill=\"#d9906f\"/><ellipse cx=\"30\" cy=\"95\" rx=\"3.2\" ry=\"5\" fill=\"#f2ebdb\" transform=\"rotate(-55 30 95)\"/><ellipse cx=\"44\" cy=\"87\" rx=\"3.2\" ry=\"5\" fill=\"#f2ebdb\" transform=\"rotate(-60 44 87)\"/><ellipse cx=\"60\" cy=\"83\" rx=\"3.2\" ry=\"5\" fill=\"#f2ebdb\" transform=\"rotate(-70 60 83)\"/><ellipse cx=\"76\" cy=\"76\" rx=\"3.2\" ry=\"5\" fill=\"#f2ebdb\" transform=\"rotate(-50 76 76)\"/><ellipse cx=\"89\" cy=\"62\" rx=\"3.2\" ry=\"5\" fill=\"#f2ebdb\" transform=\"rotate(-20 89 62)\"/>", "Carl Rogers": "<path d=\"M59 41 C56 34 52 30 47 30 M61 41 C64 34 68 30 73 30\" stroke=\"#f2ebdb\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M58 52 C40 30 18 34 22 52 C25 64 44 64 58 58Z\" fill=\"#d9906f\"/><path d=\"M62 52 C80 30 102 34 98 52 C95 64 76 64 62 58Z\" fill=\"#d9906f\"/><path d=\"M58 62 C42 64 32 78 42 84 C50 88 56 76 58 66Z\" fill=\"#e6c2a8\"/><path d=\"M62 62 C78 64 88 78 78 84 C70 88 64 76 62 66Z\" fill=\"#e6c2a8\"/><rect x=\"58\" y=\"40\" width=\"4\" height=\"42\" rx=\"2\" fill=\"#f2ebdb\"/>", "Eleanor Roosevelt": "<path d=\"M24 96 Q60 88 96 96\" stroke=\"#f2ebdb\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/><rect x=\"56\" y=\"60\" width=\"8\" height=\"34\" rx=\"3\" fill=\"#e6c2a8\"/><circle cx=\"44\" cy=\"58\" r=\"15\" fill=\"#d9906f\"/><circle cx=\"76\" cy=\"58\" r=\"15\" fill=\"#d9906f\"/><circle cx=\"60\" cy=\"44\" r=\"24\" fill=\"#d9906f\"/>", "Atribuida a Platón": "<circle cx=\"47\" cy=\"60\" r=\"27\" fill=\"#3d6b77\"/><circle cx=\"73\" cy=\"60\" r=\"27\" fill=\"#d9906f\" fill-opacity=\".9\"/><path d=\"M60 71 C52 65 48 61 49 56 C50 51 56 50 60 55 C64 50 70 51 71 56 C72 61 68 65 60 71Z\" fill=\"#f2ebdb\"/>", "Martin Buber (paráfrasis)": "<circle cx=\"40\" cy=\"38\" r=\"11\" fill=\"#f2ebdb\"/><circle cx=\"80\" cy=\"38\" r=\"11\" fill=\"#d9906f\"/><path d=\"M20 98 C20 70 28 54 42 54 C52 54 58 62 58 76 L58 98Z\" fill=\"#f2ebdb\"/><path d=\"M100 98 C100 70 92 54 78 54 C68 54 62 62 62 76 L62 98Z\" fill=\"#d9906f\"/><circle cx=\"60\" cy=\"40\" r=\"4\" fill=\"#e6c2a8\"/>", "Carl G. Jung (atribuida)": "<path d=\"M60 60 c4 0 6 4 4 8 c-3 6 -12 6 -16 0 c-6 -8 0 -20 12 -20 c14 0 22 14 16 26 c-7 14 -28 16 -38 2 c-12 -16 -2 -40 20 -40 c22 0 36 20 28 40\" fill=\"none\" stroke=\"#d9906f\" stroke-width=\"5\" stroke-linecap=\"round\"/><circle cx=\"60\" cy=\"60\" r=\"3.5\" fill=\"#f2ebdb\"/>", "Heráclito": "<path d=\"M50 12 C30 40 70 56 46 80 C36 92 40 102 44 110 L78 110 C70 98 68 90 78 80 C100 56 60 40 74 12Z\" fill=\"#3d6b77\"/><path d=\"M60 20 C50 42 76 56 60 76 C54 86 56 96 60 104\" stroke=\"#f2ebdb\" stroke-width=\"3\" fill=\"none\" stroke-dasharray=\"6 6\" stroke-linecap=\"round\"/><circle cx=\"26\" cy=\"70\" r=\"6\" fill=\"#e6c2a8\"/><circle cx=\"94\" cy=\"40\" r=\"5\" fill=\"#d9906f\"/><circle cx=\"96\" cy=\"94\" r=\"7\" fill=\"#e6c2a8\"/>"};
+const illSvg=a=>ILL[a]?`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">${ILL[a]}</svg>`:"";
+/* ---------- almacenamiento local ---------- */
+const store={
+  get(k,d){try{const v=localStorage.getItem("en_"+k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem("en_"+k,JSON.stringify(v));return true}catch(e){return false}}
+};
+let daily=store.get("daily",{}), weekly=store.get("weekly",{}), prefs=store.get("prefs",{nombre:""});
+
+/* ---------- fechas ---------- */
+const pad=n=>String(n).padStart(2,"0");
+const iso=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const parse=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const monday=d=>{const x=new Date(d);const w=(x.getDay()+6)%7;x.setDate(x.getDate()-w);x.setHours(0,0,0,0);return x};
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const fmtLong=d=>d.toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long"});
+const fmtShort=d=>d.toLocaleDateString("es-AR",{day:"numeric",month:"short"});
+const moodColor=v=>v>0?`var(--m${v})`:"var(--sunk)";
+
+/* ---------- avisos ---------- */
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2200)}
+async function copy(text,ok){try{await navigator.clipboard.writeText(text);toast(ok||"Copiado")}catch(e){
+  const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();
+  try{document.execCommand("copy");toast(ok||"Copiado")}catch(_){toast("Seleccione el texto y cópielo manualmente")}ta.remove()}}
+
+/* ---------- chips ---------- */
+function chipGroup(el,opts,multi){
+  el.innerHTML="";opts.forEach(o=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=o;b.setAttribute("aria-pressed","false");
+    b.onclick=()=>{if(!multi)el.querySelectorAll(".chip").forEach(x=>x!==b&&x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")==="true"?"false":"true")};el.appendChild(b)});
+}
+const getChips=el=>[...el.querySelectorAll('.chip[aria-pressed="true"]')].map(b=>b.textContent);
+const setChips=(el,vals)=>el.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",(vals||[]).includes(b.textContent)?"true":"false"));
+
+/* ---------- HOY ---------- */
+const animoEl=$("#d-animo");let animo=null;
+MOODS.forEach(m=>{const b=document.createElement("button");b.type="button";b.className="mood";b.setAttribute("aria-pressed","false");
+  b.innerHTML=m.v?`<span class="disc" style="background:${moodColor(m.v)}"></span>${m.t}`:`<span class="disc q">?</span>${m.t}`;b.dataset.v=m.v;
+  b.onclick=()=>{animo=m.v;animoEl.querySelectorAll(".mood").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));updateDayWA()};animoEl.appendChild(b)});
+chipGroup($("#d-emociones"),EMOS,true);chipGroup($("#d-malestar"),MALESTAR,true);chipGroup($("#d-cuidados"),CUIDADOS,true);
+function segGroup(el,opts,cb=()=>updateDayWA()){el.innerHTML="";opts.forEach(o=>{const b=document.createElement("button");b.type="button";b.textContent=o;b.setAttribute("aria-pressed","false");
+  b.onclick=()=>{const on=b.getAttribute("aria-pressed")==="true";el.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed",on?"false":"true");cb()};el.appendChild(b)})}
+const getSeg=el=>(el.querySelector('[aria-pressed="true"]')||{}).textContent||"";
+const setSeg=(el,v)=>el.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.textContent===v?"true":"false"));
+segGroup($("#d-ansiedad"),NIVEL);segGroup($("#d-preocupacion"),NIVEL);segGroup($("#d-voz"),VOZ);segGroup($("#d-pausa"),PAUSA);segGroup($("#d-metas"),METAS);
+// escalas 1 a 5 por área
+function makeScale(el,items,cb){
+  el.innerHTML=`<div class="scale-head"><span></span>${[1,2,3,4,5].map(n=>`<span>${n}</span>`).join("")}</div>`+
+    items.map((a,i)=>`<div class="scale-row" data-i="${i}"><span>${a}</span>${[1,2,3,4,5].map(n=>`<button type="button" class="dotbtn" aria-pressed="false" aria-label="${a}: ${n}" data-n="${n}">${n}</button>`).join("")}</div>`).join("");
+  el.addEventListener("click",e=>{const b=e.target.closest(".dotbtn");if(!b)return;const row=b.parentElement,on=b.getAttribute("aria-pressed")==="true";
+    row.querySelectorAll(".dotbtn").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed",on?"false":"true");cb()});
+}
+const getScale=(el,items)=>Object.fromEntries([...el.querySelectorAll(".scale-row")].map(r=>{const b=r.querySelector('[aria-pressed="true"]');return[items[+r.dataset.i],b?+b.dataset.n:0]}).filter(x=>x[1]));
+const setScale=(el,items,v)=>el.querySelectorAll(".scale-row").forEach(r=>{const n=(v||{})[items[+r.dataset.i]]||0;r.querySelectorAll(".dotbtn").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===n?"true":"false"))});
+function exclusiveNone(el){el.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b||b.getAttribute("aria-pressed")!=="true")return;
+  el.querySelectorAll(".chip").forEach(x=>{if(x!==b&&(b.textContent==="Ninguno"||x.textContent==="Ninguno"))x.setAttribute("aria-pressed","false")})})}
+makeScale($("#d-areas"),AREAS,()=>updateDayWA());
+exclusiveNone($("#d-malestar"));
+const getAreas=()=>getScale($("#d-areas"),AREAS);
+const setAreas=v=>setScale($("#d-areas"),AREAS,v);
+
+const dFecha=$("#d-fecha");dFecha.value=iso(new Date());dFecha.max=iso(new Date());
+dFecha.onchange=loadDay;
+$("#d-nombre").addEventListener("change",()=>{prefs.nombre=$("#d-nombre").value.trim();store.set("prefs",prefs);$("#a-nombre").value=prefs.nombre});
+function loadDay(){
+  const k=dFecha.value,e=daily[k]||{};const d=parse(k);
+  $("#hoy-fecha").textContent=fmtLong(d);
+  $("#hoy-saludo").textContent=k===iso(new Date())?"¿Cómo anduve hoy?":"¿Cómo anduve ese día?";
+  $("#d-nombre").value=prefs.nombre||"";
+  animo=(e.animo??null);animoEl.querySelectorAll(".mood").forEach(x=>x.setAttribute("aria-pressed",+x.dataset.v===animo?"true":"false"));
+  setChips($("#d-emociones"),e.emociones);$("#d-otra").value=e.otra||"";
+  setAreas(e.areas);setChips($("#d-malestar"),e.malestar);
+  setSeg($("#d-ansiedad"),e.ansiedad);setSeg($("#d-preocupacion"),e.preocupacion);setSeg($("#d-voz"),e.voz);setSeg($("#d-pausa"),e.pausa);setSeg($("#d-metas"),e.metas);
+  setChips($("#d-cuidados"),e.cuidados);
+  $("#d-bueno").value=e.bueno||"";$("#d-sentido").value=e.sentido||"";$("#d-sesion").value=e.sesion||"";$("#d-plan").value=e.plan||"";
+  $("#hoy-estado").textContent=daily[k]?"Registro guardado":"Sin registrar";
+  updateDayWA();
+}
+function dayFromForm(){return{animo,emociones:getChips($("#d-emociones")),otra:$("#d-otra").value.trim(),areas:getAreas(),
+  malestar:getChips($("#d-malestar")),ansiedad:getSeg($("#d-ansiedad")),preocupacion:getSeg($("#d-preocupacion")),
+  voz:getSeg($("#d-voz")),pausa:getSeg($("#d-pausa")),metas:getSeg($("#d-metas")),cuidados:getChips($("#d-cuidados")),bueno:$("#d-bueno").value.trim(),sentido:$("#d-sentido").value.trim(),sesion:$("#d-sesion").value.trim(),plan:$("#d-plan").value.trim()}}
+function dayText(){
+  const e=dayFromForm(),emo=[...e.emociones,e.otra].filter(Boolean);
+  const L=["*Registro diario · ¿Cómo anduve hoy?*",($("#d-nombre").value.trim()||"")&&`Nombre: ${$("#d-nombre").value.trim()}`,`Fecha: ${fmtLong(parse(dFecha.value))}`,"",
+    e.animo!==null&&`1. Estado de ánimo: ${moodName(e.animo)}`,emo.length&&`2. Emociones: ${emo.join(", ")}`,
+    Object.keys(e.areas).length&&`3. Áreas (1 a 5): ${Object.entries(e.areas).map(([a,n])=>`${a} ${n}`).join(" · ")}`,
+    e.malestar.length&&`4. Malestar corporal: ${e.malestar.join(", ")}`,
+    (e.ansiedad||e.preocupacion)&&`5. Ansiedad o nervios: ${e.ansiedad||"—"} · Preocupado/a: ${e.preocupacion||"—"}`,
+    e.voz&&`6. Voz interior: ${e.voz}`,e.pausa&&`7. Pausa para estar presente: ${e.pausa}`,e.metas&&`8. Pasos hacia mis metas: ${e.metas}`,
+    e.cuidados.length&&`9. Me cuidé: ${e.cuidados.join(", ").toLowerCase()}`,
+    e.bueno&&`\n*Agradezco o logré:* ${e.bueno}`,e.sentido&&`*Me hizo bien o me dio sentido:* ${e.sentido}`,e.sesion&&`*Para traer a la sesión:* ${e.sesion}`,e.plan&&`*Mini plan para mañana:* ${e.plan}`];
+  return L.filter(x=>x!==false&&x!==""&&x!==0&&x!==undefined).join("\n");
+}
+function updateDayWA(){$("#d-wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(dayText())}
+$("#v-hoy").addEventListener("input",updateDayWA);
+$("#v-hoy").addEventListener("click",e=>{if(e.target.closest(".chip"))setTimeout(updateDayWA)});
+function saveDay(){
+  if(animo===null){toast("Marque primero cómo estuvo su estado de ánimo");return false}
+  daily[dFecha.value]=dayFromForm();
+  toast(store.set("daily",daily)?"Registro del día guardado":"Guardado sólo por esta sesión: el navegador no permite almacenar datos");
+  $("#hoy-estado").textContent="Registro guardado";return true;
+}
+$("#d-guardar").onclick=saveDay;
+$("#d-wa").addEventListener("click",()=>{if(animo!==null){daily[dFecha.value]=dayFromForm();store.set("daily",daily)}});
+
+/* ---------- SEMANA ---------- */
+let wk=monday(new Date());
+function weekStats(start){
+  const ds=[...Array(7)].map((_,i)=>daily[iso(addDays(start,i))]).filter(Boolean);
+  const vals=ds.map(e=>e.animo).filter(v=>v>0);
+  const avg=vals.length?vals.reduce((s,v)=>s+v,0)/vals.length:0;
+  const cnt={};ds.forEach(e=>(e.emociones||[]).forEach(x=>cnt[x]=(cnt[x]||0)+1));
+  const top=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]);
+  const ar={};ds.forEach(e=>Object.entries(e.areas||{}).forEach(([a,n])=>{(ar[a]=ar[a]||[]).push(n)}));
+  const areas=AREAS.filter(a=>ar[a]).map(a=>[a,(ar[a].reduce((s,n)=>s+n,0)/ar[a].length)]);
+  const sesion=[...Array(7)].map((_,i)=>{const e=daily[iso(addDays(start,i))];return e&&e.sesion?`${DIAS[i]}: ${e.sesion}`:""}).filter(Boolean);
+  const cc={};ds.forEach(e=>(e.cuidados||[]).forEach(x=>cc[x]=(cc[x]||0)+1));
+  const cuidados=Object.entries(cc).sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0].toLowerCase());
+  return{n:ds.length,avg,top,areas,sesion,cuidados};
+}
+function loadWeek(){
+  const k=iso(wk),end=addDays(wk,6);
+  $("#sem-rango").textContent=fmtShort(wk)+" al "+fmtShort(end);
+  $("#sem-next").disabled=addDays(wk,7)>new Date();
+  $("#sem-strip").innerHTML=[...Array(7)].map((_,i)=>{const d=addDays(wk,i),e=daily[iso(d)];
+    return `<div class="wd"><span class="disc ${e?"on":""}" style="${e?"background:"+moodColor(e.animo):""}" title="${e?moodName(e.animo):"Sin registro"}"></span>${DIAS[i]} ${d.getDate()}</div>`}).join("");
+  const s=weekStats(wk);
+  $("#sem-stats").innerHTML=`<div class="stat"><b>${s.n}/7</b><span>días registrados</span></div>
+   <div class="stat"><b style="font-size:1.05rem">${s.avg?moodName(Math.round(s.avg)):"—"}</b><span>ánimo promedio</span></div>
+   <div class="stat"><b style="font-size:.95rem;font-family:var(--body)">${s.top.join(", ")||"—"}</b><span>emociones frecuentes</span></div>`;
+  const sc=$("#sem-cuidados");sc.hidden=!s.cuidados.length;sc.textContent=s.cuidados.length?"Esta semana me cuidé sobre todo: "+s.cuidados.join(", ")+".":"";
+  const w=weekly[k]||{};
+  $("#w-nombre").value=prefs.nombre||"";$("#w-proxima").value=w.proxima||"";
+  setDayMoods(w.animos);setChips($("#w-emociones"),w.emociones);$("#w-otra").value=w.otra||"";
+  setScale($("#w-areas"),W_AREAS,w.areas);setChips($("#w-malestar"),w.malestar);
+  ["paso","pense","senti","hice","sesion","reconocer","vozdura","amigo","valoro"].forEach(f=>$("#w-"+f).value=w[f]||"");
+  $("#w-presente-nota").value=w.presenteNota||"";
+  setAfecto(w.afecto??null);setSeg($("#w-gad1"),w.gad1);setSeg($("#w-gad2"),w.gad2);
+  setChips($("#w-veo"),w.veo);setVoz(w.voz);setChips($("#w-practique"),w.practique);
+  $$("#w-presente .dotbtn").forEach((b,i)=>b.setAttribute("aria-pressed",(w.presente||[])[i]?"true":"false"));
+  updateWA();
+}
+
+/* constantes y controles de la revisión semanal */
+const W_MOODS=MOODS.map(m=>({v:m.v,t:m.v===0?"No recuerdo":m.v===4?"Más o menos bien":m.t}));
+const wMoodName=v=>(W_MOODS.find(m=>m.v===v)||{t:"—"}).t;
+const W_EMOS=["Alegría o entusiasmo","Tranquilidad","Esperanza o motivación","Gratitud","Amor o ternura","Orgullo o satisfacción","Sorpresa","Tristeza","Ansiedad o preocupación","Angustia","Enojo o irritabilidad","Miedo","Culpa o vergüenza","Celos","Soledad","Frustración o impotencia","Aburrimiento o apatía","Confusión","Asco o rechazo","Otra"];
+const W_AREAS=["Sueño y descanso","Energía","Cuerpo y salud","Nutrición","Actividad física","Vínculos y afectos","Estudio","Trabajo","Espiritualidad y sentido","Disfrute y tiempo para mí"];
+const W_MALESTAR=["Dolor de cabeza","Tensión o dolor muscular","Dolor de espalda o cuello","Molestias digestivas","Cansancio o agotamiento","Palpitaciones","Opresión en el pecho","Dificultad para tragar","Cambios de temperatura (calor o frío)","Visión borrosa","Mareos","Falta de aire","Otro malestar","Ninguno"];
+const GAD=["Nunca","Varios días","Más de la mitad de los días","Casi todos los días"];
+const VEO=["Lo sigo sintiendo de la misma manera.","Ahora lo veo de otra forma.","Pude resolverlo o manejarlo.","Todavía no sé cómo interpretarlo.","Necesito hablarlo para entenderlo mejor."];
+const W_VOZ=[{t:"Con dureza",d:"Me exigí, me critiqué o me reproché mucho."},{t:"Mitad y mitad",d:"Hubo momentos duros y otros más amables."},{t:"Con amabilidad",d:"Me hablé con comprensión, como a alguien querido."}];
+const PRACTIQUE=["Notar mi voz crítica","Cambiar una frase dura","Hablarme como a un amigo/a","Reconocer algo que hice bien"];
+const DIAS_L=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+// mapeo del registro diario a las opciones semanales
+const MAP_EMO={"Alegría":"Alegría o entusiasmo","Esperanza":"Esperanza o motivación","Enojo":"Enojo o irritabilidad","Culpa":"Culpa o vergüenza","Vergüenza":"Culpa o vergüenza","Frustración":"Frustración o impotencia","Orgullo":"Orgullo o satisfacción","Ansiedad":"Ansiedad o preocupación","Aburrimiento":"Aburrimiento o apatía"};
+const MAP_AREA={"Disfrute y tiempo libre":"Disfrute y tiempo para mí"};
+
+$("#w-animos").innerHTML=DIAS_L.map((d,i)=>`<div class="daymood"><label for="w-dia-${i}">${d}</label><span class="disc" id="w-disc-${i}"></span>
+  <select id="w-dia-${i}" data-i="${i}"><option value="">Elegir…</option>${W_MOODS.map(m=>`<option value="${m.v}">${m.t}</option>`).join("")}</select></div>`).join("");
+function paintDayMood(i){const v=$("#w-dia-"+i).value,disc=$("#w-disc-"+i);disc.className="disc"+(v!==""&&+v>0?" on":"");disc.style.background=v!==""&&+v>0?moodColor(+v):""}
+$("#w-animos").addEventListener("change",e=>{if(e.target.dataset.i!==undefined){paintDayMood(+e.target.dataset.i);updateWA()}});
+const getDayMoods=()=>DIAS_L.map((_,i)=>{const v=$("#w-dia-"+i).value;return v===""?null:+v});
+function setDayMoods(a){DIAS_L.forEach((_,i)=>{const v=(a||[])[i];$("#w-dia-"+i).value=v===null||v===undefined?"":String(v);paintDayMood(i)})}
+chipGroup($("#w-emociones"),W_EMOS,true);
+makeScale($("#w-areas"),W_AREAS,()=>updateWA());
+chipGroup($("#w-malestar"),W_MALESTAR,true);exclusiveNone($("#w-malestar"));
+$("#w-afecto").innerHTML=[...Array(11)].map((_,n)=>`<button type="button" class="dotbtn" aria-pressed="false" data-n="${n}" aria-label="Me afectó ${n} de 10">${n}</button>`).join("");
+$("#w-afecto").addEventListener("click",e=>{const b=e.target.closest(".dotbtn");if(!b)return;const on=b.getAttribute("aria-pressed")==="true";setAfecto(on?null:+b.dataset.n);updateWA()});
+const getAfecto=()=>{const b=$("#w-afecto [aria-pressed=\"true\"]");return b?+b.dataset.n:null};
+function setAfecto(v){$$("#w-afecto .dotbtn").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===v?"true":"false"))}
+segGroup($("#w-gad1"),GAD,()=>updateWA());segGroup($("#w-gad2"),GAD,()=>updateWA());
+chipGroup($("#w-veo"),VEO,true);
+$("#w-voz").innerHTML=W_VOZ.map(o=>`<button type="button" class="opt" aria-pressed="false" data-v="${o.t}"><b>${o.t}</b><span>${o.d}</span></button>`).join("");
+$("#w-voz").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;const on=b.getAttribute("aria-pressed")==="true";setVoz(on?"":b.dataset.v);updateWA()});
+const getVoz=()=>{const b=$("#w-voz [aria-pressed=\"true\"]");return b?b.dataset.v:""};
+function setVoz(v){$$("#w-voz .opt").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v?"true":"false"))}
+chipGroup($("#w-practique"),PRACTIQUE,true);
+$("#w-presente").innerHTML=["L","M","M","J","V","S","D"].map((d,i)=>`<button type="button" class="dotbtn" aria-pressed="false" aria-label="${DIAS_L[i]}">${d}</button>`).join("");
+$("#w-presente").addEventListener("click",e=>{const b=e.target.closest(".dotbtn");if(!b)return;b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")==="true"?"false":"true");updateWA()});
+$("#v-semana").addEventListener("click",e=>{if(e.target.closest(".chip"))setTimeout(updateWA)});
+$("#w-nombre").addEventListener("change",()=>{prefs.nombre=$("#w-nombre").value.trim();store.set("prefs",prefs);$("#a-nombre").value=prefs.nombre});
+
+$("#w-traer").onclick=()=>{
+  const days=[...Array(7)].map((_,i)=>daily[iso(addDays(wk,i))]);
+  if(!days.some(Boolean)){toast("No hay registros diarios en esta semana");return}
+  const m=getDayMoods();days.forEach((e,i)=>{if(e&&m[i]===null)m[i]=e.animo});setDayMoods(m);
+  const emo=new Set(getChips($("#w-emociones")));days.forEach(e=>{if(!e)return;(e.emociones||[]).forEach(x=>emo.add(MAP_EMO[x]||x));
+    if(e.ansiedad&&e.ansiedad!=="Nada"||e.preocupacion&&e.preocupacion!=="Nada")emo.add("Ansiedad o preocupación")});
+  setChips($("#w-emociones"),[...emo]);
+  const cur=getScale($("#w-areas"),W_AREAS),acc={};days.forEach(e=>e&&Object.entries(e.areas||{}).forEach(([a,n])=>{a=MAP_AREA[a]||a;(acc[a]=acc[a]||[]).push(n)}));
+  Object.entries(acc).forEach(([a,v])=>{if(!cur[a])cur[a]=Math.round(v.reduce((s,n)=>s+n,0)/v.length)});setScale($("#w-areas"),W_AREAS,cur);
+  const mal=new Set(getChips($("#w-malestar")));days.forEach(e=>e&&(e.malestar||[]).forEach(x=>mal.add(x==="Palpitaciones u opresión"?"Palpitaciones":x)));
+  if(mal.size>1)mal.delete("Ninguno");setChips($("#w-malestar"),[...mal]);
+  $$("#w-presente .dotbtn").forEach((b,i)=>{const e=days[i];if(e&&(e.pausa==="Sí"||e.pausa==="Un poco"))b.setAttribute("aria-pressed","true")});
+  // lo escrito cada día alimenta las preguntas 9 y 10 (sólo si están vacías), sin volver a preguntarlo
+  const lines=f=>days.map((e,i)=>e&&e[f]?`${DIAS[i]}: ${e[f]}`:"").filter(Boolean);
+  if(!$("#w-sesion").value.trim()){const l=lines("sesion");if(l.length)$("#w-sesion").value=l.join("\n")}
+  if(!$("#w-reconocer").value.trim()){const l=[...lines("bueno"),...lines("sentido")];if(l.length)$("#w-reconocer").value=l.join("\n")}
+  updateWA();toast("Se completó con sus registros diarios. Puede revisarlo y cambiar lo que quiera.");
+};
+
+function weekFromForm(){return{proxima:$("#w-proxima").value,animos:getDayMoods(),emociones:getChips($("#w-emociones")),otra:$("#w-otra").value.trim(),
+  areas:getScale($("#w-areas"),W_AREAS),malestar:getChips($("#w-malestar")),
+  paso:$("#w-paso").value.trim(),pense:$("#w-pense").value.trim(),senti:$("#w-senti").value.trim(),hice:$("#w-hice").value.trim(),
+  afecto:getAfecto(),gad1:getSeg($("#w-gad1")),gad2:getSeg($("#w-gad2")),veo:getChips($("#w-veo")),voz:getVoz(),
+  sesion:$("#w-sesion").value.trim(),reconocer:$("#w-reconocer").value.trim(),
+  presente:$$("#w-presente .dotbtn").map(b=>b.getAttribute("aria-pressed")==="true"),presenteNota:$("#w-presente-nota").value.trim(),
+  vozdura:$("#w-vozdura").value.trim(),amigo:$("#w-amigo").value.trim(),valoro:$("#w-valoro").value.trim(),practique:getChips($("#w-practique"))}}
+function weekText(){
+  const w=weekFromForm(),nom=$("#w-nombre").value.trim();
+  const dias=w.animos.map((v,i)=>v===null?"":`${DIAS_L[i]}: ${wMoodName(v)}`).filter(Boolean);
+  const emo=w.emociones.map(x=>x==="Otra"&&w.otra?`Otra (${w.otra})`:x);
+  const gadPts=v=>GAD.indexOf(v);const gad=(w.gad1&&w.gad2)?gadPts(w.gad1)+gadPts(w.gad2):null;
+  const pres=w.presente.map((on,i)=>on?DIAS_L[i]:"").filter(Boolean);
+  const head=["*Revisión semanal · ¿Cómo anduve esta semana?*",nom&&`Nombre: ${nom}`,`Semana del ${fmtShort(wk)} al ${fmtShort(addDays(wk,6))}`,
+    w.proxima&&`Próxima sesión: ${fmtLong(parse(w.proxima))}`].filter(Boolean).join("\n");
+  const L=[head,
+    dias.length&&`*1. Estado de ánimo*\n${dias.join("\n")}`,
+    emo.length&&`*2. Emociones:* ${emo.join(", ")}`,
+    Object.keys(w.areas).length&&`*3. Áreas (1 a 5):* ${Object.entries(w.areas).map(([a,n])=>`${a} ${n}`).join(" · ")}`,
+    w.malestar.length&&`Malestar corporal: ${w.malestar.join(", ")}`,
+    (w.paso||w.pense||w.senti||w.hice)&&["*4. Situación significativa*",w.paso&&`Qué pasó: ${w.paso}`,w.pense&&`Qué pensé: ${w.pense}`,w.senti&&`Cómo me sentí: ${w.senti}`,w.hice&&`Qué hice: ${w.hice}`].filter(Boolean).join("\n"),
+    w.afecto!==null&&`*5. Cuánto me afectó:* ${w.afecto}/10`,
+    (w.gad1||w.gad2)&&`*6. Ansiedad y preocupación*\nNervioso/a o ansioso/a: ${w.gad1||"—"}\nNo poder dejar de preocuparme: ${w.gad2||"—"}`+(gad!==null?`\n(GAD-2: ${gad}/6)`:""),
+    w.veo.length&&`*7. Cómo lo veo ahora:* ${w.veo.join(" ")}`,
+    w.voz&&`*8. Cómo me hablé:* ${w.voz}`,
+    w.sesion&&`*9. Para trabajar en la próxima sesión:* ${w.sesion}`,
+    w.reconocer&&`*10. Algo que quiero reconocer:* ${w.reconocer}`,
+    (pres.length||w.presenteNota)&&`*Práctica de presente:* ${pres.length?pres.join(", "):"ningún día"}`+(w.presenteNota?`\nQué noté: ${w.presenteNota}`:""),
+    (w.vozdura||w.amigo||w.valoro||w.practique.length)&&["*Práctica con la voz amable*",w.vozdura&&`Mi voz dura me dijo: ${w.vozdura}`,w.amigo&&`Lo que le diría a un amigo/a: ${w.amigo}`,w.valoro&&`Algo que valoro de mí: ${w.valoro}`,w.practique.length&&`Practiqué: ${w.practique.join(", ")}`].filter(Boolean).join("\n")];
+  return L.filter(x=>x!==false&&x!==""&&x!==0&&x!==undefined&&x!==null).join("\n\n").replace(/\n\n\n+/g,"\n\n");
+}
+function updateWA(){$("#w-wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(weekText())}
+$("#v-semana").addEventListener("input",updateWA);
+$("#w-guardar").onclick=()=>{weekly[iso(wk)]=weekFromForm();store.set("weekly",weekly);toast("Semana guardada")};
+$("#w-wa").addEventListener("click",()=>{weekly[iso(wk)]=weekFromForm();store.set("weekly",weekly)});
+$("#w-copiar").onclick=()=>copy(weekText(),"Resumen copiado");
+$("#sem-prev").onclick=()=>{wk=addDays(wk,-7);loadWeek()};
+$("#sem-next").onclick=()=>{wk=addDays(wk,7);loadWeek()};
+
+/* ---------- HISTORIAL ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function loadHist(){
+  const today=new Date();const days=[...Array(14)].map((_,i)=>addDays(today,i-13));
+  $("#h-chart").innerHTML=days.map(d=>{const e=daily[iso(d)];const v=e?e.animo:0;return `<div class="bar" style="height:${v>0?v/7*100:4}%;background:${moodColor(v)}" title="${fmtShort(d)}: ${e?moodName(v):"sin registro"}"></div>`}).join("");
+  $("#h-x").innerHTML=days.map(d=>`<span>${d.getDate()}</span>`).join("");
+  $("#h-legend").innerHTML=MOODS.filter(m=>m.v).map(m=>`<span><i style="background:${moodColor(m.v)}"></i>${m.t}</span>`).join("");
+  const dk=Object.keys(daily).sort().reverse();
+  $("#h-dias").innerHTML=dk.length?dk.map(k=>{const e=daily[k];const row=(t,v)=>v&&v.length?`<dt>${t}</dt><dd>${esc(Array.isArray(v)?v.join(", "):v)}</dd>`:"";
+    const emo=[...(e.emociones||[]),e.otra].filter(Boolean);const ar=Object.entries(e.areas||{}).map(([a,n])=>`${a} ${n}`);
+    return `<details class="entry"><summary><span class="disc" style="background:${moodColor(e.animo)}"></span><span style="flex:1">${fmtLong(parse(k))}</span><span class="small muted">${moodName(e.animo)}</span></summary>
+    <div class="body"><dl style="margin:0">${row("Emociones",emo)}${row("Áreas (1 a 5)",ar.join(" · "))}${row("Malestar corporal",e.malestar)}${row("Ansiedad o nervios",e.ansiedad)}${row("Preocupación",e.preocupacion)}${row("Voz interior",e.voz)}${row("Pausa presente",e.pausa)}${row("Pasos hacia mis metas",e.metas)}${row("Me cuidé",e.cuidados)}${row("Agradezco o logré",e.bueno)}${row("Me hizo bien o me dio sentido",e.sentido)}${row("Para traer a la sesión",e.sesion)}${row("Mini plan para mañana",e.plan)}</dl>
+    <button class="linkbtn" data-edit="${k}">Editar este día</button></div></details>`}).join("")
+    :`<div class="empty">Todavía no hay registros. Empiece hoy desde la pestaña <b>Hoy</b>: le lleva un par de minutos.</div>`;
+  const wkKeys=Object.keys(weekly).sort().reverse();
+  $("#h-semanas").innerHTML=wkKeys.length?wkKeys.map(k=>{const w=weekly[k],s=parse(k);
+    const vs=(w.animos||[]).filter(v=>v>0),avg=vs.length?Math.round(vs.reduce((a,b)=>a+b,0)/vs.length):0;
+    return `<details class="entry"><summary><span class="disc" style="background:${avg?moodColor(avg):"var(--brand)"}"></span><span style="flex:1">Semana del ${fmtShort(s)}</span><span class="small muted">${avg?wMoodName(avg):""}</span></summary>
+    <div class="body">${w.paso?`<p><b>Situación significativa:</b> ${esc(w.paso)}</p>`:""}${w.sesion?`<p><b>Para trabajar en sesión:</b> ${esc(w.sesion)}</p>`:""}${w.reconocer?`<p><b>Para reconocer:</b> ${esc(w.reconocer)}</p>`:""}<button class="linkbtn" data-week="${k}">Abrir semana</button></div></details>`}).join("")
+    :`<div class="empty">Las revisiones semanales que guarde aparecerán aquí.</div>`;
+}
+document.addEventListener("click",e=>{
+  const ed=e.target.closest("[data-edit]");if(ed){dFecha.value=ed.dataset.edit;location.hash="hoy";}
+  const w=e.target.closest("[data-week]");if(w){wk=parse(w.dataset.week);location.hash="semana";}
+  const c=e.target.closest("[data-copy]");if(c)copy(c.dataset.copy);
+});
+
+/* ---------- FRASES ---------- */
+let cat="Todas";
+function loadFrases(){
+  const cats=["Todas",...new Set(FRASES.map(f=>f.c))];
+  $("#f-cats").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c}</button>`).join("");
+  $$("#f-cats .chip").forEach(b=>b.onclick=()=>{cat=b.dataset.cat;loadFrases()});
+  $("#f-list").innerHTML=FRASES.map((f,i)=>({f,i})).filter(x=>cat==="Todas"||x.f.c===cat).map(({f,i})=>
+    `<figure class="quote" style="margin:0"><div class="qtop"><span class="tag">${f.c}</span>${ILL[f.a]?`<span class="ill" aria-hidden="true">${illSvg(f.a)}</span>`:""}</div><blockquote>“${f.t}”</blockquote>
+     <div class="meta"><cite>— ${f.a}</cite><button class="linkbtn" data-img="${i}">Compartir en Instagram</button></div></figure>`).join("");
+  $$("[data-img]").forEach(b=>b.onclick=()=>makeImage(FRASES[+b.dataset.img]));
+}
+let caption="";
+function wrapLines(ctx,text,maxW){const w=text.split(" "),L=[];let line="";
+  w.forEach(word=>{const t=line?line+" "+word:word;if(ctx.measureText(t).width>maxW&&line){L.push(line);line=word}else line=t});if(line)L.push(line);return L}
+async function makeImage(f){
+  try{await document.fonts.load('italic 500 60px "Newsreader"');await document.fonts.load('400 40px "Gloock"');await document.fonts.load('600 30px "Figtree"')}catch(e){}
+  const W=1080,H=1350,cv=document.createElement("canvas");cv.width=W;cv.height=H;const x=cv.getContext("2d");
+  const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#1f4955");g.addColorStop(1,"#244f5c");x.fillStyle=g;x.fillRect(0,0,W,H);
+  // ilustración de la frase
+  if(ILL[f.a]){try{const im=new Image();im.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(illSvg(f.a));await im.decode();
+    x.fillStyle="rgba(242,235,219,.07)";x.beginPath();x.arc(W/2,230,130,0,7);x.fill();x.drawImage(im,W/2-110,120,220,220)}catch(e){}}
+  x.fillStyle="#d9906f";x.font='600 26px "Figtree", sans-serif';x.textAlign="center";
+  x.fillText(f.c.toUpperCase().split("").join(" "),W/2,420);
+  let size=64;x.font=`italic 500 ${size}px "Newsreader", Georgia, serif`;let lines=wrapLines(x,"“"+f.t+"”",W-200);
+  while(lines.length>6&&size>42){size-=4;x.font=`italic 500 ${size}px "Newsreader", Georgia, serif`;lines=wrapLines(x,"“"+f.t+"”",W-200)}
+  const lh=size*1.32,top=470+((H-260-470)-(lines.length*lh+60))/2+size;x.fillStyle="#f2ebdb";
+  lines.forEach((l,i)=>x.fillText(l,W/2,top+i*lh));
+  x.font='600 34px "Figtree", sans-serif';x.fillStyle="#d9906f";x.fillText("— "+f.a,W/2,top+(lines.length-1)*lh+70);
+  // logo Latir (vector), pequeño al pie
+  drawLogo(x,W/2,H-205,0.24);
+  x.font='400 40px "Gloock", Georgia, serif';x.fillStyle="#f2ebdb";x.fillText("Latir",W/2,H-120);
+  x.font='500 26px "Figtree", sans-serif';x.fillStyle="#c9d3d3";x.fillText("Psicooncología · Lic. Eric Terlecki",W/2,H-78);
+  $("#m-img").src=cv.toDataURL("image/png");
+  shareFile=null;cv.toBlob(b=>{if(!b)return;try{const f=new File([b],"latir-frase.png",{type:"image/png"});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){shareFile=f;$("#m-share").hidden=false}}catch(e){}},"image/png");
+  $("#m-share").hidden=true;
+  caption=`“${f.t}” — ${f.a}\n\n#${f.c.replace(/\s/g,"")} #psicoterapia #saludmental #Latir #psicooncologia #Rosario`;
+  $("#modal").hidden=false;
+}
+async function makeDayImage(){
+  try{await document.fonts.load('italic 500 60px "Newsreader"');await document.fonts.load('400 40px "Gloock"');await document.fonts.load('600 30px "Figtree"')}catch(e){}
+  const W=1080,H=1920,cv=document.createElement("canvas");cv.width=W;cv.height=H;const x=cv.getContext("2d");
+  const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#1f4955");g.addColorStop(1,"#163842");x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.fillStyle="rgba(242,235,219,.06)";x.beginPath();x.arc(W/2,560,300,0,7);x.fill();
+  drawLogo(x,W/2,560,0.95);
+  x.textAlign="center";x.fillStyle="#d9906f";x.font='600 30px "Figtree", sans-serif';
+  x.fillText("H O Y   M E   D I   U N   M O M E N T O",W/2,1000);
+  x.fillStyle="#f2ebdb";x.font='400 92px "Gloock", Georgia, serif';
+  ["Me tomé un","momento para mí."].forEach((l,i)=>x.fillText(l,W/2,1130+i*110));
+  const n=[...Array(7)].map((_,i)=>daily[iso(addDays(monday(new Date()),i))]).filter(Boolean).length;
+  x.font='italic 500 50px "Newsreader", Georgia, serif';x.fillStyle="#e3b866";
+  x.fillText(n>1?`${n} días registrados esta semana`:"Registrar cómo estoy también es cuidarme",W/2,1420);
+  x.font='400 44px "Gloock", Georgia, serif';x.fillStyle="#f2ebdb";x.fillText("Latir",W/2,H-190);
+  x.font='500 30px "Figtree", sans-serif';x.fillStyle="#c9d3d3";x.fillText("Psicooncología · Lic. Eric Terlecki",W/2,H-140);
+  showImage(cv,"latir-mi-momento.png",`Hoy me tomé un momento para mí. 🌿\n\n#psicooncologia #autocuidado #Latir`);
+}
+function drawLogo(x,cx,cy,ls){
+  const k=v=>v*ls, by=cy-k(8);
+  x.fillStyle="#f2ebdb";x.beginPath();x.arc(cx-k(37),cy-k(56),k(31),0,7);x.fill();
+  x.fillStyle="#d9906f";x.beginPath();x.arc(cx+k(37),cy-k(56),k(31),0,7);x.fill();
+  x.fillStyle="#e3b866";x.beginPath();x.arc(cx,by,k(112),0,Math.PI,false);x.arc(cx-k(100),by,k(12),Math.PI,0,false);
+  x.arc(cx,by,k(88),Math.PI,0,true);x.arc(cx+k(100),by,k(12),Math.PI,0,false);x.closePath();x.fill();
+}
+function showImage(cv,name,text){
+  $("#m-img").src=cv.toDataURL("image/png");$("#m-share").hidden=true;shareFile=null;
+  cv.toBlob(b=>{if(!b)return;try{const f=new File([b],name,{type:"image/png"});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){shareFile=f;$("#m-share").hidden=false}}catch(e){}},"image/png");
+  caption=text;$("#modal").hidden=false;
+}
+$("#d-ig").onclick=()=>makeDayImage();
+$("#m-cerrar").onclick=()=>$("#modal").hidden=true;
+let shareFile=null;
+$("#m-share").onclick=async()=>{if(!shareFile)return;try{await copy(caption,"Texto copiado: péguelo en la publicación");await navigator.share({files:[shareFile]})}
+  catch(e){if(e&&e.name!=="AbortError")toast("No se pudo abrir Compartir. Mantenga presionada la imagen para guardarla.")}};
+$("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").hidden=true};
+$("#m-caption").onclick=()=>copy(caption,"Texto copiado");
+
+/* ---------- respiración ---------- */
+let breathing=null;
+$("#breath-btn").onclick=()=>{
+  const ring=$("#ring"),t=$("#ring-t");if(breathing){clearTimeout(breathing);breathing=null;ring.style.transform="scale(.7)";t.textContent="Respirar";return}
+  let left=6;const cycle=()=>{if(left--<=0){breathing=null;ring.style.transition="transform 1s";ring.style.transform="scale(.7)";t.textContent="Bien hecho";return}
+    ring.style.transition="transform 4s ease-in-out";ring.style.transform="scale(1)";t.textContent="Inhale";
+    breathing=setTimeout(()=>{ring.style.transition="transform 6s ease-in-out";ring.style.transform="scale(.7)";t.textContent="Exhale";breathing=setTimeout(cycle,6000)},4000)};
+  cycle();
+};
+
+/* ---------- AJUSTES ---------- */
+$("#a-nombre").value=prefs.nombre||"";
+$("#a-guardar").onclick=()=>{prefs.nombre=$("#a-nombre").value.trim();store.set("prefs",prefs);toast("Datos guardados")};
+$("#a-export").onclick=()=>copy(JSON.stringify({app:"entre-nosotros",v:1,daily,weekly,prefs}),"Respaldo copiado");
+$("#a-import-btn").onclick=()=>{try{const d=JSON.parse($("#a-import").value);if(d.app!=="entre-nosotros")throw 0;
+  daily={...daily,...d.daily};weekly={...weekly,...d.weekly};if(d.prefs)prefs={...prefs,...d.prefs};
+  store.set("daily",daily);store.set("weekly",weekly);store.set("prefs",prefs);$("#a-import").value="";toast("Respaldo restaurado")}
+  catch(e){toast("El texto no es un respaldo válido. Pegue el respaldo completo.")}};
+$("#a-borrar").onclick=()=>{$("#a-confirm").hidden=false;$("#a-borrar").hidden=true};
+$("#a-borrar-no").onclick=()=>{$("#a-confirm").hidden=true;$("#a-borrar").hidden=false};
+$("#a-borrar-si").onclick=()=>{daily={};weekly={};store.set("daily",daily);store.set("weekly",weekly);$("#a-confirm").hidden=true;$("#a-borrar").hidden=false;toast("Registros borrados");loadDay()};
+
+/* ---------- instalar en el celular ---------- */
+const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+const ua=navigator.userAgent,isIOS=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1),isAndroid=/android/i.test(ua);
+let deferred=null;
+function installUI(){
+  const hide=standalone||store.get("installLater",0)>Date.now();
+  $("#install-card").hidden=hide||!(isIOS||isAndroid||deferred);
+  $("#install-btn").hidden=!deferred;
+  // Siempre se ven los pasos de iPhone y de Android; primero los del propio celular
+  $$(".inst-ios,.inst-android").forEach(e=>e.hidden=false);
+  if(isAndroid&&!isIOS){$$(".inst-android").forEach(a=>{const i=a.parentElement.querySelector(".inst-ios");if(i)a.parentElement.insertBefore(a,i)})}
+  $("#a-install").textContent=standalone?"La app ya está instalada":"Instalar la app";$("#a-install").disabled=standalone;
+}
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e;installUI()});
+addEventListener("appinstalled",()=>{deferred=null;toast("¡Listo! La app quedó en su pantalla de inicio");$("#install-card").hidden=true});
+async function doInstall(){
+  if(deferred){deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;installUI();return}
+  location.hash="#guia";setTimeout(()=>{const d=$("#guia-instalar");if(d){d.open=true;d.scrollIntoView({block:"start"})}},60);
+}
+$("#install-btn").onclick=doInstall;$("#a-install").onclick=doInstall;
+$("#install-later").onclick=()=>{store.set("installLater",Date.now()+7*864e5);$("#install-card").hidden=true};
+installUI();
+document.addEventListener("click",e=>{const a=e.target.closest("[data-goto]");if(!a)return;const id=a.dataset.goto;
+  setTimeout(()=>{const t=document.getElementById(id);if(!t)return;if(t.tagName==="DETAILS")t.open=true;t.scrollIntoView({block:"start"})},60)});
+$("#p-share").onclick=async()=>{const url=location.origin+location.pathname;
+  const data={title:"Latir · Mi registro",text:"Una app para registrar cómo estoy, del Lic. Eric Terlecki.",url};
+  try{if(navigator.share){await navigator.share(data);return}}catch(e){if(e&&e.name==="AbortError")return}
+  copy(url,"Enlace copiado")};
+
+/* ---------- navegación ---------- */
+const VIEWS=["hoy","semana","historial","frases","guia","profesional","ajustes"];
+function route(){
+  const v=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"hoy";
+  VIEWS.forEach(n=>$("#v-"+n).hidden=n!==v);
+  $$("[data-nav]").forEach(a=>a.dataset.nav===v?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));
+  if(v==="hoy")loadDay();if(v==="semana")loadWeek();if(v==="historial")loadHist();if(v==="frases")loadFrases();
+  window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);route();
+})();
+</script>
+
+<script>
+if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>
